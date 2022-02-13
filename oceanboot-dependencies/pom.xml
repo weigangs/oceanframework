@@ -15,6 +15,10 @@
         <mybatis.version>2.2.0</mybatis.version>
         <spring-boot.version>2.6.2</spring-boot.version>
         <mybatis-plus.version>3.4.3.4</mybatis-plus.version>
+        <ocean-mybatis.version>1.0.1</ocean-mybatis.version>
+        <ocean-common-util.version>1.0.1</ocean-common-util.version>
+        <ocean-boot-starter.version>1.0.1</ocean-boot-starter.version>
+        <ocean-mybatis-plus.version>1.0.1</ocean-mybatis-plus.version>
     </properties>
 
     <dependencyManagement>
@@ -39,22 +43,27 @@
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis.version}</version>
             </dependency>
+            <!-- ocean framework -->
             <dependency>
                 <groupId>com.lkyl.oceanFramework.boot</groupId>
                 <artifactId>oceanboot-starter</artifactId>
-                <version>${project.version}</version>
+                <version>${ocean-boot-starter.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanFramework.common</groupId>
                 <artifactId>common-utils</artifactId>
-                <version>${project.version}</version>
+                <version>${ocean-common-util.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanFramework</groupId>
                 <artifactId>ocean-mybatis-plus</artifactId>
-                <version>${project.version}</version>
+                <version>${ocean-mybatis-plus.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.lkyl.oceanFramework</groupId>
+                <artifactId>ocean-mybatis</artifactId>
+                <version>${ocean-mybatis.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -68,6 +77,10 @@
                         <source>${java.version}</source>
                         <target>${java.version}</target>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
                 </plugin>
             </plugins>
         </pluginManagement>
