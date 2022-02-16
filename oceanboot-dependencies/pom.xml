@@ -13,12 +13,16 @@
     <properties>
         <java.version>1.8</java.version>
         <mybatis.version>2.2.0</mybatis.version>
+        <fastJson.version>1.2.79</fastJson.version>
+        <ocean-web.version>1.0.1</ocean-web.version>
         <spring-boot.version>2.6.2</spring-boot.version>
+        <swagger.fox.version>2.9.2</swagger.fox.version>
         <mybatis-plus.version>3.4.3.4</mybatis-plus.version>
         <ocean-mybatis.version>1.0.1</ocean-mybatis.version>
         <ocean-common-util.version>1.0.1</ocean-common-util.version>
         <ocean-boot-starter.version>1.0.1</ocean-boot-starter.version>
         <ocean-mybatis-plus.version>1.0.1</ocean-mybatis-plus.version>
+        <github-pageHelper-starter.version>1.2.5</github-pageHelper-starter.version>
     </properties>
 
     <dependencyManagement>
@@ -64,6 +68,37 @@
                 <artifactId>ocean-mybatis</artifactId>
                 <version>${ocean-mybatis.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.lkyl.oceanFramework</groupId>
+                <artifactId>ocean-web</artifactId>
+                <version>${ocean-web.version}</version>
+            </dependency>
+
+            <!-- fast json -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastJson.version}</version>
+            </dependency>
+            <!-- 使用github helper 做分页插件 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${github-pageHelper-starter.version}</version>
+            </dependency>
+            <!-- 在线接口文档生成器  -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.fox.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.fox.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
