@@ -19,7 +19,7 @@ public class GenProcessor extends AbstractProcessor {
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         for(TypeElement element : annotations){
             Set<? extends Element> annotationEles = roundEnv.getElementsAnnotatedWith(element);
-            List<Element> interfaceEles = annotationEles.stream().filter(e -> ((Element) e).getAnnotationsByType(Interface)));
+//            List<Element> interfaceEles = annotationEles.stream().filter(e -> ((Element) e).getAnnotationsByType(Interface)));
         }
         return true;
     }

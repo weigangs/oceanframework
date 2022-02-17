@@ -7,18 +7,12 @@
     <groupId>com.lkyl.oceanFramework</groupId>
     <artifactId>ocean-mybatis</artifactId>
     <version>1.0.1</version>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <packaging>jar</packaging>
+    <parent>
+        <groupId>com.lkyl.oceanFramework.boot</groupId>
+        <artifactId>oceanboot-dependencies</artifactId>
+        <version>1.0.1</version>
+    </parent>
 
     <properties>
         <oceanFramwork.version>1.0.1</oceanFramwork.version>
@@ -36,15 +30,21 @@
         </dependency>
     </dependencies>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.lkyl.oceanFramework.boot</groupId>
-                <artifactId>oceanboot-dependencies</artifactId>
-                <version>${oceanFramwork.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>conf/**/*</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

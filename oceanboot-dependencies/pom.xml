@@ -19,6 +19,7 @@
         <swagger.fox.version>2.9.2</swagger.fox.version>
         <mybatis-plus.version>3.4.3.4</mybatis-plus.version>
         <ocean-mybatis.version>1.0.1</ocean-mybatis.version>
+        <druid-starter.version>1.1.22</druid-starter.version>
         <ocean-common-util.version>1.0.1</ocean-common-util.version>
         <ocean-boot-starter.version>1.0.1</ocean-boot-starter.version>
         <ocean-mybatis-plus.version>1.0.1</ocean-mybatis-plus.version>
@@ -72,6 +73,13 @@
                 <groupId>com.lkyl.oceanFramework</groupId>
                 <artifactId>ocean-web</artifactId>
                 <version>${ocean-web.version}</version>
+            </dependency>
+
+            <!-- druid -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid-starter.version}</version>
             </dependency>
 
             <!-- fast json -->
