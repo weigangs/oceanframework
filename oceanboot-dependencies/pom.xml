@@ -12,18 +12,22 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <mybatis.version>2.2.0</mybatis.version>
+        <junit.version></junit.version>
         <fastJson.version>1.2.79</fastJson.version>
         <ocean-web.version>1.0.1</ocean-web.version>
-        <spring-boot.version>2.6.2</spring-boot.version>
+        <spring-boot.version>2.6.3</spring-boot.version>
         <swagger.fox.version>2.9.2</swagger.fox.version>
         <mybatis-plus.version>3.4.3.4</mybatis-plus.version>
         <ocean-mybatis.version>1.0.1</ocean-mybatis.version>
+        <spring-cloud.version>2021.0.1</spring-cloud.version>
         <druid-starter.version>1.1.22</druid-starter.version>
+        <ocean-security.version>1.0.1</ocean-security.version>
+        <mybatis-starter.version>2.0.1</mybatis-starter.version>
         <ocean-common-util.version>1.0.1</ocean-common-util.version>
         <ocean-boot-starter.version>1.0.1</ocean-boot-starter.version>
         <ocean-mybatis-plus.version>1.0.1</ocean-mybatis-plus.version>
         <github-pageHelper-starter.version>1.2.5</github-pageHelper-starter.version>
+        <spring-cloud-security.version>2.2.5.RELEASE</spring-cloud-security.version>
     </properties>
 
     <dependencyManagement>
@@ -42,11 +46,27 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
+            <!-- spring cloud 依赖 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- SPRING CLOUD SECURITY 依赖 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-security-dependencies</artifactId>
+                <version>${spring-cloud-security.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!-- mybatis -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>${mybatis.version}</version>
+                <version>${mybatis-starter.version}</version>
             </dependency>
             <!-- ocean framework -->
             <dependency>
@@ -73,6 +93,11 @@
                 <groupId>com.lkyl.oceanFramework</groupId>
                 <artifactId>ocean-web</artifactId>
                 <version>${ocean-web.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lkyl.oceanFramework</groupId>
+                <artifactId>ocean-security</artifactId>
+                <version>${ocean-security.version}</version>
             </dependency>
 
             <!-- druid -->

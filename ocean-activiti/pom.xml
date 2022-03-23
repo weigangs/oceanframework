@@ -4,37 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.lkyl.oceanFramework</groupId>
-    <artifactId>ocean-mybatis</artifactId>
+    <groupId>com.lkyl.oceanframework</groupId>
+    <artifactId>ocean-activiti</artifactId>
     <version>1.0.1</version>
-    <packaging>jar</packaging>
+
     <parent>
         <groupId>com.lkyl.oceanFramework.boot</groupId>
         <artifactId>oceanboot-dependencies</artifactId>
         <version>1.0.1</version>
     </parent>
 
-    <properties>
-        <oceanFramwork.version>1.0.1</oceanFramwork.version>
-    </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.lkyl.oceanFramework.common</groupId>
-            <artifactId>common-utils</artifactId>
-        </dependency>
-
-        <!-- github page helper -->
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-        </dependency>
-    </dependencies>
 
     <build>
         <plugins>
@@ -53,4 +32,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

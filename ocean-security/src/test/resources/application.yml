@@ -1,0 +1,17 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: ocean-test-service
+  profiles:
+    active: dev
+  main:
+    banner-mode: 'OFF'
+  jackson:
+    serialization:
+      indent-output: true
+
+jvm_opts: -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -Xms128m -Xmx128m -Xmn64m -Xss256k -XX:SurvivorRatio=8 -XX:+UseConcMarkSweepGC
+
+
