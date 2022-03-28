@@ -1,8 +1,8 @@
-package com.lkyl.oceanframework.web.util;
+package com.lkyl.oceanframework.common.utils.utils;
 
 
-import com.lkyl.oceanframework.web.common.CommonCode;
-import com.lkyl.oceanframework.web.exception.CommonException;
+import com.lkyl.oceanframework.common.utils.constant.CommonCode;
+import com.lkyl.oceanframework.common.utils.exception.CommonException;
 
 @SuppressWarnings("all")
 public class PageUtil {

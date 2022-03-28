@@ -26,8 +26,8 @@ import javax.annotation.Resource;
 @Data
 @Component
 @Configuration
-@ConfigurationProperties(prefix = "httpclient")
-public class HttpClientConfig {
+@ConfigurationProperties(prefix = "ocean.httpclient")
+public class OceanHttpClientConfig {
 
     private Integer maxTotal = 300;
 

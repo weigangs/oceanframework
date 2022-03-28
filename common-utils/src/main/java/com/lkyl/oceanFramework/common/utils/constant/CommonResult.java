@@ -1,6 +1,6 @@
-package com.lkyl.oceanframework.web.config;
+package com.lkyl.oceanframework.common.utils.constant;
 
-import com.lkyl.oceanframework.web.exception.CommonException;
+import com.lkyl.oceanframework.common.utils.exception.CommonException;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

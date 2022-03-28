@@ -1,4 +1,4 @@
-package com.lkyl.oceanframework.web.common;
+package com.lkyl.oceanframework.common.utils.constant;
 
 @SuppressWarnings("all")
 public class CommonCode {

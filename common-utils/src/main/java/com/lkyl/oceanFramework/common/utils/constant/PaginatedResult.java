@@ -1,4 +1,4 @@
-package com.lkyl.oceanframework.web.config;
+package com.lkyl.oceanframework.common.utils.constant;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

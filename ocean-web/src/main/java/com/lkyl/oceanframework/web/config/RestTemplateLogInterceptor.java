@@ -1,6 +1,6 @@
 package com.lkyl.oceanframework.web.config;
 
-import com.lkyl.oceanframework.web.exception.CommonException;
+import com.lkyl.oceanframework.common.utils.exception.CommonException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;

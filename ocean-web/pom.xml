@@ -30,6 +30,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.lkyl.oceanFramework.common</groupId>
+            <artifactId>common-utils</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>

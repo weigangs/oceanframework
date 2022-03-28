@@ -1,4 +1,4 @@
-package com.lkyl.oceanframework.web.constant;
+package com.lkyl.oceanframework.common.utils.constant;
 
 @SuppressWarnings("all")
 public class PageConstant {

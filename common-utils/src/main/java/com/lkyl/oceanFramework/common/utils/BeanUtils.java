@@ -1,4 +1,4 @@
-package com.lkyl.oceanFramework.common.utils;
+package com.lkyl.oceanframework.common.utils;
 
 import com.alibaba.fastjson.JSONObject;
 

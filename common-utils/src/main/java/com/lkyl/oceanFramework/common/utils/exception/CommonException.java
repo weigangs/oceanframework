@@ -1,7 +1,6 @@
-package com.lkyl.oceanframework.web.exception;
+package com.lkyl.oceanframework.common.utils.exception;
 
-import com.lkyl.oceanframework.web.common.CommonCode;
-import com.lkyl.oceanframework.web.config.ErrorCodeConfig;
+import com.lkyl.oceanframework.common.utils.constant.CommonCode;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
