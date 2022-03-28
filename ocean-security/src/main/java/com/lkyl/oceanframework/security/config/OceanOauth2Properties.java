@@ -6,8 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 @Data
-@Component
-@Configuration
 @ConfigurationProperties(prefix = "ocean.security.oauth2.resource")
 public class OceanOauth2Properties {
 

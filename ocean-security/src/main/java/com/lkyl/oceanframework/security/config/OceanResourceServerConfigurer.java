@@ -3,6 +3,7 @@ package com.lkyl.oceanframework.security.config;
 import com.lkyl.oceanframework.security.exception.AuthExceptionEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -21,12 +22,12 @@ public class OceanResourceServerConfigurer implements ResourceServerConfigurer {
     private OceanOauth2Properties oceanOauth2Properties;
 
     @Resource
-    private JedisConnectionFactory jedisConnectionFactory;
+    private RedisConnectionFactory redisConnectionFactory;
 
     @Bean
     public DefaultTokenServices defaultTokenServices(){
         DefaultTokenServices tokenServices = new DefaultTokenServices();
-        tokenServices.setTokenStore(new RedisTokenStore(jedisConnectionFactory));
+        tokenServices.setTokenStore(new RedisTokenStore(redisConnectionFactory));
         return tokenServices;
     }
 

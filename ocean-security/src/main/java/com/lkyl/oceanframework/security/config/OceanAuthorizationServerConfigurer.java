@@ -1,5 +1,6 @@
 package com.lkyl.oceanframework.security.config;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +16,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableAuthorizationServer
+@ConditionalOnBean(DataSource.class)
 public class OceanAuthorizationServerConfigurer implements AuthorizationServerConfigurer {
 
     @Resource

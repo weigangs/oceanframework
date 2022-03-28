@@ -15,7 +15,6 @@ import java.text.MessageFormat;
 /**
  * 自定义restTemplate拦截器  在拦截器中进行了请求信息的打印，还对请求的返回做了异常处理(造成本次问题的问题的根源)
  */
-@Component
 @Slf4j
 public class RestTemplateLogInterceptor implements ClientHttpRequestInterceptor {
 

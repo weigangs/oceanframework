@@ -24,35 +24,22 @@ import javax.annotation.Resource;
 
 
 @Data
-@Component
 @Configuration
-@ConfigurationProperties(prefix = "ocean.httpclient")
 public class OceanHttpClientConfig {
 
-    private Integer maxTotal = 300;
-
-    private Integer defaultMaxPerRoute = 100;
-
-    private Integer connectTimeout = 1000000;
-
-    private Integer connectionRequestTimeout = 5000000;
-
-    private Integer socketTimeout = 100000000;
-
-    private Integer validateAfterInactivity = 2000;
-
-    private boolean staleConnectionCheckEnabled = true;
-
-//    //https 证书 路径
-//    private String keyStorePath;
-//    // 证书密码
-//    private String keyStorepass;
-
     @Resource
-    private RestTemplateLogInterceptor restTemplateLogInterceptor;
+    private OceanHttpClientProperties oceanHttpClientProperties;
+
+//    @Resource
+//    private RestTemplateLogInterceptor restTemplateLogInterceptor;
 
     @Resource
     private HttpMessageConverters httpMessageConverters;
+
+    @Bean
+    public RestTemplateLogInterceptor restTemplateLogInterceptor(){
+        return new RestTemplateLogInterceptor();
+    }
 
     /**
      *
@@ -82,7 +69,7 @@ public class OceanHttpClientConfig {
 //        };
         RestTemplate restTemplate = new RestTemplate(httpMessageConverters.getConverters());
         restTemplate.setRequestFactory(httpRequestFactory());
-        restTemplate.getInterceptors().add(restTemplateLogInterceptor);
+        restTemplate.getInterceptors().add(restTemplateLogInterceptor());
 //        restTemplate.setErrorHandler(responseErrorHandler);
         return restTemplate;
     }
@@ -121,10 +108,10 @@ public class OceanHttpClientConfig {
     @Bean(name = "requestConfig")
     public RequestConfig requestConfig() {
         RequestConfig requestConfig = RequestConfig.custom()
-                .setSocketTimeout(socketTimeout) //服务器返回数据(response)的时间，超过该时间抛出read timeout
-                .setConnectTimeout(connectTimeout)//连接上服务器(握手成功)的时间，超出该时间抛出connect timeout
-                .setConnectionRequestTimeout(connectionRequestTimeout)//从连接池中获取连接的超时时间，超过该时间未拿到可用连接，会抛出org.apache.http.conn.ConnectionPoolTimeoutException: Timeout waiting for connection from pool
-                .setStaleConnectionCheckEnabled(staleConnectionCheckEnabled)
+                .setSocketTimeout(oceanHttpClientProperties.getSocketTimeout()) //服务器返回数据(response)的时间，超过该时间抛出read timeout
+                .setConnectTimeout(oceanHttpClientProperties.getConnectTimeout())//连接上服务器(握手成功)的时间，超出该时间抛出connect timeout
+                .setConnectionRequestTimeout(oceanHttpClientProperties.getConnectionRequestTimeout())//从连接池中获取连接的超时时间，超过该时间未拿到可用连接，会抛出org.apache.http.conn.ConnectionPoolTimeoutException: Timeout waiting for connection from pool
+                .setStaleConnectionCheckEnabled(oceanHttpClientProperties.isStaleConnectionCheckEnabled())
                 .build();
         return requestConfig;
     }
@@ -145,10 +132,10 @@ public class OceanHttpClientConfig {
         PoolingHttpClientConnectionManager httpClientConnectionManager =
                 new PoolingHttpClientConnectionManager(socketFactoryRegistry);
         //最大连接数
-        httpClientConnectionManager.setMaxTotal(maxTotal);
+        httpClientConnectionManager.setMaxTotal(oceanHttpClientProperties.getMaxTotal());
         //并发数
-        httpClientConnectionManager.setDefaultMaxPerRoute(defaultMaxPerRoute);
-        httpClientConnectionManager.setValidateAfterInactivity(validateAfterInactivity);
+        httpClientConnectionManager.setDefaultMaxPerRoute(oceanHttpClientProperties.getDefaultMaxPerRoute());
+        httpClientConnectionManager.setValidateAfterInactivity(oceanHttpClientProperties.getValidateAfterInactivity());
         return httpClientConnectionManager;
     }
 
