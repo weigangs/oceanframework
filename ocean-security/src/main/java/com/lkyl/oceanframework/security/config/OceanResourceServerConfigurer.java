@@ -14,8 +14,6 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 
 import javax.annotation.Resource;
 
-@Configuration
-@EnableResourceServer
 public class OceanResourceServerConfigurer implements ResourceServerConfigurer {
 
     @Resource
