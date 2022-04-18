@@ -1,17 +1,25 @@
 package com.lkyl.oceanframework.mybatis.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
 @ConditionalOnProperty(name = "ocean.datasource.type", havingValue = "druid")
+@AutoConfigureAfter(StandardPBEStringEncryptor.class)
 public class OceanDruidConfiguration {
 
+//    @Resource
+//    private StringEncryptor stringEncryptor;
+
     @Bean
-    public DataSource dataSource(DataSourceProperties dataSourceProperties) {
+    public DataSource dataSource(OceanDataSourceProperties dataSourceProperties) {
+//        if(PropertyValueEncryptionUtils.isEncryptedValue(dataSourceProperties.getPassword())){
+//            dataSourceProperties.setPassword(PropertyValueEncryptionUtils.decrypt(dataSourceProperties.getPassword(), stringEncryptor));
+//        }
         DruidDataSource dataSource = new DruidDataSource();
 //        dataSource.setDriverClassName(driverClassName);//如果不配置druid会根据url自动识别dbType，然后选择相应的driverClassName
         dataSource.setUrl(dataSourceProperties.getUrl());

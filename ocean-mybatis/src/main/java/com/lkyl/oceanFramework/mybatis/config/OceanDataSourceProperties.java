@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Data
 @ConfigurationProperties(prefix = "ocean.datasource")
-public class DataSourceProperties {
+public class OceanDataSourceProperties {
     private String type;
     private String username;
     private String password;

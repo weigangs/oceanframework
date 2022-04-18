@@ -4,15 +4,21 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
 @ConditionalOnProperty(name = "ocean.datasource.type", havingValue = "hikari")
+
 public class OceanHikariConfiguration{
 
+//    @Resource
+//    private StandardPBEStringEncryptor standardPBEStringEncryptor;
+
     @Bean
-    public DataSource dataSource(DataSourceProperties dataSourceProperties) {
+    public DataSource dataSource(OceanDataSourceProperties dataSourceProperties) {
+//        if(PropertyValueEncryptionUtils.isEncryptedValue(dataSourceProperties.getPassword())){
+//            dataSourceProperties.setPassword(PropertyValueEncryptionUtils.decrypt(dataSourceProperties.getPassword(), standardPBEStringEncryptor));
+//        }
         HikariConfig config = new HikariConfig();
         config.setDataSourceClassName(dataSourceProperties.getDriverClassName());
         config.addDataSourceProperty("url", dataSourceProperties.getUrl());

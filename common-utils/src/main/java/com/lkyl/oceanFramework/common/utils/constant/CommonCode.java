@@ -25,6 +25,8 @@ public class CommonCode {
 
     public static final String FAILURE_OF_ZH = "2";
 
+    public static final String LOGOUT_MSG = "退出登录成功!";
+
     private CommonCode() {
 
     }

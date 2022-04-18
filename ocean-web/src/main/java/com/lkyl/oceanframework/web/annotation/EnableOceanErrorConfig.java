@@ -1,4 +1,4 @@
-package com.lkyl.oceanframework.boot.annotation;
+package com.lkyl.oceanframework.web.annotation;
 
 import com.lkyl.oceanframework.common.utils.config.OceanErrorConfig;
 import org.springframework.context.annotation.Import;

@@ -1,5 +1,6 @@
 package com.lkyl.oceanframework.common.utils.utils;
 
+
 import java.util.Collection;
 import java.util.Map;
 
@@ -26,4 +27,5 @@ public class CollectionUtils {
             return true;
         return false;
     }
+
 }

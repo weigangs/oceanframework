@@ -17,9 +17,19 @@
     <properties>
         <java.version>1.8</java.version>
         <fastjson.version>1.2.79</fastjson.version>
+        <jasypt-version>1.9.3</jasypt-version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jasypt</groupId>
+            <artifactId>jasypt</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
