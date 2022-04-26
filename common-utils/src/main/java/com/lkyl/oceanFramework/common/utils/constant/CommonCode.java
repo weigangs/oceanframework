@@ -5,6 +5,10 @@ public class CommonCode {
 
     public static final String SUCCESS = "0000";
 
+    public static final String LOGIN_FAILED = "400";
+
+    public static final String NOT_FOUND = "404";
+
     public static final String NO_AUTH = "0401";
 
     public static final String SERVER_INTERNAL_ERROR = "1000";
@@ -26,6 +30,14 @@ public class CommonCode {
     public static final String FAILURE_OF_ZH = "2";
 
     public static final String LOGOUT_MSG = "退出登录成功!";
+
+    public static final String LOGIN_FAILED_MSG = "用户名或密码错误";
+
+    public static final String INSUFFICIENT_SCOPE_EXCEPTION_MSG = "无效的TOKEN";
+
+    public static final String HTTP_REQUEST_METHOD_NOT_SUPPORTED_MSG = "不支持的请求方法";
+
+    public static final String AUTH_FAILED_MSG = "认证异常";
 
     private CommonCode() {
 

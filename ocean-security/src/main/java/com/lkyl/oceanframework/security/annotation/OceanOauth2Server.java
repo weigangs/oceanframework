@@ -11,6 +11,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @EnableConfigurationProperties(OceanOauth2Properties.class)
-@Import(value = {AccessTokenStoreConfig.class, Oauth2Config.class, OceanAuthorizationServerConfigurer.class, OceanResourceServerConfigurer.class, OceanWebSecurityConfigurer.class, OceanSecuritySwaggerConfig.class})
+@Import(value = {AccessTokenStoreConfig.class, Oauth2Config.class, OceanWebSecurityConfigurer.class, OceanAuthorizationServerConfigurer.class, OceanResourceServerConfigurer.class, OceanSecuritySwaggerConfig.class})
 public @interface OceanOauth2Server {
 }

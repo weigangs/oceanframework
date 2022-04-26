@@ -1,5 +1,6 @@
 package com.lkyl.oceanframework.security.config;
 
+import com.lkyl.oceanframework.security.generator.OceanOauth2TokenGenerator;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +22,9 @@ public class AccessTokenStoreConfig implements FactoryBean<AccessTokenStoreConfi
     @ConditionalOnProperty(name="ocean.security.oauth2.tokenStoreType", havingValue = "inMemory")
     @Bean
     public TokenStore tokenStore(){
-        return new InMemoryTokenStore();
+        InMemoryTokenStore tokenStore = new InMemoryTokenStore();
+        tokenStore.setAuthenticationKeyGenerator(new OceanOauth2TokenGenerator());
+        return tokenStore;
 
     }
 

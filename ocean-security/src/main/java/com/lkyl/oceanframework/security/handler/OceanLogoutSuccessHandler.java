@@ -33,8 +33,11 @@ public class OceanLogoutSuccessHandler implements LogoutSuccessHandler {
 
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        String accessToken = request.getParameter("access_token");
+        String accessToken = request.getHeader("Authorization");
         if(StringUtils.isNotBlank(accessToken)){
+            if(accessToken.startsWith("Bearer")){
+                accessToken = accessToken.replace("Bearer", "").trim();
+            }
             OAuth2AccessToken oAuth2AccessToken = tokenStore.readAccessToken(accessToken);
             if(oAuth2AccessToken != null){
                 tokenStore.removeAccessToken(oAuth2AccessToken);

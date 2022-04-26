@@ -1,6 +1,7 @@
 package com.lkyl.oceanframework.security.config;
 
 import com.lkyl.oceanframework.security.exception.AuthExceptionEntryPoint;
+import com.lkyl.oceanframework.security.handler.OceanLogoutSuccessHandler;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -13,6 +14,9 @@ import javax.annotation.Resource;
 public class OceanResourceServerConfigurer extends ResourceServerConfigurerAdapter {
 
     @Resource
+    private OceanLogoutSuccessHandler oceanLogoutSuccessHandler;
+
+    @Resource
     private OceanOauth2Properties oceanOauth2Properties;
 
     @Resource
@@ -22,20 +26,24 @@ public class OceanResourceServerConfigurer extends ResourceServerConfigurerAdapt
     public void configure(ResourceServerSecurityConfigurer resourceServerSecurityConfigurer) throws Exception {
         resourceServerSecurityConfigurer.
                 tokenServices(defaultTokenServices).
-                resourceId(oceanOauth2Properties.getResourceId()).
-                authenticationEntryPoint(new AuthExceptionEntryPoint());
+                resourceId(oceanOauth2Properties.getResourceId())
+                .authenticationEntryPoint(new AuthExceptionEntryPoint());
     }
+
+
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(
+                .antMatchers("/oauth/**",
+                        "/health",
                         "/webjars/**",
                         "/resources/**",
                         "/swagger-ui.html",
                         "/swagger-resources/**",
-                        "/v2/api-docs")
-                .permitAll();
+                        "/v2/api-docs").permitAll().
+                and().authorizeRequests().anyRequest().authenticated().
+                and().logout().logoutSuccessHandler(oceanLogoutSuccessHandler);
     }
 
 }
