@@ -1,4 +1,4 @@
-package com.lkyl.oceanFramework.common.mapping.annotation;
+package com.lkyl.oceanframework.common.mapping.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

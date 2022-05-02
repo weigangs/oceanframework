@@ -8,7 +8,7 @@
     <artifactId>ocean-security</artifactId>
     <version>1.0.1</version>
     <parent>
-        <groupId>com.lkyl.oceanFramework.boot</groupId>
+        <groupId>com.lkyl.oceanframework.boot</groupId>
         <artifactId>oceanboot-dependencies</artifactId>
         <version>1.0.1</version>
     </parent>
@@ -24,18 +24,19 @@
     </dependency>
 
         <!-- 注意是starter,自动配置 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-security</artifactId>-->
+        <!--</dependency>-->
         <!-- 不是starter,手动配置 -->
         <dependency>
             <groupId>org.springframework.security.oauth</groupId>
             <artifactId>spring-security-oauth2</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>com.lkyl.oceanframework</groupId>
+            <artifactId>ocean-web</artifactId>
         </dependency>
         <!-- 将token存储在redis中 -->
         <dependency>
@@ -44,7 +45,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.lkyl.oceanFramework.common</groupId>
+            <groupId>com.lkyl.oceanframework.common</groupId>
             <artifactId>common-utils</artifactId>
         </dependency>
 

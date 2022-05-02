@@ -1,4 +1,4 @@
-package com.lkyl.oceanFramework.common.mapping.annotationProcessor;
+package com.lkyl.oceanframework.common.mapping.annotationProcessor;
 
 import com.google.auto.service.AutoService;
 
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  * @since 2018/5/27 11:21
  */
 @AutoService(Processor.class)
-@SupportedAnnotationTypes("com.lkyl.oceanFramework.common.mapping.annotation.Builder")
+@SupportedAnnotationTypes("com.lkyl.oceanframework.common.mapping.annotation.Builder")
 @SupportedSourceVersion(value = SourceVersion.RELEASE_8)
 public class BuilderProcessor extends AbstractProcessor {
 

@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.lkyl.oceanFramework.boot</groupId>
+    <groupId>com.lkyl.oceanframework.boot</groupId>
     <artifactId>oceanboot-dependencies</artifactId>
     <version>1.0.1</version>
 
     <packaging>pom</packaging>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <jasypt-version>1.9.3</jasypt-version>
         <fastJson.version>1.2.79</fastJson.version>
         <ocean-web.version>1.0.1</ocean-web.version>
@@ -94,32 +94,32 @@
             </dependency>
             <!-- ocean framework -->
             <dependency>
-                <groupId>com.lkyl.oceanFramework.boot</groupId>
+                <groupId>com.lkyl.oceanframework.boot</groupId>
                 <artifactId>oceanboot-starter</artifactId>
                 <version>${ocean-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.lkyl.oceanFramework.common</groupId>
+                <groupId>com.lkyl.oceanframework.common</groupId>
                 <artifactId>common-utils</artifactId>
                 <version>${ocean-common-util.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.lkyl.oceanFramework</groupId>
+                <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-mybatis-plus</artifactId>
                 <version>${ocean-mybatis-plus.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.lkyl.oceanFramework</groupId>
+                <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-mybatis</artifactId>
                 <version>${ocean-mybatis.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.lkyl.oceanFramework</groupId>
+                <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-web</artifactId>
                 <version>${ocean-web.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.lkyl.oceanFramework</groupId>
+                <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-security</artifactId>
                 <version>${ocean-security.version}</version>
             </dependency>

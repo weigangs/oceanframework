@@ -1,6 +1,6 @@
-//import com.lkyl.oceanFramework.common.mapping.annotation.Test;
-//import com.lkyl.oceanFramework.common.mapping.test.Bean;
-//import com.lkyl.oceanFramework.common.mapping.test.Person;
+//import com.lkyl.oceanframework.common.mapping.annotation.Test;
+//import com.lkyl.oceanframework.common.mapping.test.Bean;
+//import com.lkyl.oceanframework.common.mapping.test.Person;
 //
 //public class Test2 {
 //

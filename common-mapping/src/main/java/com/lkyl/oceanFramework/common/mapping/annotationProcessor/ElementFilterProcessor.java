@@ -1,4 +1,4 @@
-//package com.lkyl.oceanFramework.common.mapping.annotationProcessor;
+//package com.lkyl.oceanframework.common.mapping.annotationProcessor;
 //
 //
 //import javax.annotation.processing.AbstractProcessor;
