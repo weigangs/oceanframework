@@ -1,6 +1,7 @@
 package com.lkyl.oceanframework.mybatis.base;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface BaseService<T, PK> {
@@ -10,6 +11,8 @@ public interface BaseService<T, PK> {
     T getByParam(T param);
 
     Optional<T> get(PK id);
+
+    List<T> queryByIdList(Map<String, Object> map);
 
     List<T> list(T param);
 

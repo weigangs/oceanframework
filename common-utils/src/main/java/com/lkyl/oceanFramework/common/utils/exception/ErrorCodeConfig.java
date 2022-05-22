@@ -1,5 +1,7 @@
 package com.lkyl.oceanframework.common.utils.exception;
 
+import com.lkyl.oceanframework.common.utils.constant.CommonCode;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.core.io.Resource;
@@ -15,7 +17,7 @@ public class ErrorCodeConfig {
 
     private Log logger = LogFactory.getLog(ErrorCodeConfig.class);
 
-    private static final String UNKNOWN_ERROR_CODE = "未知的错误代码，";
+    private static final String UNKNOWN_ERROR_CODE = "未知的错误代码，{0}";
 
     private ErrorCodeConfig(){
 
@@ -44,7 +46,9 @@ public class ErrorCodeConfig {
                 }
             }
             logger.info("error config files loaded！");
-
+            if(StringUtils.isBlank(code.get(CommonCode.EXCEPTION))){
+                code.put(CommonCode.EXCEPTION, CommonCode.PLATFORM_ERR_MSG);
+            }
         }catch(IOException e){
             logger.error("load error config file failed: ", e);
         }

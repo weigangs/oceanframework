@@ -9,6 +9,8 @@ import java.lang.annotation.*;
 @EnableOceanErrorConfig
 @EnableOceanHttpClient
 @EnableGlobalExceptionHandler
+@EnableFilterExceptionHandler
+@EnableWebContextInitializer
 //@Import(OceanWebSwaggerConfig.class)
 public @interface EnableOceanWeb {
 }

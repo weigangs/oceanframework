@@ -5,7 +5,7 @@ public class CommonCode {
 
     public static final String SUCCESS = "0000";
 
-    public static final String LOGIN_FAILED = "400";
+    public static final String FAIL = "400";
 
     public static final String NOT_FOUND = "404";
 
@@ -38,6 +38,10 @@ public class CommonCode {
     public static final String HTTP_REQUEST_METHOD_NOT_SUPPORTED_MSG = "不支持的请求方法";
 
     public static final String AUTH_FAILED_MSG = "认证异常";
+
+    public static final String CAPTCHA_CODE_KEY = "code";
+
+    public static final String USER_NOT_FOUND_MSG = "USER NOT FOUND";
 
     private CommonCode() {
 

@@ -1,7 +1,9 @@
 package com.lkyl.oceanframework.common.utils.utils;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public class CollectionUtils {
@@ -17,6 +19,10 @@ public class CollectionUtils {
         return false;
     }
 
+    public static boolean isNotEmpty(Collection<?> collection){
+        return !isEmpty(collection);
+    }
+
     public static boolean isEmpty(Map map){
         if(null == map)
             return true;
@@ -26,6 +32,10 @@ public class CollectionUtils {
         if(map.isEmpty())
             return true;
         return false;
+    }
+
+    public static boolean isNotEmpty(Map map) {
+        return !isEmpty(map);
     }
 
 }

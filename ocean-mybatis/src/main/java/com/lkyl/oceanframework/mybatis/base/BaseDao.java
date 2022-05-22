@@ -8,6 +8,8 @@ public interface BaseDao<T, PK> {
 
     T getByParam(T param);
 
+    List<T> queryByIdList(Map<String, Object> map);
+
     List<T> list(T param);
 
     int count(T param);

@@ -15,6 +15,7 @@
         <jasypt-version>1.9.3</jasypt-version>
         <fastJson.version>1.2.79</fastJson.version>
         <ocean-web.version>1.0.1</ocean-web.version>
+        <javaee-api.version>7.0</javaee-api.version>
         <spring-boot.version>2.6.3</spring-boot.version>
         <swagger.fox.version>2.9.2</swagger.fox.version>
         <mybatis-plus.version>3.4.3.4</mybatis-plus.version>
@@ -23,13 +24,17 @@
         <druid-starter.version>1.1.22</druid-starter.version>
         <ocean-security.version>1.0.1</ocean-security.version>
         <mybatis-starter.version>2.0.1</mybatis-starter.version>
+        <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <ocean-common-util.version>1.0.1</ocean-common-util.version>
         <ocean-boot-starter.version>1.0.1</ocean-boot-starter.version>
         <ocean-mybatis-plus.version>1.0.1</ocean-mybatis-plus.version>
         <spring-boot-jasypt.version>3.0.3</spring-boot-jasypt.version>
+        <org.projectlombok.version>1.18.22</org.projectlombok.version>
         <spring-security.version>2.3.4.RELEASE</spring-security.version>
+        <org.apache.maven.plugins.version>3.8.1</org.apache.maven.plugins.version>
         <github-pageHelper-starter.version>1.2.5</github-pageHelper-starter.version>
         <spring-cloud-security.version>2.2.5.RELEASE</spring-cloud-security.version>
+        <org.projectlombok.lombok-mapstruct-binding.version>0.2.0</org.projectlombok.lombok-mapstruct-binding.version>
     </properties>
 
     <dependencyManagement>
@@ -155,7 +160,30 @@
                 <artifactId>springfox-swagger2</artifactId>
                 <version>${swagger.fox.version}</version>
             </dependency>
+            <!-- JAVA EE -->
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>${javaee-api.version}</version>
+            </dependency>
 
+            <!-- LOMBOK -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${org.projectlombok.version}</version>
+            </dependency>
+            <!-- mapperstruct -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${org.mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${org.mapstruct.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -164,10 +192,35 @@
             <plugins>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.0</version>
+                    <version>${org.apache.maven.plugins.version}</version>
+
                     <configuration>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
+                        <!-- We don't need to use the source and target properties because we have just declared maven.compiler.[source|target] property-->
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${org.projectlombok.version}</version>
+                            </path>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok-mapstruct-binding</artifactId>
+                                <version>${org.projectlombok.lombok-mapstruct-binding.version}</version>
+                            </path>
+                            <path>
+                                <groupId>org.mapstruct</groupId>
+                                <artifactId>mapstruct-processor</artifactId>
+                                <version>${org.mapstruct.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
+                        <showWarnings>true</showWarnings>
+                        <compilerArgs>
+                            <arg>-Amapstruct.suppressGeneratorTimestamp=true</arg>
+                            <arg>-Amapstruct.suppressGeneratorVersionInfoComment=true</arg>
+                            <arg>-Amapstruct.verbose=true</arg>
+                        </compilerArgs>
                     </configuration>
                 </plugin>
                 <plugin>

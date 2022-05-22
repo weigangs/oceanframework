@@ -21,7 +21,7 @@ public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
             throws ServletException {
 
         log.error("error:", authException);
-        CommonResult result = new CommonResult().setCode(CommonCode.LOGIN_FAILED).setMsg(CommonCode.AUTH_FAILED_MSG);
+        CommonResult result = new CommonResult().setCode(CommonCode.NO_AUTH).setMsg(CommonCode.AUTH_FAILED_MSG);
 //        Map map = new HashMap();
 //        map.put("code", CommonCode.NO_AUTH);
 //        map.put("msg", authException.getMessage());

@@ -9,33 +9,13 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
+@ConditionalOnProperty(name="ocean.security.oauth2.tokenStoreType", havingValue = "redis")
+public class AccessTokenStoreConfig{
 
-public class AccessTokenStoreConfig implements FactoryBean<AccessTokenStoreConfig> {
 
-    @ConditionalOnProperty(name="ocean.security.oauth2.tokenStoreType", havingValue = "redis")
     @Bean
     public TokenStore tokenStore(RedisConnectionFactory redisConnectionFactory){
         return new RedisTokenStore(redisConnectionFactory);
     }
 
-
-    @ConditionalOnProperty(name="ocean.security.oauth2.tokenStoreType", havingValue = "inMemory")
-    @Bean
-    public TokenStore tokenStore(){
-        InMemoryTokenStore tokenStore = new InMemoryTokenStore();
-        tokenStore.setAuthenticationKeyGenerator(new OceanOauth2TokenGenerator());
-        return tokenStore;
-
-    }
-
-
-    @Override
-    public AccessTokenStoreConfig getObject() throws Exception {
-        return this;
-    }
-
-    @Override
-    public Class<?> getObjectType() {
-        return this.getClass();
-    }
 }

@@ -1,8 +1,9 @@
 package com.lkyl.oceanframework.mybatis.base;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import com.lkyl.oceanframework.common.utils.constant.MybatisConstant;
+import com.lkyl.oceanframework.common.utils.utils.CollectionUtils;
+
+import java.util.*;
 
 
 public class BaseServiceImpl<T, PK> implements BaseService<T, PK> {
@@ -25,6 +26,18 @@ public class BaseServiceImpl<T, PK> implements BaseService<T, PK> {
     @Override
     public Optional<T> get(PK id) {
         return Optional.ofNullable(baseDao.get(id));
+    }
+
+    @Override
+    public List<T> queryByIdList(Map<String, Object> map) {
+        if(CollectionUtils.isNotEmpty(map)) {
+            if(CollectionUtils.isEmpty((Collection<?>) map.get(MybatisConstant.ID_LIST))) {
+                return new ArrayList<>(0);
+            }
+            return baseDao.queryByIdList(map);
+        }
+
+        return new ArrayList<>(0);
     }
 
     @Override

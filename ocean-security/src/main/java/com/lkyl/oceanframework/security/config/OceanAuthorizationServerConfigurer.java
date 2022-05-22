@@ -1,5 +1,6 @@
 package com.lkyl.oceanframework.security.config;
 
+import com.lkyl.oceanframework.security.handler.OceanAccessDeniedHandler;
 import com.lkyl.oceanframework.security.translator.OceanOauthExceptionTranslator;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -8,6 +9,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 
 import javax.annotation.Resource;
@@ -30,7 +32,7 @@ public class OceanAuthorizationServerConfigurer extends AuthorizationServerConfi
     @Override
     public void configure(AuthorizationServerSecurityConfigurer authorizationServerSecurityConfigurer) throws Exception {
         authorizationServerSecurityConfigurer.allowFormAuthenticationForClients().
-                checkTokenAccess("permitAll()").tokenKeyAccess("isAuthenticated()");
+                checkTokenAccess("permitAll()").tokenKeyAccess("isAuthenticated()").accessDeniedHandler(new OceanAccessDeniedHandler());
     }
 
     @Override
@@ -41,11 +43,14 @@ public class OceanAuthorizationServerConfigurer extends AuthorizationServerConfi
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer authorizationServerEndpointsConfigurer) throws Exception {
+        DefaultAccessTokenConverter defaultAccessTokenConverter = new DefaultAccessTokenConverter();
+        defaultAccessTokenConverter.setUserTokenConverter(new com.lkyl.oceanframework.security.converter.DefaultAccessTokenConverter());
         authorizationServerEndpointsConfigurer
                 .tokenServices(defaultTokenServices)
                 .authenticationManager(authenticationManager)
-                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST)
-                .exceptionTranslator(new OceanOauthExceptionTranslator());
+                .allowedTokenEndpointRequestMethods(HttpMethod.POST)
+                .exceptionTranslator(new OceanOauthExceptionTranslator())
+                .accessTokenConverter(defaultAccessTokenConverter);
     }
 
 }

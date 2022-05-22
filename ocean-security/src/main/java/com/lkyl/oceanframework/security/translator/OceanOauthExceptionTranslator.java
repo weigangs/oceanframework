@@ -25,15 +25,15 @@ public class OceanOauthExceptionTranslator implements WebResponseExceptionTransl
     public ResponseEntity translate(Exception e) throws Exception {
         log.error("error:", e);
         if(e instanceof InvalidGrantException){
-            return ResponseEntity.ok(new CommonResult().setCode(CommonCode.LOGIN_FAILED).setMsg(CommonCode.LOGIN_FAILED_MSG));
+            return ResponseEntity.ok(new CommonResult().setCode(CommonCode.NO_AUTH).setMsg(CommonCode.LOGIN_FAILED_MSG));
         }else if(e instanceof AccessDeniedException){
             return ResponseEntity.ok(new CommonResult().setCode(CommonCode.NO_AUTH).setMsg(CommonCode.AUTH_FAILED_MSG));
         }else if(e instanceof InsufficientScopeException){
-            return ResponseEntity.ok(new CommonResult().setCode(CommonCode.LOGIN_FAILED).setMsg(CommonCode.INSUFFICIENT_SCOPE_EXCEPTION_MSG));
+            return ResponseEntity.ok(new CommonResult().setCode(CommonCode.NO_AUTH).setMsg(CommonCode.INSUFFICIENT_SCOPE_EXCEPTION_MSG));
         }else if(e instanceof HttpRequestMethodNotSupportedException){
             return ResponseEntity.ok(new CommonResult().setCode(CommonCode.NOT_FOUND).setMsg(CommonCode.HTTP_REQUEST_METHOD_NOT_SUPPORTED_MSG));
         }else if(e instanceof OAuth2Exception){
-            return ResponseEntity.ok(new CommonResult().setCode(CommonCode.LOGIN_FAILED).setMsg(CommonCode.AUTH_FAILED_MSG));
+            return ResponseEntity.ok(new CommonResult().setCode(CommonCode.NO_AUTH).setMsg(CommonCode.AUTH_FAILED_MSG));
         }
         return ResponseEntity.ok(new CommonResult().setCode(CommonCode.EXCEPTION).setMsg(CommonCode.PLATFORM_ERR_MSG));
     }
