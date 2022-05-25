@@ -15,6 +15,9 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
+/**
+ * 配置资源服务器，认证机制
+ */
 @EnableAuthorizationServer
 public class OceanAuthorizationServerConfigurer extends AuthorizationServerConfigurerAdapter {
 

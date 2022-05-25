@@ -9,7 +9,7 @@ public class CommonCode {
 
     public static final String NOT_FOUND = "404";
 
-    public static final String NO_AUTH = "0401";
+    public static final String NO_AUTH = "401";
 
     public static final String SERVER_INTERNAL_ERROR = "1000";
 

@@ -58,7 +58,8 @@ public class OceanResourceServerConfigurer extends ResourceServerConfigurerAdapt
                         "/swagger-resources/**",
                         "/v2/api-docs").permitAll().
                 and().authorizeRequests().anyRequest().authenticated().
-                and().logout().logoutSuccessHandler(oceanLogoutSuccessHandler).
+//                and().logout().logoutSuccessHandler(oceanLogoutSuccessHandler).
+                and().logout().addLogoutHandler(oceanLogoutSuccessHandler).clearAuthentication(true).
                 and().exceptionHandling().accessDeniedHandler(new OceanAccessDeniedHandler()).
                 and().formLogin().disable();
     }

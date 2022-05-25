@@ -2,6 +2,7 @@ package com.lkyl.oceanframework.security.encoder;
 
 import com.lkyl.oceanframework.common.utils.constant.CommonCode;
 import com.lkyl.oceanframework.common.utils.exception.CommonException;
+import com.lkyl.oceanframework.common.utils.utils.DesUtil;
 import com.lkyl.oceanframework.common.utils.utils.RSAUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -35,7 +36,8 @@ public class ThreePhaseEncoder extends BCryptPasswordEncoder{
     private String getRawCharSeq(String cryptPassword, String privateKey) {
         if(StringUtils.isNotBlank(cryptPassword)){
             try {
-                return RSAUtil.decrypt(cryptPassword, privateKey);
+                String [] strArr = cryptPassword.split(cryptPassword.substring(32, 61));
+                return DesUtil.decryptedDES(strArr[1], RSAUtil.decrypt(strArr[2], privateKey));
             } catch (Exception e) {
                 log.error("error:", e);
                 throw new CommonException(CommonCode.EXCEPTION, "解密异常！");

@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * TODO
+ * OAUTH2 认证信息处理，使用securityUtil 获取到用户完整信息
  *
  * @version 1.0
  * @author: nicholas

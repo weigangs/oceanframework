@@ -19,6 +19,9 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 
 import javax.annotation.Resource;
 
+/**
+ * 配置oauth2 基础组件
+ */
 public class Oauth2Config {
 
     @Resource

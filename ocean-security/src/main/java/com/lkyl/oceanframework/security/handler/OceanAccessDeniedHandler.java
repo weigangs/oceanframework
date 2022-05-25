@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * TODO
+ * 认证失败后，将失败结果转译后 返回给前端
  *
  * @version 1.0
  * @author: nicholas

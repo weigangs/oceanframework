@@ -32,5 +32,4 @@ public class CommonResult implements Serializable {
         this.code = commonException.getCode();
         this.msg = commonException.getMsg();
     }
-
 }

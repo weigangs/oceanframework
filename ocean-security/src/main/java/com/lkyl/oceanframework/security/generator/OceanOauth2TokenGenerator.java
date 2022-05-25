@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.TreeSet;
 
 /**
- * TODO
+ * 生成token加工处理
  *
  * @version 1.0
  * @author: nicholas

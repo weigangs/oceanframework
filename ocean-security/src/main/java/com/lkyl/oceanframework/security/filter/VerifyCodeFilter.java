@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- *
+ *  验证码校验过滤器
  */
 public class VerifyCodeFilter extends GenericFilterBean {
   //绑定登录路径

@@ -2,13 +2,12 @@ package com.lkyl.oceanframework.security.config;
 
 import com.lkyl.oceanframework.security.generator.OceanOauth2TokenGenerator;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
 /**
- * TODO
+ * token存储到内存中
  *
  * @version 1.0
  * @author: nicholas

@@ -12,6 +12,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 import javax.annotation.Resource;
 
+/**
+ * 设置自定义登录认证provider
+ * 开启web安全组件
+ */
+
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @Configuration
 @EnableWebSecurity
