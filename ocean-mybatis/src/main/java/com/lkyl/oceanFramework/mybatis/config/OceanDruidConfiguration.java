@@ -13,14 +13,8 @@ import java.sql.SQLException;
 @AutoConfigureAfter(StandardPBEStringEncryptor.class)
 public class OceanDruidConfiguration {
 
-//    @Resource
-//    private StringEncryptor stringEncryptor;
-
     @Bean
     public DataSource dataSource(OceanDataSourceProperties dataSourceProperties) throws SQLException {
-//        if(PropertyValueEncryptionUtils.isEncryptedValue(dataSourceProperties.getPassword())){
-//            dataSourceProperties.setPassword(PropertyValueEncryptionUtils.decrypt(dataSourceProperties.getPassword(), stringEncryptor));
-//        }
         DruidDataSource dataSource = new DruidDataSource();
 //        dataSource.setDriverClassName(driverClassName);//如果不配置druid会根据url自动识别dbType，然后选择相应的driverClassName
         dataSource.setUrl(dataSourceProperties.getUrl());

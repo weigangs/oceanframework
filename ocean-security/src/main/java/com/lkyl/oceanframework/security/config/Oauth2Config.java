@@ -1,21 +1,15 @@
 package com.lkyl.oceanframework.security.config;
 
+import com.lkyl.oceanframework.security.handler.AuthenticationSuccessEventHandler;
 import com.lkyl.oceanframework.security.service.OceanTokenServices;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.authentication.AuthenticationEventPublisher;
+import org.springframework.security.authentication.DefaultAuthenticationEventPublisher;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
-import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 import javax.annotation.Resource;
 
@@ -29,9 +23,6 @@ public class Oauth2Config {
 
     @Resource
     private TokenStore tokenStore;
-
-//    @Resource
-//    private UserDetailsService userDetailsService;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder(){
@@ -58,4 +49,26 @@ public class Oauth2Config {
 //    }
 
 
+    /**
+     * 认证事件发布
+     * @param applicationEventPublisher
+     * @return
+     */
+    @Bean
+    public AuthenticationEventPublisher authenticationEventPublisher
+            (ApplicationEventPublisher applicationEventPublisher) {
+
+        AuthenticationEventPublisher authenticationEventPublisher =
+                new DefaultAuthenticationEventPublisher(applicationEventPublisher);
+        return authenticationEventPublisher;
+    }
+
+    /**
+     * 认证成功处理逻辑
+     * @return
+     */
+    @Bean
+    public AuthenticationSuccessEventHandler authenticationSuccessEventHandler() {
+        return new AuthenticationSuccessEventHandler();
+    }
 }

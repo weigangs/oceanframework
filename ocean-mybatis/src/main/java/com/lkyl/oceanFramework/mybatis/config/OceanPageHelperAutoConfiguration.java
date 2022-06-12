@@ -33,20 +33,10 @@ public class OceanPageHelperAutoConfiguration {
     public OceanPageHelperAutoConfiguration() {
     }
 
-    // 注释掉，不然在springboot2.6.x 产生循环注入
-//    @Bean
-//    @ConfigurationProperties(
-//        prefix = "pagehelper"
-//    )
-//    public Properties pageHelperProperties() {
-//        return new Properties();
-//    }
-
     @PostConstruct
     public void addPageInterceptor() {
         PageInterceptor interceptor = new PageInterceptor();
         Properties properties = new Properties();
-//        properties.putAll(this.pageHelperProperties());
         properties.putAll(this.properties.getProperties());
         interceptor.setProperties(properties);
         Iterator var3 = this.sqlSessionFactoryList.iterator();

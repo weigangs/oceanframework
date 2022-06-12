@@ -2,7 +2,6 @@ package com.lkyl.oceanframework.security.converter;
 
 
 import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.provider.token.AccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.DefaultUserAuthenticationConverter;
 
 import java.util.LinkedHashMap;
@@ -15,7 +14,7 @@ import java.util.Map;
  * @author: nicholas
  * @createTime: 2022年05月19日 22:47
  */
-public class DefaultAccessTokenConverter extends DefaultUserAuthenticationConverter {
+public class OceanAccessTokenConverter extends DefaultUserAuthenticationConverter {
     @Override
     public Map<String, ?> convertUserAuthentication(Authentication authentication) {
 

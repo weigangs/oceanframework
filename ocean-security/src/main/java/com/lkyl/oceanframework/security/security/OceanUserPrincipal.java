@@ -15,7 +15,7 @@ import java.util.List;
  * @createTime: 2022年05月19日 23:55
  */
 @Data
-public class OceanUserPrincipal implements Serializable {
+public class OceanUserPrincipal implements Serializable, Principal{
 
     private Long userId;
     private Long deptId;
@@ -38,4 +38,9 @@ public class OceanUserPrincipal implements Serializable {
     private String remark;
     private String tenantId;
     private List<String> roles;
+
+    @Override
+    public String getName() {
+        return userName;
+    }
 }

@@ -4,12 +4,10 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.exception.CloneFailedException;
 import org.apache.commons.lang3.mutable.MutableInt;
-import org.apache.commons.lang3.text.StrBuilder;
 import org.apache.commons.lang3.time.DurationUtils;
 import org.springframework.lang.Nullable;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -26,13 +24,12 @@ import java.util.function.Supplier;
  */
 public class ObjectUtils {
 
-    private static final char AT_SIGN = '@';
-
     public static boolean isNotAllNull(@Nullable Object ... object) {
         if (object != null) {
             for(Object var : object) {
-                if(isEmpty(var))
+                if (isEmpty(var)) {
                     return false;
+                }
             }
             return true;
         }
@@ -42,8 +39,9 @@ public class ObjectUtils {
     public static boolean isAllNull(@Nullable Object ... object) {
         if (object != null) {
             for(Object var : object) {
-                if(isNotEmpty(var))
+                if (isNotEmpty(var)) {
                     return false;
+                }
             }
         }
         return true;
@@ -133,42 +131,6 @@ public class ObjectUtils {
         }
     }
 
-
-    /** @deprecated */
-    @Deprecated
-    public static boolean equals(Object object1, Object object2) {
-        if (object1 == object2) {
-            return true;
-        } else {
-            return object1 != null && object2 != null ? object1.equals(object2) : false;
-        }
-    }
-
-
-    /** @deprecated */
-    @Deprecated
-    public static int hashCode(Object obj) {
-        return obj == null ? 0 : obj.hashCode();
-    }
-
-    /** @deprecated */
-    @Deprecated
-    public static int hashCodeMulti(Object... objects) {
-        int hash = 1;
-        if (objects != null) {
-            Object[] var2 = objects;
-            int var3 = objects.length;
-
-            for(int var4 = 0; var4 < var3; ++var4) {
-                Object object = var2[var4];
-                int tmpHash = hashCode(object);
-                hash = hash * 31 + tmpHash;
-            }
-        }
-
-        return hash;
-    }
-
     public static void identityToString(Appendable appendable, Object object) throws IOException {
         Validate.notNull(object, "object", new Object[0]);
         appendable.append(object.getClass().getName()).append('@').append(Integer.toHexString(System.identityHashCode(object)));
@@ -186,15 +148,6 @@ public class ObjectUtils {
         }
     }
 
-    /** @deprecated */
-    @Deprecated
-    public static void identityToString(StrBuilder builder, Object object) {
-        Validate.notNull(object, "object", new Object[0]);
-        String name = object.getClass().getName();
-        String hexString = Integer.toHexString(System.identityHashCode(object));
-        builder.ensureCapacity(builder.length() + name.length() + 1 + hexString.length());
-        builder.append(name).append('@').append(hexString);
-    }
 
     public static void identityToString(StringBuffer buffer, Object object) {
         Validate.notNull(object, "object", new Object[0]);
@@ -307,10 +260,6 @@ public class ObjectUtils {
         }
     }
 
-    public static boolean notEqual(Object object1, Object object2) {
-        return !equals(object1, object2);
-    }
-
     public static <T> T requireNonEmpty(T obj) {
         return requireNonEmpty(obj, "object");
     }
@@ -322,18 +271,6 @@ public class ObjectUtils {
         } else {
             return obj;
         }
-    }
-
-    /** @deprecated */
-    @Deprecated
-    public static String toString(Object obj) {
-        return obj == null ? "" : obj.toString();
-    }
-
-    /** @deprecated */
-    @Deprecated
-    public static String toString(Object obj, String nullStr) {
-        return obj == null ? nullStr : obj.toString();
     }
 
     public static String toString(Object obj, Supplier<String> supplier) {

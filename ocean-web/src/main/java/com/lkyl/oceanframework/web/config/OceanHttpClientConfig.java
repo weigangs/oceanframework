@@ -30,9 +30,6 @@ public class OceanHttpClientConfig {
     @Resource
     private OceanHttpClientProperties oceanHttpClientProperties;
 
-//    @Resource
-//    private RestTemplateLogInterceptor restTemplateLogInterceptor;
-
     @Resource
     private HttpMessageConverters httpMessageConverters;
 
@@ -47,30 +44,9 @@ public class OceanHttpClientConfig {
      */
     @Bean
     public RestTemplate restTemplate() {
-//        ResponseErrorHandler responseErrorHandler = new ResponseErrorHandler() {
-//            @Override
-//            public boolean hasError(ClientHttpResponse response){
-//                // 返回false表示不管response的status是多少都返回没有错
-//                // 这里可以自己定义那些status code你认为是可以抛Error
-//                try {
-//                    if(response.getRawStatusCode() == HttpStatus.UNAUTHORIZED.value()){
-//
-//                    }
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                return false;
-////        return true;
-//            }
-//
-//            @Override
-//            public void handleError(ClientHttpResponse clientHttpResponse) {
-//            }
-//        };
         RestTemplate restTemplate = new RestTemplate(httpMessageConverters.getConverters());
         restTemplate.setRequestFactory(httpRequestFactory());
         restTemplate.getInterceptors().add(restTemplateLogInterceptor());
-//        restTemplate.setErrorHandler(responseErrorHandler);
         return restTemplate;
     }
 

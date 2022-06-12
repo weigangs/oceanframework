@@ -4,11 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.lkyl.oceanframework.common.utils.utils.ObjectUtils;
 import com.lkyl.oceanframework.web.base.BusinessContext;
-import com.lkyl.oceanframework.web.base.SysHeader;
-import com.lkyl.oceanframework.web.base.WebBusinessContext;
+import com.lkyl.oceanframework.web.base.impl.SysHeader;
+import com.lkyl.oceanframework.web.base.impl.WebBusinessContext;
 import com.lkyl.oceanframework.web.constant.HeaderConstant;
-import com.lkyl.oceanframework.web.util.ContextUtil;
-import org.apache.commons.lang3.StringUtils;
+import com.lkyl.oceanframework.web.util.BusinessContextUtil;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -19,9 +20,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.security.Principal;
 
 /**
  * 初始化业务数据上线文
+ * 将报文头放入上下文
+ * 将当前登录用户的信息放入上下文
  *
  * @version 1.0
  * @author: nicholas
@@ -43,14 +47,20 @@ public class WebBusinessContextFilter extends OncePerRequestFilter {
 
         SysHeader header = new SysHeader();
         header.setTenantId(request.getHeader(HeaderConstant.TENANT_ID));
-        BusinessContext businessContext = new WebBusinessContext(header);
-        businessContext.getParameterMap().putAll(request.getParameterMap());
-        JSONObject requestBodyJson = this.extractRequestBody(request);
-        if(ObjectUtils.isNotEmpty(requestBodyJson)) {
-            businessContext.getParameterMap().putAll(requestBodyJson);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Principal principal = null;
+        if(ObjectUtils.isNotEmpty(authentication)) {
+            if (authentication.getPrincipal() instanceof Principal) {
+                principal = (Principal) authentication.getPrincipal();
+            }
+        }else {
+            principal = ()-> {
+                return "";
+            };
         }
+        BusinessContext businessContext = new WebBusinessContext(header, principal);
         //set thread local
-        ContextUtil.setBusinessContext(businessContext);
+        BusinessContextUtil.setBusinessContext(businessContext);
 
     }
 

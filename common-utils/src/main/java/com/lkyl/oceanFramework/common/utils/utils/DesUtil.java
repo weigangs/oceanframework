@@ -29,6 +29,12 @@ public class DesUtil {
 //        System.err.println(decryptedDES("133813bfd5d4e2f3"));
 //    }
 
+    /**
+     *
+     *
+     * @param content 明文
+     * @return 密文
+     */
     //加密
     public static String encryptedDES(String content) {
         byte[] encrypted = DES_ECB_Encrypt(content.getBytes(), KEY.getBytes());
@@ -95,15 +101,11 @@ public class DesUtil {
         String sTemp;
         for (int i = 0; i < bytes.length; i++) {
             sTemp = Integer.toHexString(0xFF & bytes[i]);
-            if (sTemp.length() < 2)
+            if (sTemp.length() < 2) {
                 sb.append(0);
+            }
             sb.append(sTemp.toUpperCase());
         }
         return sb.toString();
-    }
-
-    private static byte toByte(char c) {
-        byte b = (byte) "0123456789ABCDEF".indexOf(c);
-        return b;
     }
 }

@@ -36,6 +36,7 @@ public class SecurityRequestWrapper extends HttpServletRequestWrapper {
         return values[0];
     }
 
+    @Override
     public String[] getParameterValues(String name) {//同上
         return params.get(name);
     }

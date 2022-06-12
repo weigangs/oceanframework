@@ -9,13 +9,12 @@ import java.util.Map;
 public class CollectionUtils {
 
     public static boolean isEmpty(Collection<?> collection){
-        if(null == collection)
-            return true;
-        if(collection.size() <= 0){
+        if(null == collection) {
             return true;
         }
-        if(collection.isEmpty())
+        if(collection.isEmpty()) {
             return true;
+        }
         return false;
     }
 
@@ -24,13 +23,12 @@ public class CollectionUtils {
     }
 
     public static boolean isEmpty(Map map){
-        if(null == map)
-            return true;
-        if(map.size() <= 0){
+        if(null == map) {
             return true;
         }
-        if(map.isEmpty())
+        if(map.isEmpty()) {
             return true;
+        }
         return false;
     }
 

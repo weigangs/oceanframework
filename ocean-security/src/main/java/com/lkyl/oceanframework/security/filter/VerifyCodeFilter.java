@@ -4,6 +4,7 @@ import com.lkyl.oceanframework.common.utils.constant.CommonCode;
 import com.lkyl.oceanframework.common.utils.exception.CommonException;
 import com.lkyl.oceanframework.web.util.FilterUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
@@ -25,7 +26,7 @@ public class VerifyCodeFilter extends GenericFilterBean {
   public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
     HttpServletRequest request = (HttpServletRequest) req;
     HttpServletResponse response = (HttpServletResponse) resp;
-    if ("POST".equalsIgnoreCase(request.getMethod()) && defaultFilterProcessUrl.equals(request.getServletPath())) {
+    if (HttpMethod.POST.name().equalsIgnoreCase(request.getMethod()) && defaultFilterProcessUrl.equals(request.getServletPath())) {
       String requestCaptcha = request.getParameter(CommonCode.CAPTCHA_CODE_KEY);
       String genCaptcha = (String) request.getSession().getAttribute(CommonCode.CAPTCHA_CODE_KEY);
       CommonException exception = null;

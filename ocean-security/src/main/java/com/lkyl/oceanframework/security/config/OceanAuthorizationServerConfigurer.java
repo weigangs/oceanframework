@@ -1,5 +1,6 @@
 package com.lkyl.oceanframework.security.config;
 
+import com.lkyl.oceanframework.security.converter.OceanAccessTokenConverter;
 import com.lkyl.oceanframework.security.handler.OceanAccessDeniedHandler;
 import com.lkyl.oceanframework.security.translator.OceanOauthExceptionTranslator;
 import org.springframework.http.HttpMethod;
@@ -46,8 +47,9 @@ public class OceanAuthorizationServerConfigurer extends AuthorizationServerConfi
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer authorizationServerEndpointsConfigurer) throws Exception {
+        //设置自定义用户信息转换器，如果不设置，SecurityContextHolder获取到用户信息只有username
         DefaultAccessTokenConverter defaultAccessTokenConverter = new DefaultAccessTokenConverter();
-        defaultAccessTokenConverter.setUserTokenConverter(new com.lkyl.oceanframework.security.converter.DefaultAccessTokenConverter());
+        defaultAccessTokenConverter.setUserTokenConverter(new OceanAccessTokenConverter());
         authorizationServerEndpointsConfigurer
                 .tokenServices(defaultTokenServices)
                 .authenticationManager(authenticationManager)

@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
  */
 public class CommonResultUtil {
 
-    public static ResponseEntity<?> success(String msg) {
+    public static ResponseEntity<?> successMsg(String msg) {
         return ResponseEntity.ok(new CommonResult()
                 .setCode(CommonCode.SUCCESS)
                 .setMsg(msg));

@@ -13,7 +13,8 @@
     <properties>
         <java.version>11</java.version>
         <jasypt-version>1.9.3</jasypt-version>
-        <fastJson.version>1.2.79</fastJson.version>
+        <fastJson.version>1.2.83</fastJson.version>
+        <ocean-log.version>1.0.1</ocean-log.version>
         <ocean-web.version>1.0.1</ocean-web.version>
         <javaee-api.version>7.0</javaee-api.version>
         <spring-boot.version>2.6.3</spring-boot.version>
@@ -122,6 +123,11 @@
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-web</artifactId>
                 <version>${ocean-web.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lkyl.oceanframework</groupId>
+                <artifactId>ocean-log</artifactId>
+                <version>${ocean-log.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>

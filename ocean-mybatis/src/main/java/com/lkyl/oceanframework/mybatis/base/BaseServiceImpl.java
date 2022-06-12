@@ -1,11 +1,18 @@
 package com.lkyl.oceanframework.mybatis.base;
 
+import com.lkyl.oceanframework.common.utils.constant.CommonCode;
 import com.lkyl.oceanframework.common.utils.constant.MybatisConstant;
+import com.lkyl.oceanframework.common.utils.exception.CommonException;
 import com.lkyl.oceanframework.common.utils.utils.CollectionUtils;
+import org.springframework.beans.BeanUtils;
 
 import java.util.*;
+import java.util.function.Supplier;
 
 
+/**
+ * @author nicholas
+ */
 public class BaseServiceImpl<T, PK> implements BaseService<T, PK> {
 
     private BaseDao<T, PK> baseDao;
@@ -66,8 +73,8 @@ public class BaseServiceImpl<T, PK> implements BaseService<T, PK> {
     }
 
     @Override
-    public int updateOnWhere(T t) {
-        return baseDao.updateOnWhere(t);
+    public int updateOnWhere(T setter, T where) {
+        return baseDao.updateOnWhere(setter, where);
     }
 
     @Override
@@ -76,8 +83,8 @@ public class BaseServiceImpl<T, PK> implements BaseService<T, PK> {
     }
 
     @Override
-    public int remove(PK id) {
-        return baseDao.remove(id);
+    public int removeById(PK id) {
+        return baseDao.removeById(id);
     }
 
     @Override
@@ -86,7 +93,46 @@ public class BaseServiceImpl<T, PK> implements BaseService<T, PK> {
     }
 
     @Override
-    public int batchRemove(List<PK> ids) {
-        return baseDao.batchRemove(ids);
+    public int batchRemoveById(List<PK> ids) {
+        return baseDao.batchRemoveById(ids);
+    }
+
+    @Override
+    public int logicRemoveById(PK id) {
+        return baseDao.logicRemoveById(id);
+    }
+
+    @Override
+    public int commonSave(Object dto, Supplier<T> supplier)  {
+        T saveEntity = supplier.get();
+        BeanUtils.copyProperties(dto, saveEntity);
+        final int count = save(saveEntity);
+        if (count != 1) {
+            throw new CommonException(CommonCode.EXCEPTION, "新增失败!");
+        }
+
+        return count;
+    }
+
+    @Override
+    public int commonUpdate(Object dto, Supplier<T> supplier) {
+        T updateEntity = supplier.get();
+        BeanUtils.copyProperties(dto, updateEntity);
+        final int count = updateById(updateEntity);
+        if(count != 1) {
+            throw new CommonException(CommonCode.EXCEPTION, "更新失败!");
+        }
+
+        return count;
+    }
+
+    @Override
+    public int commonRemove(PK id) {
+        final int count = removeById(id);
+        if (count != 1) {
+            throw new CommonException(CommonCode.EXCEPTION, "删除失败!");
+        }
+
+        return count;
     }
 }

@@ -12,14 +12,8 @@ import java.sql.SQLException;
 
 public class OceanHikariConfiguration{
 
-//    @Resource
-//    private StandardPBEStringEncryptor standardPBEStringEncryptor;
-
     @Bean
     public DataSource dataSource(OceanDataSourceProperties dataSourceProperties) throws SQLException {
-//        if(PropertyValueEncryptionUtils.isEncryptedValue(dataSourceProperties.getPassword())){
-//            dataSourceProperties.setPassword(PropertyValueEncryptionUtils.decrypt(dataSourceProperties.getPassword(), standardPBEStringEncryptor));
-//        }
         HikariConfig config = new HikariConfig();
         config.setDataSourceClassName(dataSourceProperties.getDriverClassName());
         config.addDataSourceProperty("url", dataSourceProperties.getUrl());

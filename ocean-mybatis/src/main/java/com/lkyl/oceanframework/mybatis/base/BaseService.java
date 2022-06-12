@@ -3,6 +3,7 @@ package com.lkyl.oceanframework.mybatis.base;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 public interface BaseService<T, PK> {
 
@@ -24,14 +25,41 @@ public interface BaseService<T, PK> {
 
     int updateById(T t);
 
-    int updateOnWhere(T t);
+    int updateOnWhere(T setter, T where);
 
     int saveOrUpdateBatch(List<T> list);
 
-    int remove(PK id);
+    int removeById(PK id);
 
     int removeOnWhere(T t);
 
-    int batchRemove(List<PK> ids);
+    int batchRemoveById(List<PK> ids);
 
+    /**
+     * 根据主键ID 逻辑删除
+     * @param id   主键ID
+     * @return  逻辑删除成功个数
+     */
+    int logicRemoveById(PK id);
+
+    /**
+     * 新增失败会抛异常
+     * @param dto
+     * @return
+     */
+    int commonSave(Object dto, Supplier<T> supplier);
+
+    /**
+     * 修改失败会抛异常
+     * @param dto
+     * @return
+     */
+    int commonUpdate(Object dto, Supplier<T> supplier);
+
+    /**
+     * 修改失败会抛异常
+     * @param id
+     * @return
+     */
+    int commonRemove(PK id);
 }

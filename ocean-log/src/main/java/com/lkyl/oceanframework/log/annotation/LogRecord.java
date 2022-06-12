@@ -6,8 +6,8 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @Documented
-public @interface LogRecordAnnotation {
-    String success();
+public @interface LogRecord {
+    String content();
 
     String fail() default "";
 
