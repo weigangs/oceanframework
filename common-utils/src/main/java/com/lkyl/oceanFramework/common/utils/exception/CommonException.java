@@ -4,6 +4,7 @@ import com.lkyl.oceanframework.common.utils.constant.CommonCode;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.apache.commons.lang3.StringUtils;
 
 import java.text.MessageFormat;
 import java.util.Optional;
@@ -27,16 +28,26 @@ public class CommonException extends RuntimeException{
 
     public CommonException(String code){
         this.code = code;
-        this.msg = ErrorCodeConfig.getErrorMessage(code);
     }
 
-    public CommonException(String code, String ...args){
+    public CommonException(String code, String [] args){
         this.code = code;
-       this.msg =  MessageFormat.format(ErrorCodeConfig.getErrorMessage(code), args);
+        this.msg =  MessageFormat.format(ErrorCodeConfig.getErrorMessage(code), args);
     }
 
+    public CommonException(String code, String msg){
+        this.code = code;
+        this.msg =  msg;
+    }
 
-//    public CommonException(String code, String ...args){
+    public String getMsg() {
+        if(StringUtils.isBlank(this.msg)){
+            this.msg = ErrorCodeConfig.getErrorMessage(code);
+        }
+        return this.msg;
+    }
+
+    //    public CommonException(String code, String ...args){
 //        this.code = code;
 //        this.msg = ErrorCodeConfig.getErrorMessage(code);
 //    }

@@ -1,4 +1,4 @@
-package com.lkyl.oceanFramework.common.mapping.annotationProcessor;
+package com.lkyl.oceanframework.common.mapping.annotationProcessor;
 
 import com.google.auto.service.AutoService;
 
@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @AutoService(Processor.class)
-@SupportedAnnotationTypes("com.lkyl.oceanFramework.common.mapping.annotation.Gen")
+@SupportedAnnotationTypes("com.lkyl.oceanframework.common.mapping.annotation.Gen")
 public class GenProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {

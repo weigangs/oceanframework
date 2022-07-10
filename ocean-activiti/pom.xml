@@ -9,7 +9,7 @@
     <version>1.0.1</version>
 
     <parent>
-        <groupId>com.lkyl.oceanFramework.boot</groupId>
+        <groupId>com.lkyl.oceanframework.boot</groupId>
         <artifactId>oceanboot-dependencies</artifactId>
         <version>1.0.1</version>
     </parent>

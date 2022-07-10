@@ -2,7 +2,6 @@ package com.lkyl.oceanframework.security.service;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
-import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.common.exceptions.InvalidTokenException;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
@@ -11,6 +10,10 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import javax.annotation.Resource;
 import java.util.Date;
 
+/**
+ * 自定义TokenService
+ * 每次请求，如果token校验通过后，则对token有效期进行刷新
+ */
 public class OceanTokenServices extends DefaultTokenServices {
 
     @Resource

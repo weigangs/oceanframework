@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.lkyl.oceanFramework.boot</groupId>
+    <groupId>com.lkyl.oceanframework.boot</groupId>
     <artifactId>oceanboot-starter</artifactId>
     <version>1.0.1</version>
     <packaging>jar</packaging>
     <parent>
-        <groupId>com.lkyl.oceanFramework.boot</groupId>
+        <groupId>com.lkyl.oceanframework.boot</groupId>
         <artifactId>oceanboot-dependencies</artifactId>
         <version>1.0.1</version>
     </parent>
@@ -24,8 +24,13 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
        <!-- <dependency>
-            <groupId>com.lkyl.oceanFramework.common</groupId>
+            <groupId>com.lkyl.oceanframework.common</groupId>
             <artifactId>common-utils</artifactId>
         </dependency>-->
     </dependencies>

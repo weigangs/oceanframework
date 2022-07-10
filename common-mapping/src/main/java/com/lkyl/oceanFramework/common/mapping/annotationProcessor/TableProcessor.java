@@ -1,4 +1,4 @@
-package com.lkyl.oceanFramework.common.mapping.annotationProcessor;
+package com.lkyl.oceanframework.common.mapping.annotationProcessor;
 
 import com.google.auto.service.AutoService;
 
@@ -9,7 +9,7 @@ import javax.tools.Diagnostic;
 import java.util.Set;
 
 @AutoService(Processor.class)
-@SupportedAnnotationTypes(value={"com.lkyl.oceanFramework.common.mapping.annotation.Table"})
+@SupportedAnnotationTypes(value={"com.lkyl.oceanframework.common.mapping.annotation.Table"})
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class TableProcessor extends AbstractProcessor {
     @Override

@@ -12,6 +12,7 @@ import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.*;
+import java.util.function.Supplier;
 
 public class BeanUtils {
     public static Map<String, Object> beanToMap(Object bean){
@@ -81,59 +82,55 @@ public class BeanUtils {
         return jsonObject;
     }
 
-    public static <T> T JSONObject2Bean(JSONObject object, Class<T> baseDomain){
+    public static <T> T json2Bean(JSONObject source, Supplier<T> supplier){
         try {
-            Type type;
-            Class<?> clazz;
-            int mode;
-            Object value;
-            Object obj = baseDomain.newInstance();
-            Field [] fields = baseDomain.getDeclaredFields();
+            Type fieldType;
+            Class<?> fieldClazzType;
+            //字段类型 static 还是 final
+            int fieldMode;
+            Object sourceValue;
+            Object newObj = supplier.get();
+            Field [] fields = newObj.getClass().getDeclaredFields();
             if(fields != null){
-                /*for(Map.Entry<String, Object> entry : object.entrySet()){
-                    lowCaseMap.put(CaseUtils.toCamelCase(entry.getKey(), false), entry.getValue());
-                }*/
                 for(Field field : fields){
-                    mode = field.getModifiers();
-                    if(Modifier.isFinal(mode) || Modifier.isStatic(mode)){
+                    fieldMode = field.getModifiers();
+                    if(Modifier.isFinal(fieldMode) || Modifier.isStatic(fieldMode)){
                         continue;
                     }
-                    value = object.get(field.getName());
-                    if(!isEmpty(value)){
-                        type = field.getGenericType();
+                    sourceValue = source.get(field.getName());
+                    if(!isEmpty(sourceValue)){
+                        fieldType = field.getGenericType();
                         field.setAccessible(true);
-                        if(type instanceof Class<?>){
-                            clazz = (Class<?>)type;
-                            if(String.class.isAssignableFrom(clazz)){
-                                field.set(obj, convertToString(value));
-                            }else if(BigDecimal.class.isAssignableFrom(clazz)){
-                                field.set(obj, convertToBigDecimal(value));
-                            }else if(Float.class.isAssignableFrom(clazz)){
-                                field.set(obj, convertToFloat(value));
-                            }else if(Double.class.isAssignableFrom(clazz)){
-                                field.set(obj, convertToDouble(value));
-                            }else if(Date.class.isAssignableFrom(clazz)){
-                                field.set(obj, convertToDate(value));
-                            }else if(List.class.isAssignableFrom(clazz)){
-                                field.set(obj, convertToList(value));
-                            }else if(Timestamp.class.isAssignableFrom(clazz)){
-                                field.set(obj, convertToTimestamp(value));
-                            }else if(Boolean.class.isAssignableFrom(clazz)){
-                                field.set(obj, convertToBoolean(value));
-                            }else if(Long.class.isAssignableFrom(clazz)){
-                                field.set(obj, convertToLong(value));
-                            }else if(Byte.class.isAssignableFrom(clazz)){
-                                field.set(obj, convertToByte(value));
+                        if(fieldType instanceof Class<?>){
+                            fieldClazzType = (Class<?>)fieldType;
+                            if(String.class.isAssignableFrom(fieldClazzType)){
+                                field.set(newObj, convertToString(sourceValue));
+                            }else if(BigDecimal.class.isAssignableFrom(fieldClazzType)){
+                                field.set(newObj, convertToBigDecimal(sourceValue));
+                            }else if(Float.class.isAssignableFrom(fieldClazzType)){
+                                field.set(newObj, convertToFloat(sourceValue));
+                            }else if(Double.class.isAssignableFrom(fieldClazzType)){
+                                field.set(newObj, convertToDouble(sourceValue));
+                            }else if(Date.class.isAssignableFrom(fieldClazzType)){
+                                field.set(newObj, convertToDate(sourceValue));
+                            }else if(List.class.isAssignableFrom(fieldClazzType)){
+                                field.set(newObj, convertToList(sourceValue));
+                            }else if(Timestamp.class.isAssignableFrom(fieldClazzType)){
+                                field.set(newObj, convertToTimestamp(sourceValue));
+                            }else if(Boolean.class.isAssignableFrom(fieldClazzType)){
+                                field.set(newObj, convertToBoolean(sourceValue));
+                            }else if(Long.class.isAssignableFrom(fieldClazzType)){
+                                field.set(newObj, convertToLong(sourceValue));
+                            }else if(Byte.class.isAssignableFrom(fieldClazzType)){
+                                field.set(newObj, convertToByte(sourceValue));
                             }
                         }
 
                     }
                 }
             }
-            return (T)obj;
+            return (T)newObj;
         }catch (IllegalAccessException e){
-            e.printStackTrace();
-        }catch (InstantiationException e){
             e.printStackTrace();
         }
         return null;

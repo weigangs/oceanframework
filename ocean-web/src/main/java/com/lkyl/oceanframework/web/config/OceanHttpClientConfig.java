@@ -30,9 +30,6 @@ public class OceanHttpClientConfig {
     @Resource
     private OceanHttpClientProperties oceanHttpClientProperties;
 
-//    @Resource
-//    private RestTemplateLogInterceptor restTemplateLogInterceptor;
-
     @Resource
     private HttpMessageConverters httpMessageConverters;
 
@@ -47,30 +44,9 @@ public class OceanHttpClientConfig {
      */
     @Bean
     public RestTemplate restTemplate() {
-//        ResponseErrorHandler responseErrorHandler = new ResponseErrorHandler() {
-//            @Override
-//            public boolean hasError(ClientHttpResponse response){
-//                // 返回false表示不管response的status是多少都返回没有错
-//                // 这里可以自己定义那些status code你认为是可以抛Error
-//                try {
-//                    if(response.getRawStatusCode() == HttpStatus.UNAUTHORIZED.value()){
-//
-//                    }
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                return false;
-////        return true;
-//            }
-//
-//            @Override
-//            public void handleError(ClientHttpResponse clientHttpResponse) {
-//            }
-//        };
         RestTemplate restTemplate = new RestTemplate(httpMessageConverters.getConverters());
         restTemplate.setRequestFactory(httpRequestFactory());
         restTemplate.getInterceptors().add(restTemplateLogInterceptor());
-//        restTemplate.setErrorHandler(responseErrorHandler);
         return restTemplate;
     }
 
@@ -111,7 +87,7 @@ public class OceanHttpClientConfig {
                 .setSocketTimeout(oceanHttpClientProperties.getSocketTimeout()) //服务器返回数据(response)的时间，超过该时间抛出read timeout
                 .setConnectTimeout(oceanHttpClientProperties.getConnectTimeout())//连接上服务器(握手成功)的时间，超出该时间抛出connect timeout
                 .setConnectionRequestTimeout(oceanHttpClientProperties.getConnectionRequestTimeout())//从连接池中获取连接的超时时间，超过该时间未拿到可用连接，会抛出org.apache.http.conn.ConnectionPoolTimeoutException: Timeout waiting for connection from pool
-                .setStaleConnectionCheckEnabled(oceanHttpClientProperties.isStaleConnectionCheckEnabled())
+//                .setStaleConnectionCheckEnabled(oceanHttpClientProperties.isStaleConnectionCheckEnabled())
                 .build();
         return requestConfig;
     }

@@ -7,19 +7,14 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 
 @ConditionalOnProperty(name = "ocean.datasource.type", havingValue = "druid")
 @AutoConfigureAfter(StandardPBEStringEncryptor.class)
 public class OceanDruidConfiguration {
 
-//    @Resource
-//    private StringEncryptor stringEncryptor;
-
     @Bean
-    public DataSource dataSource(OceanDataSourceProperties dataSourceProperties) {
-//        if(PropertyValueEncryptionUtils.isEncryptedValue(dataSourceProperties.getPassword())){
-//            dataSourceProperties.setPassword(PropertyValueEncryptionUtils.decrypt(dataSourceProperties.getPassword(), stringEncryptor));
-//        }
+    public DataSource dataSource(OceanDataSourceProperties dataSourceProperties) throws SQLException {
         DruidDataSource dataSource = new DruidDataSource();
 //        dataSource.setDriverClassName(driverClassName);//如果不配置druid会根据url自动识别dbType，然后选择相应的driverClassName
         dataSource.setUrl(dataSourceProperties.getUrl());
@@ -33,6 +28,9 @@ public class OceanDruidConfiguration {
         dataSource.setTimeBetweenEvictionRunsMillis(dataSourceProperties.getTimeBetweenEvictionRunsMillis());//1分钟
         dataSource.setMaxActive(dataSourceProperties.getMaxActive());
         dataSource.setInitialSize(dataSourceProperties.getInitialSize());
+        if(dataSourceProperties.getValidateWhenBoot()){//启动程序验证数据库连接
+            dataSource.getConnection().close();
+        }
         return dataSource;
     }
 
