@@ -10,4 +10,6 @@ public interface ILogRecordService {
      */
     void record(LogRecord logRecord);
 
+    void record(String msg);
+
 }

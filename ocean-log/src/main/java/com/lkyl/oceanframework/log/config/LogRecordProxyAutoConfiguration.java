@@ -9,7 +9,6 @@ import com.lkyl.oceanframework.log.interceptor.LogRecordInterceptor;
 import com.lkyl.oceanframework.log.parser.LogRecordOperationSource;
 import com.lkyl.oceanframework.log.service.IFunctionService;
 import com.lkyl.oceanframework.log.service.ILogRecordService;
-import com.lkyl.oceanframework.log.service.IOperatorGetService;
 import com.lkyl.oceanframework.log.service.impl.DefaultFunctionServiceImpl;
 import com.lkyl.oceanframework.log.service.impl.DefaultLogRecordServiceImpl;
 import lombok.extern.slf4j.Slf4j;

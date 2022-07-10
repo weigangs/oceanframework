@@ -1,6 +1,6 @@
 package com.lkyl.oceanframework.security.config;
 
-import com.lkyl.oceanframework.security.handler.AuthenticationSuccessEventHandler;
+import com.lkyl.oceanframework.security.listener.StoreUserAfterLoginListener;
 import com.lkyl.oceanframework.security.service.OceanTokenServices;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
@@ -68,7 +68,7 @@ public class Oauth2Config {
      * @return
      */
     @Bean
-    public AuthenticationSuccessEventHandler authenticationSuccessEventHandler() {
-        return new AuthenticationSuccessEventHandler();
+    public StoreUserAfterLoginListener storeUserAfterLoginListener() {
+        return new StoreUserAfterLoginListener();
     }
 }

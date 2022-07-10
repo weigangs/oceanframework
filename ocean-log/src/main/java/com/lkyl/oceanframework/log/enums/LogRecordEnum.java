@@ -13,7 +13,8 @@ public enum LogRecordEnum {
 
     CONTENT("content", "文本模板"),
     OPERATOR("operator", "操作人"),
-    BIZ_NO("bizNo", "业务编号");
+    BIZ_NO("bizNo", "业务编号"),
+    CONDITION("condition","条件");
 
     private String attrName;
 
@@ -28,4 +29,5 @@ public enum LogRecordEnum {
         }
         return null;
     }
+
 }

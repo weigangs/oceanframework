@@ -1,6 +1,7 @@
 package com.lkyl.oceanframework.log.function;
 
-public interface IParseFunction {
+
+public interface IParseFunction{
 
   default boolean executeBefore(){
     return false;

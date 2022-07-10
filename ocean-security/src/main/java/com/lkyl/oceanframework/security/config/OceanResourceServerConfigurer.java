@@ -51,7 +51,7 @@ public class OceanResourceServerConfigurer extends ResourceServerConfigurerAdapt
         http.authorizeRequests()
                 .antMatchers("/oauth/**",
                         "/verify/code",
-                        "/health",
+                        "/health/**",
                         "/webjars/**",
                         "/resources/**",
                         "/swagger-ui.html",

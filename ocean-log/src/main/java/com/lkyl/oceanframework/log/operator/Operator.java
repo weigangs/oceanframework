@@ -14,6 +14,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class Operator {
     private String operatorId;
+    private String operatorName;
     private boolean isLogin;
 
 
