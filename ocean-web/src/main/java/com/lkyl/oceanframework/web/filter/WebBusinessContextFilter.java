@@ -8,6 +8,8 @@ import com.lkyl.oceanframework.web.base.impl.SysHeader;
 import com.lkyl.oceanframework.web.base.impl.WebBusinessContext;
 import com.lkyl.oceanframework.web.constant.HeaderConstant;
 import com.lkyl.oceanframework.web.util.BusinessContextUtil;
+import com.sun.security.auth.UserPrincipal;
+import lombok.Setter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -31,13 +33,17 @@ import java.security.Principal;
  * @author: nicholas
  * @createTime: 2022年05月21日 13:43
  */
+
+@Setter
 public class WebBusinessContextFilter extends OncePerRequestFilter {
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         this.initBusinessContext(request);
         //go on
         filterChain.doFilter(request, response);
     }
+
 
     /**
      * 初始化业务上下文
@@ -54,9 +60,7 @@ public class WebBusinessContextFilter extends OncePerRequestFilter {
                 principal = (Principal) authentication.getPrincipal();
             }
         }else {
-            principal = ()-> {
-                return "";
-            };
+            principal = new UserPrincipal("anonymous");
         }
         BusinessContext businessContext = new WebBusinessContext(header, principal);
         //set thread local

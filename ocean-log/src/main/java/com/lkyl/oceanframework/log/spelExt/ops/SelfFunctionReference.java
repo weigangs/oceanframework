@@ -50,12 +50,12 @@ public class SelfFunctionReference extends SpelNodeImpl {
                 IParseFunction iParseFunction = ((ParseFunctionFactory) beanFactory).getFunction(this.selfFunctionName);
                 if(iParseFunction != null) {
                     Object [] args = getArguments(state);
-                    if(args.length <= 0) {
+                    if(args.length != 1) {
                         throw new SpelEvaluationException(SpelMessage.INCORRECT_NUMBER_OF_ARGUMENTS_TO_FUNCTION, args.length, ReflectionUtils.findMethod(iParseFunction.getClass(), "apply").getParameterCount());
                     }
                     this.iParseFunction = iParseFunction;
                     this.args = args;
-                    Object resultValue = iParseFunction.apply((String)args[0]);
+                    Object resultValue = iParseFunction.apply(args[0]);
                     return new TypedValue(resultValue);
                 }
             }

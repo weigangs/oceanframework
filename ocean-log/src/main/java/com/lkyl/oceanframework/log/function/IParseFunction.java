@@ -1,13 +1,16 @@
 package com.lkyl.oceanframework.log.function;
 
+import com.lkyl.oceanframework.log.enums.ParseFunctionEnum;
 
-public interface IParseFunction{
+public interface IParseFunction<T>{
 
   default boolean executeBefore(){
     return false;
   }
 
-  String functionName();
+  default String functionName(){
+    return ParseFunctionEnum.DEFAULT_FUNCTION.getFunctionName();
+  }
 
-  String apply(String value);
+  String apply(T value);
 }

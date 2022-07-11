@@ -1,5 +1,6 @@
 package com.lkyl.oceanframework.web.resolver;
 
+import com.lkyl.oceanframework.log.annotation.LogRecord;
 import com.lkyl.oceanframework.web.util.FilterUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.FactoryBean;
