@@ -36,6 +36,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.lkyl.oceanframework</groupId>
+            <artifactId>ocean-log</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>

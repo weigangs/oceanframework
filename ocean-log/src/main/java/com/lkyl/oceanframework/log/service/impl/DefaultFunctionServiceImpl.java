@@ -4,6 +4,9 @@ import com.lkyl.oceanframework.log.factory.ParseFunctionFactory;
 import com.lkyl.oceanframework.log.function.IParseFunction;
 import com.lkyl.oceanframework.log.service.IFunctionService;
 
+/**
+ * @author nicholas
+ */
 public class DefaultFunctionServiceImpl implements IFunctionService {
 
   private final ParseFunctionFactory parseFunctionFactory;
@@ -13,10 +16,10 @@ public class DefaultFunctionServiceImpl implements IFunctionService {
   }
 
   @Override
-  public String apply(String functionName, String value) {
+  public String apply(String functionName, Object value) {
     IParseFunction function = parseFunctionFactory.getFunction(functionName);
     if (function == null) {
-      return value;
+      return value.toString();
     }
     return function.apply(value);
   }

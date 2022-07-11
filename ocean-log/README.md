@@ -32,21 +32,21 @@ exmaple:
     <logger name="businessLog" additivity="false" level="INFO">
         <appender-ref ref="businessLogAppender"/>
     </logger>
-===========================================starter
-@EnableLogRecord(tenantId = "dev")
-public class CommonApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(CommonApplication.class, args);
-        log.info("========>island-common-service started!");
-    }
-}
-============================================usage
-@GetMapping("/test")
-    @LogRecord(content = "第一次测试，方法参数为#{#zou}，使用自定义方法【firstTest】解析结果：#{@{firstTest(#zou)}}", bizNo = "001")
-    public ResponseEntity<?> testLog(@RequestParam("zou") String zou) {
-        return ResponseEntity.ok(zou);
-    }
-
+===========================================starter <br> 
+@EnableLogRecord(tenantId = "dev") <br> 
+public class CommonApplication { <br> 
+    public static void main(String[] args) { <br> 
+        SpringApplication.run(CommonApplication.class, args); <br> 
+        log.info("========>island-common-service started!"); <br> 
+    } <br> 
+} <br> 
+============================================usage <br> 
+@GetMapping("/test") <br> 
+    @LogRecord(content = "第一次测试，方法参数为#{#zou}，使用自定义方法【firstTest】解析结果：#{@{firstTest(#zou)}}", bizNo = "001") <br> 
+    public ResponseEntity<?> testLog(@RequestParam("zou") String zou) { <br> 
+        return ResponseEntity.ok(zou); <br> 
+    } <br> 
+ <br> 
 #### 安装教程
 
 1.  mvn install

@@ -50,11 +50,12 @@ public class LogRecordInterceptor implements MethodInterceptor , BeanFactoryAwar
 
     private LogRecordOperationSource logRecordOperationSource;
 
-    private String tenantId;
-
+    @Resource
     private IFunctionService iFunctionService;
 
     private BeanFactory beanFactory;
+
+    private String tenantId;
 
     @Resource
     private ILogRecordService iLogRecordService;
@@ -204,8 +205,11 @@ public class LogRecordInterceptor implements MethodInterceptor , BeanFactoryAwar
                                                                      EvaluationContext evaluationContext) {
         Map<String, String> selfNameValueMap = new HashMap<>(3);
         selfFunExp.stream().forEach(exp->{
-            selfNameValueMap.put(((SelfFunctionReference)(((SpelExpression)exp).getAST())).getSelfFunctionName(),
-                    expressionEvaluator.parseExpression(exp.getExpressionString(), annotatedElementKey, evaluationContext));
+            String funName = ((SelfFunctionReference)(((SpelExpression)exp).getAST())).getSelfFunctionName();
+            if (iFunctionService.beforeFunction(funName)) {
+                selfNameValueMap.put(funName,
+                        expressionEvaluator.parseExpression(exp.getExpressionString(), annotatedElementKey, evaluationContext));
+            }
         });
         return selfNameValueMap;
     }

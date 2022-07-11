@@ -2,6 +2,7 @@ package com.lkyl.oceanframework.log.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * @author nicholas
