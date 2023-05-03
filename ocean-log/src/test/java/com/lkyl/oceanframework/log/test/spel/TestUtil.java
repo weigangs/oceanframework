@@ -1,7 +1,7 @@
 package com.lkyl.oceanframework.log.test.spel;
 
 
-import com.lkyl.oceanframework.common.utils.utils.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * TODO
@@ -13,7 +13,7 @@ import com.lkyl.oceanframework.common.utils.utils.ObjectUtils;
 public class TestUtil {
 
     public static String toUpperCase(String str) {
-        return ObjectUtils.isNotEmpty(str) ? str.toUpperCase() : null;
+        return StringUtils.isNotBlank(str) ? str.toUpperCase() : null;
     }
 
     public String getName(String name) {

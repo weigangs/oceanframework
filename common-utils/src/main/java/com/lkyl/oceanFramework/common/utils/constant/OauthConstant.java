@@ -1,11 +1,11 @@
 package com.lkyl.oceanframework.common.utils.constant;
 
 /**
- * TODO
+ *
  *
  * @version 1.0
- * @author: nicholas
- * @createTime: 2022年06月04日 21:06
+ * @author : nicholas
+ * @date  : 2022年06月04日 21:06
  */
 public interface OauthConstant {
 

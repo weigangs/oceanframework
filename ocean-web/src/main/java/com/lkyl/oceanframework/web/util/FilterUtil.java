@@ -1,9 +1,9 @@
 package com.lkyl.oceanframework.web.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lkyl.oceanframework.common.utils.constant.CommonCode;
-import com.lkyl.oceanframework.common.utils.constant.CommonResult;
 import com.lkyl.oceanframework.common.utils.exception.CommonException;
+import com.lkyl.oceanframework.common.utils.exception.CommonExceptionEnum;
+import com.lkyl.oceanframework.common.utils.result.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ServletRequest;
@@ -20,9 +20,11 @@ import javax.servlet.ServletResponse;
 public class FilterUtil {
 
     public static void handlerException(ServletRequest request, ServletResponse response, Exception e){
-        CommonResult result = new CommonResult().setCode(CommonCode.EXCEPTION).setMsg(CommonCode.PLATFORM_ERR_MSG);
+        CommonResult result = new CommonResult().setCode(CommonExceptionEnum.SYSTEM_ERR.getCode())
+                .setMessage(CommonExceptionEnum.SYSTEM_ERR.getMsg());
         if(e instanceof CommonException){
-            result.setCode(((CommonException) e).getCode()).setMsg(((CommonException) e).getMsg());
+            result.setCode(((CommonException)e).getErrorCode())
+                    .setMessage(e.getMessage());
         }
         try {
             ObjectMapper mapper = new ObjectMapper();

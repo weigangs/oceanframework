@@ -1,7 +1,6 @@
 package com.lkyl.oceanframework.common.utils.utils;
 
 import javax.crypto.Cipher;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;

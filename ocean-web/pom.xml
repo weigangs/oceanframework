@@ -6,16 +6,15 @@
 
     <groupId>com.lkyl.oceanframework</groupId>
     <artifactId>ocean-web</artifactId>
-    <version>1.0.1</version>
+    <version>${ocean.version}</version>
     <packaging>jar</packaging>
     <parent>
-        <groupId>com.lkyl.oceanframework.boot</groupId>
-        <artifactId>oceanboot-dependencies</artifactId>
-        <version>1.0.1</version>
+        <groupId>com.lkyl</groupId>
+        <artifactId>oceanframework</artifactId>
+        <version>${ocean.version}</version>
     </parent>
 
     <properties>
-        <oceanFramwork.version>1.0.1</oceanFramwork.version>
     </properties>
 
     <dependencies>
@@ -31,7 +30,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.lkyl.oceanframework.common</groupId>
+            <groupId>com.lkyl.oceanframework</groupId>
             <artifactId>common-utils</artifactId>
         </dependency>
 
@@ -67,22 +66,20 @@
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
-            <version>2.3.0</version>
         </dependency>
+        <!--xml.bind -->
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
-            <version>2.3.0</version>
         </dependency>
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-core</artifactId>
-            <version>2.3.0</version>
         </dependency>
+        <!-- activation -->
         <dependency>
             <groupId>javax.activation</groupId>
             <artifactId>activation</artifactId>
-            <version>1.1.1</version>
         </dependency>
 
         <!-- github page helper -->

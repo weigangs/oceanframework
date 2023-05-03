@@ -1,26 +1,9 @@
 package com.lkyl.oceanframework.common.utils.utils;
 
-import java.io.ByteArrayOutputStream;
-import java.math.BigInteger;
-import java.security.Key;
-import java.security.KeyFactory;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.PrivateKey;
-import java.security.Provider;
-import java.security.PublicKey;
-import java.security.SecureRandom;
-import java.security.interfaces.RSAPrivateKey;
-import java.security.interfaces.RSAPublicKey;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.RSAPublicKeySpec;
-import java.security.spec.X509EncodedKeySpec;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.crypto.Cipher;
-
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import java.security.KeyFactory;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.spec.PKCS8EncodedKeySpec;
 
 
 /**
@@ -34,6 +17,7 @@ public class RSAUtil {
     public static String decrypt(String str, String privateKey) throws Exception{
         //64位解码加密后的字符串
         byte[] inputByte = org.apache.commons.codec.binary.Base64.decodeBase64(str.getBytes("UTF-8"));
+
         //base64编码的私钥
         byte[] decoded = org.apache.commons.codec.binary.Base64.decodeBase64(privateKey);
         RSAPrivateKey priKey = (RSAPrivateKey) KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(decoded));
