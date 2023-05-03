@@ -9,8 +9,10 @@ import com.lkyl.oceanframework.log.interceptor.LogRecordInterceptor;
 import com.lkyl.oceanframework.log.parser.LogRecordOperationSource;
 import com.lkyl.oceanframework.log.service.IFunctionService;
 import com.lkyl.oceanframework.log.service.ILogRecordService;
+import com.lkyl.oceanframework.log.service.IOperatorGetService;
 import com.lkyl.oceanframework.log.service.impl.DefaultFunctionServiceImpl;
 import com.lkyl.oceanframework.log.service.impl.DefaultLogRecordServiceImpl;
+import com.lkyl.oceanframework.log.service.impl.DefaultOperatorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -77,6 +79,13 @@ public class LogRecordProxyAutoConfiguration implements ImportAware {
   @Role(BeanDefinition.ROLE_APPLICATION)
   public ILogRecordService recordService() {
     return new DefaultLogRecordServiceImpl();
+  }
+
+  @Bean
+  @ConditionalOnMissingBean(IOperatorGetService.class)
+  @Role(BeanDefinition.ROLE_APPLICATION)
+  public IOperatorGetService operatorGetService() {
+    return new DefaultOperatorService();
   }
 
   @Override

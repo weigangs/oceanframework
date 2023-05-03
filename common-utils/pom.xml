@@ -8,26 +8,36 @@
     <artifactId>common-utils</artifactId>
     <version>1.0.1</version>
     <packaging>jar</packaging>
-    <parent>
-        <groupId>com.lkyl.oceanframework.boot</groupId>
-        <artifactId>oceanboot-dependencies</artifactId>
-        <version>1.0.1</version>
-    </parent>
 
     <properties>
         <java.version>11</java.version>
+        <guava.version>30.0-jre</guava.version>
+        <org.projectlombok.version>1.18.22</org.projectlombok.version>
+        <spring.version>5.3.15</spring.version>
+        <springboot.version>2.6.3</springboot.version>
+        <logback.version>1.2.10</logback.version>
+        <ocean.common.version>1.0.1</ocean.common.version>
         <fastjson.version>1.2.79</fastjson.version>
-        <jasypt-version>1.9.3</jasypt-version>
+        <jasypt.version>1.9.3</jasypt.version>
+        <jasyptboot.version>3.0.3</jasyptboot.version>
+        <apache.lang3.version>3.12.0</apache.lang3.version>
+        <javaee.api.version>7.0</javaee.api.version>
+        <common.codec.version>1.15</common.codec.version>
+        <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
+        <org.apache.maven.plugins.version>3.8.1</org.apache.maven.plugins.version>
+        <org.projectlombok.lombok-mapstruct-binding.version>0.2.0</org.projectlombok.lombok-mapstruct-binding.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.github.ulisesbocchio</groupId>
             <artifactId>jasypt-spring-boot-starter</artifactId>
+            <version>${jasyptboot.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jasypt</groupId>
             <artifactId>jasypt</artifactId>
+            <version>${jasypt.version}</version>
         </dependency>
 
         <dependency>
@@ -39,27 +49,32 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
+            <version>${apache.lang3.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
+            <version>${org.projectlombok.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
         </dependency>
 
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
+            <version>${javaee.api.version}</version>
         </dependency>
 
         <!-- mockit -->
@@ -81,33 +96,99 @@
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
+            <version>${common.codec.version}</version>
         </dependency>
-
+        <!-- guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
         <!-- mapperstruct -->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
+            <version>${org.mapstruct.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
+            <version>${org.mapstruct.version}</version>
         </dependency>
 
     </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.version}</version>
+
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <!-- We don't need to use the source and target properties because we have just declared maven.compiler.[source|target] property-->
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${org.projectlombok.version}</version>
+                            </path>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok-mapstruct-binding</artifactId>
+                                <version>${org.projectlombok.lombok-mapstruct-binding.version}</version>
+                            </path>
+                            <path>
+                                <groupId>org.mapstruct</groupId>
+                                <artifactId>mapstruct-processor</artifactId>
+                                <version>${org.mapstruct.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
+                        <showWarnings>true</showWarnings>
+                        <compilerArgs>
+                            <arg>-Amapstruct.suppressGeneratorTimestamp=true</arg>
+                            <arg>-Amapstruct.suppressGeneratorVersionInfoComment=true</arg>
+                            <arg>-Amapstruct.verbose=true</arg>
+                        </compilerArgs>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
+                <version>${org.apache.maven.plugins.version}</version>
                 <configuration>
-                    <excludes>
-                        <exclude>conf/**/*</exclude>
-                    </excludes>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <!-- We don't need to use the source and target properties because we have just declared maven.compiler.[source|target] property-->
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${org.projectlombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok-mapstruct-binding</artifactId>
+                            <version>${org.projectlombok.lombok-mapstruct-binding.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${org.mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                    <showWarnings>true</showWarnings>
+                    <compilerArgs>
+                        <arg>-Amapstruct.suppressGeneratorTimestamp=true</arg>
+                        <arg>-Amapstruct.suppressGeneratorVersionInfoComment=true</arg>
+                        <arg>-Amapstruct.verbose=true</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
         </plugins>

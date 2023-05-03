@@ -2,6 +2,7 @@ package com.lkyl.oceanframework.log.operator;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * TODO
@@ -12,6 +13,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Operator {
     private String operatorId;
     private String operatorName;
