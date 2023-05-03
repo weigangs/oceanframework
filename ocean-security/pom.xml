@@ -6,11 +6,11 @@
 
     <groupId>com.lkyl.oceanframework</groupId>
     <artifactId>ocean-security</artifactId>
-    <version>1.0.1</version>
+    <version>${ocean.version}</version>
     <parent>
-        <groupId>com.lkyl.oceanframework.boot</groupId>
-        <artifactId>oceanboot-dependencies</artifactId>
-        <version>1.0.1</version>
+        <groupId>com.lkyl</groupId>
+        <artifactId>oceanframework</artifactId>
+        <version>${ocean.version}</version>
     </parent>
 
     <properties>
@@ -45,7 +45,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.lkyl.oceanframework.common</groupId>
+            <groupId>com.lkyl.oceanframework</groupId>
             <artifactId>common-utils</artifactId>
         </dependency>
 

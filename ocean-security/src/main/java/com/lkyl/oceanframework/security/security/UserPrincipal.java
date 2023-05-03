@@ -1,13 +1,14 @@
 package com.lkyl.oceanframework.security.security;
 
-import com.lkyl.oceanframework.common.utils.constant.CommonCode;
-import com.lkyl.oceanframework.common.utils.exception.CommonException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.ObjectUtils;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class UserPrincipal extends OceanUserPrincipal implements UserDetails {
 
@@ -25,7 +26,7 @@ public class UserPrincipal extends OceanUserPrincipal implements UserDetails {
             super.setUserId(userPrincipal.getUserId());
             super.setNickName(userPrincipal.getNickName());
         } else {
-            throw new CommonException(CommonCode.EXCEPTION, "can not pass null or empty value to constructor");
+            throw new RuntimeException("can not pass null or empty value to constructor");
         }
     }
 

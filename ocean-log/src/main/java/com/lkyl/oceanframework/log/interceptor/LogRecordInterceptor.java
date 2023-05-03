@@ -1,6 +1,5 @@
 package com.lkyl.oceanframework.log.interceptor;
 
-import com.lkyl.oceanframework.common.utils.exception.CommonException;
 import com.lkyl.oceanframework.log.context.LogRecordContext;
 import com.lkyl.oceanframework.log.enums.LogRecordEnum;
 import com.lkyl.oceanframework.log.evaluator.LogRecordExpressionEvaluator;
@@ -14,7 +13,6 @@ import com.lkyl.oceanframework.log.spelExt.ops.SelfFunctionReference;
 import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
-import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
@@ -29,9 +27,12 @@ import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Method;
-import java.util.*;
-import java.util.logging.LogRecord;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import static org.springframework.aop.support.AopUtils.getTargetClass;
@@ -146,7 +147,7 @@ public class LogRecordInterceptor implements MethodInterceptor , BeanFactoryAwar
         Optional<LogRecordOps> content = operations.stream().takeWhile(ops -> StringUtils.equals(LogRecordEnum.CONTENT.getAttrName(),
                 ops.getLogRecordEnum().getAttrName())).findFirst();
         if (!content.isPresent()) {
-           throw new CommonException("parse @LogRecord content error, content is blank");
+           throw new RuntimeException("parse @LogRecord content error, content is blank");
         }
          if (content.get().getExpression() instanceof CompositeStringExpression) {
              Stream.of(((CompositeStringExpression) content.get().getExpression()).getExpressions()).forEach(exp -> {
