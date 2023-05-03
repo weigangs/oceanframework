@@ -8,17 +8,22 @@
     <artifactId>ocean-log</artifactId>
     <version>1.0.1</version>
 
-    <parent>
-        <groupId>com.lkyl.oceanframework.boot</groupId>
-        <artifactId>oceanboot-dependencies</artifactId>
-        <version>1.0.1</version>
-    </parent>
+    <properties>
+        <java.version>11</java.version>
+        <org.projectlombok.version>1.18.22</org.projectlombok.version>
+        <spring.version>5.3.15</spring.version>
+        <springboot.version>2.6.3</springboot.version>
+        <logback.version>1.2.10</logback.version>
+        <ocean.common.version>1.0.1</ocean.common.version>
+        <org.apache.maven.plugins.version>3.8.1</org.apache.maven.plugins.version>
+    </properties>
 
     <dependencies>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>${org.projectlombok.version}</version>
         </dependency>
 
 
@@ -26,57 +31,67 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aspects</artifactId>
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
         </dependency>
 
         <!--springIOC的包-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-expression</artifactId>
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.lkyl.oceanframework.common</groupId>
             <artifactId>common-utils</artifactId>
+            <version>${ocean.common.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>${springboot.version}</version>
         </dependency>
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -86,14 +101,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
+                <version>${org.apache.maven.plugins.version}</version>
                 <configuration>
-                    <excludes>
-                        <exclude>conf/**/*</exclude>
-                    </excludes>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
         </plugins>

@@ -31,14 +31,8 @@ import java.util.regex.Pattern;
  * @createTime: 2022年06月28日 22:51
  */
 public class LogRecordValueParser extends TemplateAwareExpressionParser {
-    private LogRecordExpressionEvaluator logRecordExpressionEvaluator;
-
-    private IFunctionService iFunctionService;
-
-    private EvaluationContext evaluationContext;
 
     private static final Pattern VALID_QUALIFIED_ID_PATTERN = Pattern.compile("[\\p{L}\\p{N}_$]+");
-
 
     private final SpelParserConfiguration configuration;
 
