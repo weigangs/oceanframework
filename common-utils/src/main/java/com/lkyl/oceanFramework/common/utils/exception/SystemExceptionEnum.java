@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum CommonExceptionEnum implements IBaseEnum {
+public enum SystemExceptionEnum implements IBaseEnum {
     // SYSTEM_ERR
     SYSTEM_ERR("10000", "系统异常！"),
     // CAPTCHA_KEY_ERR

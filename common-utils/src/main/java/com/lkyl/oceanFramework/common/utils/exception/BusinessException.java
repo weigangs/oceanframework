@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
  * @date 2023年05月03日 17:21
  */
 @Data
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class BusinessException extends RuntimeException {
 
     private String errorCode;

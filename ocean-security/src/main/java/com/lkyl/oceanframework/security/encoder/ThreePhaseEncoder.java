@@ -1,7 +1,7 @@
 package com.lkyl.oceanframework.security.encoder;
 
 import com.lkyl.oceanframework.common.utils.exception.CommonException;
-import com.lkyl.oceanframework.common.utils.exception.CommonExceptionEnum;
+import com.lkyl.oceanframework.common.utils.exception.SystemExceptionEnum;
 import com.lkyl.oceanframework.common.utils.utils.DesUtil;
 import com.lkyl.oceanframework.common.utils.utils.RSAUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +40,7 @@ public class ThreePhaseEncoder extends BCryptPasswordEncoder{
                 return DesUtil.decryptedDES(strArr[1], RSAUtil.decrypt(strArr[2], privateKey));
             } catch (Exception e) {
                 log.error("error:", e);
-                throw new CommonException(CommonExceptionEnum.DECODE_ERR);
+                throw new CommonException(SystemExceptionEnum.DECODE_ERR);
             }
         }
         return null;

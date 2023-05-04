@@ -11,12 +11,16 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @AllArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class CommonException extends RuntimeException {
 
     private String errorCode;
 
     private String errMsg;
+
+    public CommonException(Throwable e) {
+        super(e);
+    }
 
     public CommonException(IBaseEnum iBaseEnum) {
         this.errorCode = iBaseEnum.getCode();

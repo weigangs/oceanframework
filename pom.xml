@@ -29,10 +29,10 @@
         <javax.activation.version>1.1.1</javax.activation.version>
         <javax.annotation.version>1.3.2</javax.annotation.version>
 
-        <jasypt.version>1.9.3</jasypt.version>
         <jasyptboot.version>3.0.3</jasyptboot.version>
 
-        <junit.version>4.13.2</junit.version>
+        <junit.version>5.8.2</junit.version>
+        <junit.platform.version>1.8.2</junit.platform.version>
 
         <logback.version>1.2.10</logback.version>
 
@@ -41,12 +41,11 @@
         <spring-cloud.version>2021.0.6</spring-cloud.version>
         <spring-cloud-security.version>2.2.5.RELEASE</spring-cloud-security.version>
         <spring-security.version>2.3.4.RELEASE</spring-security.version>
-        <spring-boot-jasypt.version>3.0.3</spring-boot-jasypt.version>
 
         <swagger.fox.version>2.9.2</swagger.fox.version>
 
         <mysql.connector.before8.version>5.1.27</mysql.connector.before8.version>
-        <mysql.connector.after8.version>8.0.13</mysql.connector.after8.version>
+        <mysql.connector.after8.version>8.0.28</mysql.connector.after8.version>
         <mybatis-starter.version>2.3.0</mybatis-starter.version>
         <mybatis-generator.version>1.4.0</mybatis-generator.version>
         <mybatis-dynamic-sql.version>1.3.0</mybatis-dynamic-sql.version>
@@ -106,11 +105,6 @@
                 <artifactId>jasypt-spring-boot-starter</artifactId>
                 <version>${jasyptboot.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.jasypt</groupId>
-                <artifactId>jasypt</artifactId>
-                <version>${jasypt.version}</version>
-            </dependency>
 
             <!-- bouncycastle -->
             <dependency>
@@ -139,11 +133,26 @@
                 <version>${apache.lang3.version}</version>
             </dependency>
 
-            <!-- junit -->
+            <!--junit5-->
             <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
                 <version>${junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-runner</artifactId>
+                <version>${junit.platform.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-launcher</artifactId>
+                <version>${junit.platform.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-console-standalone</artifactId>
+                <version>${junit.platform.version}</version>
             </dependency>
 
             <!-- servlet api dependency -->
