@@ -4,10 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.lkyl</groupId>
-    <artifactId>oceanframework</artifactId>
-    <version>${ocean.version}</version>
-
+    <groupId>com.lkyl.oceanframework</groupId>
+    <artifactId>dependencies</artifactId>
+    <version>1.1.1</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -27,7 +26,8 @@
         <javaee.api.version>7.0</javaee.api.version>
 
         <javax.xml.bind.version>2.3.0</javax.xml.bind.version>
-        <javax.activation>1.1.1</javax.activation>
+        <javax.activation.version>1.1.1</javax.activation.version>
+        <javax.annotation.version>1.3.2</javax.annotation.version>
 
         <jasypt.version>1.9.3</jasypt.version>
         <jasyptboot.version>3.0.3</jasyptboot.version>
@@ -36,16 +36,22 @@
 
         <logback.version>1.2.10</logback.version>
 
-        <spring.version>5.3.15</spring.version>
-        <spring-boot.version>2.6.3</spring-boot.version>
-        <spring-cloud.version>2021.0.1</spring-cloud.version>
+        <spring.version>5.3.27</spring.version>
+        <spring-boot.version>2.7.11</spring-boot.version>
+        <spring-cloud.version>2021.0.6</spring-cloud.version>
         <spring-cloud-security.version>2.2.5.RELEASE</spring-cloud-security.version>
         <spring-security.version>2.3.4.RELEASE</spring-security.version>
         <spring-boot-jasypt.version>3.0.3</spring-boot-jasypt.version>
 
         <swagger.fox.version>2.9.2</swagger.fox.version>
 
-        <mybatis-starter.version>2.0.1</mybatis-starter.version>
+        <mysql.connector.before8.version>5.1.27</mysql.connector.before8.version>
+        <mysql.connector.after8.version>8.0.13</mysql.connector.after8.version>
+        <mybatis-starter.version>2.3.0</mybatis-starter.version>
+        <mybatis-generator.version>1.4.0</mybatis-generator.version>
+        <mybatis-dynamic-sql.version>1.3.0</mybatis-dynamic-sql.version>
+
+        <maven.jar.plugin.version>3.2.0</maven.jar.plugin.version>
 
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
 
@@ -76,22 +82,22 @@
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>common-utils</artifactId>
-                <version>${ocean.version}</version>
+                <version>1.1.1</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-web</artifactId>
-                <version>${ocean.version}</version>
+                <version>1.1.1</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-log</artifactId>
-                <version>${ocean.version}</version>
+                <version>1.1.1</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-security</artifactId>
-                <version>${ocean.version}</version>
+                <version>1.1.1</version>
             </dependency>
 
             <!-- jasypt-->
@@ -113,11 +119,6 @@
                 <version>${bouncycastle.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>javax</groupId>
-                <artifactId>javaee-api</artifactId>
-                <version>${javaee.api.version}</version>
-            </dependency>
             <dependency>
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
@@ -166,49 +167,13 @@
             <dependency>
                 <groupId>javax.activation</groupId>
                 <artifactId>activation</artifactId>
-                <version>${javax.activation}</version>
+                <version>${javax.activation.version}</version>
             </dependency>
 
-            <!--spring AOP的包-->
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-aspects</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-aop</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-
-            <!--springIOC的包-->
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context-support</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
+            <!-- spring core -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-core</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-beans</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-expression</artifactId>
                 <version>${spring.version}</version>
             </dependency>
 
@@ -227,13 +192,13 @@
                 <scope>import</scope>
             </dependency>
             <!-- spring cloud 依赖 -->
-            <dependency>
+            <!--<dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
+            </dependency>-->
             <!-- SPRING CLOUD SECURITY 依赖 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -248,23 +213,6 @@
                 <groupId>org.springframework.security.oauth</groupId>
                 <artifactId>spring-security-oauth2</artifactId>
                 <version>${spring-security.version}</version>
-            </dependency>
-
-            <!-- mybatis -->
-            <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>${mybatis-starter.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-
-            <!-- druid -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
-                <version>${druid-starter.version}</version>
             </dependency>
 
             <!-- fast json -->
@@ -295,7 +243,7 @@
             <dependency>
                 <groupId>javax</groupId>
                 <artifactId>javaee-api</artifactId>
-                <version>${javaee-api.version}</version>
+                <version>${javaee.api.version}</version>
             </dependency>
 
             <!-- LOMBOK -->
@@ -315,6 +263,42 @@
                 <artifactId>mapstruct</artifactId>
                 <version>${org.mapstruct.version}</version>
             </dependency>
+
+            <!-- mybatis starter-->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-starter.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- mybatis generator -->
+            <dependency>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-core</artifactId>
+                <version>${mybatis-generator.version}</version>
+            </dependency>
+
+            <!-- mybatis-dynamic-sql -->
+            <dependency>
+                <groupId>org.mybatis.dynamic-sql</groupId>
+                <artifactId>mybatis-dynamic-sql</artifactId>
+                <version>${mybatis-dynamic-sql.version}</version>
+            </dependency>
+
+            <!-- druid -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.annotation</groupId>
+                <artifactId>javax.annotation-api</artifactId>
+                <version>${javax.annotation.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -323,7 +307,6 @@
     <build>
         <pluginManagement>
             <plugins>
-
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${org.apache.maven.plugins.version}</version>
@@ -350,17 +333,23 @@
                             </path>
                         </annotationProcessorPaths>
                         <showWarnings>true</showWarnings>
-                        <compilerArgs>
-                            <arg>-Amapstruct.suppressGeneratorTimestamp=true</arg>
-                            <arg>-Amapstruct.suppressGeneratorVersionInfoComment=true</arg>
-                            <arg>-Amapstruct.verbose=true</arg>
-                        </compilerArgs>
                     </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring-boot.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven.jar.plugin.version}</version>
+                    <configuration>
+                        <excludes>
+                            <exclude>conf/**/*</exclude>
+                        </excludes>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>

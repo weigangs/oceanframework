@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.lkyl.oceanframework</groupId>
     <artifactId>ocean-web</artifactId>
-    <version>${ocean.version}</version>
+    <version>1.1.1</version>
     <packaging>jar</packaging>
+
     <parent>
-        <groupId>com.lkyl</groupId>
-        <artifactId>oceanframework</artifactId>
-        <version>${ocean.version}</version>
+        <groupId>com.lkyl.oceanframework</groupId>
+        <artifactId>dependencies</artifactId>
+        <version>1.1.1</version>
     </parent>
 
     <properties>
@@ -25,18 +25,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.lkyl.oceanframework</groupId>
             <artifactId>common-utils</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.lkyl.oceanframework</groupId>
-            <artifactId>ocean-log</artifactId>
         </dependency>
 
         <dependency>
@@ -46,52 +36,6 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-        </dependency>
-
-        <!-- apache http client -->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-        </dependency>
-
-        <!-- servlet api dependency -->
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-        </dependency>
-        <!--xml.bind -->
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-core</artifactId>
-        </dependency>
-        <!-- activation -->
-        <dependency>
-            <groupId>javax.activation</groupId>
-            <artifactId>activation</artifactId>
-        </dependency>
-
-        <!-- github page helper -->
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
