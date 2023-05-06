@@ -3,6 +3,7 @@ package com.lkyl.oceanframework.common.utils.exception;
 import com.lkyl.oceanframework.common.utils.exception.base.IBaseEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author nicholas
@@ -10,11 +11,16 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class CommonException extends RuntimeException {
 
     private String errorCode;
 
     private String errMsg;
+
+    public CommonException(Throwable e) {
+        super(e);
+    }
 
     public CommonException(IBaseEnum iBaseEnum) {
         this.errorCode = iBaseEnum.getCode();

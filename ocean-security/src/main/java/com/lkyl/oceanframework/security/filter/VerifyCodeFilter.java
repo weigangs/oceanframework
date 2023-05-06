@@ -2,7 +2,7 @@ package com.lkyl.oceanframework.security.filter;
 
 import com.lkyl.oceanframework.common.utils.constant.BaseConstant;
 import com.lkyl.oceanframework.common.utils.exception.CommonException;
-import com.lkyl.oceanframework.common.utils.exception.CommonExceptionEnum;
+import com.lkyl.oceanframework.common.utils.exception.SystemExceptionEnum;
 import com.lkyl.oceanframework.web.util.FilterUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpMethod;
@@ -32,11 +32,11 @@ public class VerifyCodeFilter extends GenericFilterBean {
       String genCaptcha = (String) request.getSession().getAttribute(BaseConstant.CAPTCHA_KEY);
       CommonException exception = null;
       if (StringUtils.isBlank(requestCaptcha)) {
-        exception = new CommonException(CommonExceptionEnum.CAPTCHA_KEY_ERR);
+        exception = new CommonException(SystemExceptionEnum.CAPTCHA_KEY_ERR);
       }else if (StringUtils.isBlank(genCaptcha)) {
-        exception = new CommonException(CommonExceptionEnum.CAPTCHA_KEY_ERR);
+        exception = new CommonException(SystemExceptionEnum.CAPTCHA_KEY_ERR);
       }else if(!genCaptcha.toLowerCase().equals(requestCaptcha.toLowerCase())) {
-        exception = new CommonException(CommonExceptionEnum.CAPTCHA_KEY_ERR);
+        exception = new CommonException(SystemExceptionEnum.CAPTCHA_KEY_ERR);
       }
 
       if(null != exception){

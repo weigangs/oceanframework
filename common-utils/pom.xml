@@ -4,15 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.lkyl.oceanframework</groupId>
     <artifactId>common-utils</artifactId>
-    <version>${ocean.version}</version>
+    <version>1.1.1</version>
     <packaging>jar</packaging>
 
     <parent>
-        <groupId>com.lkyl</groupId>
-        <artifactId>oceanframework</artifactId>
-        <version>${ocean.version}</version>
+        <groupId>com.lkyl.oceanframework</groupId>
+        <artifactId>dependencies</artifactId>
+        <version>1.1.1</version>
     </parent>
 
     <properties>
@@ -67,6 +66,15 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <configuration>
+                        <excludes>
+                            <exclude>conf/**/*</exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${org.apache.maven.plugins.version}</version>
 
@@ -92,11 +100,6 @@
                             </path>
                         </annotationProcessorPaths>
                         <showWarnings>true</showWarnings>
-                        <compilerArgs>
-                            <arg>-Amapstruct.suppressGeneratorTimestamp=true</arg>
-                            <arg>-Amapstruct.suppressGeneratorVersionInfoComment=true</arg>
-                            <arg>-Amapstruct.verbose=true</arg>
-                        </compilerArgs>
                     </configuration>
                 </plugin>
             </plugins>

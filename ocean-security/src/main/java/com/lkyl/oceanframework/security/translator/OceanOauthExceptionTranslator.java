@@ -1,6 +1,6 @@
 package com.lkyl.oceanframework.security.translator;
 
-import com.lkyl.oceanframework.common.utils.exception.CommonExceptionEnum;
+import com.lkyl.oceanframework.common.utils.exception.SystemExceptionEnum;
 import com.lkyl.oceanframework.common.utils.result.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -22,25 +22,16 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 @Slf4j
 public class OceanOauthExceptionTranslator implements WebResponseExceptionTranslator {
     @Override
-    public ResponseEntity translate(Exception e) throws Exception {
+    public ResponseEntity<?> translate(Exception e) throws Exception {
         log.error("error:", e);
-        if(e instanceof InvalidGrantException){
-            return ResponseEntity.ok(new CommonResult(CommonExceptionEnum.AUTH_FAILED_ERR.getCode(),
-                    CommonExceptionEnum.AUTH_FAILED_ERR.getMsg()));
-        }else if(e instanceof AccessDeniedException){
-            return ResponseEntity.ok(new CommonResult(CommonExceptionEnum.AUTH_FAILED_ERR.getCode(),
-                    CommonExceptionEnum.AUTH_FAILED_ERR.getMsg()));
-        }else if(e instanceof InsufficientScopeException){
-            return ResponseEntity.ok(new CommonResult(CommonExceptionEnum.PERMISSION_DENY.getCode(),
-                    CommonExceptionEnum.PERMISSION_DENY.getMsg()));
+        if(e instanceof AccessDeniedException){
+            return ResponseEntity.ok(CommonResult.fail(SystemExceptionEnum.AUTH_FAILED_ERR.getCode(),
+                    SystemExceptionEnum.AUTH_FAILED_ERR.getMsg()));
         }else if(e instanceof HttpRequestMethodNotSupportedException){
-            return ResponseEntity.ok(new CommonResult(CommonExceptionEnum.REQUEST_METHOD_ERR.getCode(),
-                    CommonExceptionEnum.REQUEST_METHOD_ERR.getMsg()));
-        }else if(e instanceof OAuth2Exception){
-            return ResponseEntity.ok(new CommonResult(CommonExceptionEnum.AUTH_FAILED_ERR.getCode(),
-                    CommonExceptionEnum.AUTH_FAILED_ERR.getMsg()));
+            return ResponseEntity.ok(CommonResult.fail(SystemExceptionEnum.REQUEST_METHOD_ERR.getCode(),
+                    SystemExceptionEnum.REQUEST_METHOD_ERR.getMsg()));
         }
-        return ResponseEntity.ok(new CommonResult(CommonExceptionEnum.SYSTEM_ERR.getCode(),
-                CommonExceptionEnum.SYSTEM_ERR.getMsg()));
+        return ResponseEntity.ok(CommonResult.fail(SystemExceptionEnum.SYSTEM_ERR.getCode(),
+                SystemExceptionEnum.SYSTEM_ERR.getMsg()));
     }
 }

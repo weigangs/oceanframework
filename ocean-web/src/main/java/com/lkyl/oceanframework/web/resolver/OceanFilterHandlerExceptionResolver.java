@@ -1,9 +1,7 @@
 package com.lkyl.oceanframework.web.resolver;
 
-import com.lkyl.oceanframework.log.annotation.LogRecord;
 import com.lkyl.oceanframework.web.util.FilterUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.FactoryBean;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -11,11 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * TODO
  *
  * @version 1.0
- * @author: nicholas
- * @createTime: 2022年05月03日 18:05
+ * @author : nicholas
+ * @createTime : 2022年05月03日 18:05
  */
 @Slf4j
 public class OceanFilterHandlerExceptionResolver implements HandlerExceptionResolver {
