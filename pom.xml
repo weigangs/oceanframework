@@ -10,6 +10,9 @@
     <packaging>pom</packaging>
 
     <properties>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <apache.lang3.version>3.12.0</apache.lang3.version>
 
         <bouncycastle.version>1.70</bouncycastle.version>
@@ -33,6 +36,8 @@
 
         <junit.version>5.8.2</junit.version>
         <junit.platform.version>1.8.2</junit.platform.version>
+
+        <hutool.all.version>5.8.18</hutool.all.version>
 
         <logback.version>1.2.10</logback.version>
 
@@ -307,6 +312,12 @@
                 <groupId>javax.annotation</groupId>
                 <artifactId>javax.annotation-api</artifactId>
                 <version>${javax.annotation.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.all.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
