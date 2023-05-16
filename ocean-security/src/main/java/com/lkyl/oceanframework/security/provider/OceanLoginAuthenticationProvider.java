@@ -1,7 +1,7 @@
 package com.lkyl.oceanframework.security.provider;
 
 import com.lkyl.oceanframework.common.utils.exception.CommonException;
-import com.lkyl.oceanframework.common.utils.exception.SystemExceptionEnum;
+import com.lkyl.oceanframework.common.utils.enums.SystemExceptionEnum;
 import com.lkyl.oceanframework.security.encoder.ThreePhaseEncoder;
 import com.lkyl.oceanframework.security.event.LoginSuccessEvent;
 import com.lkyl.oceanframework.security.event.PasswordIncorrectEvent;

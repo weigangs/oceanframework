@@ -2,7 +2,7 @@ package com.lkyl.oceanframework.security.filter;
 
 import com.lkyl.oceanframework.common.utils.constant.BaseConstant;
 import com.lkyl.oceanframework.common.utils.exception.CommonException;
-import com.lkyl.oceanframework.common.utils.exception.SystemExceptionEnum;
+import com.lkyl.oceanframework.common.utils.enums.SystemExceptionEnum;
 import com.lkyl.oceanframework.web.util.FilterUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpMethod;

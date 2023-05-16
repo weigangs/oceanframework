@@ -1,7 +1,7 @@
 package com.lkyl.oceanframework.security.encoder;
 
 import com.lkyl.oceanframework.common.utils.exception.CommonException;
-import com.lkyl.oceanframework.common.utils.exception.SystemExceptionEnum;
+import com.lkyl.oceanframework.common.utils.enums.SystemExceptionEnum;
 import com.lkyl.oceanframework.common.utils.utils.DesUtil;
 import com.lkyl.oceanframework.common.utils.utils.RSAUtil;
 import lombok.extern.slf4j.Slf4j;

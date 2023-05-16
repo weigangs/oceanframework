@@ -1,5 +1,6 @@
 package com.lkyl.oceanframework.common.utils.result;
 
+import com.lkyl.oceanframework.common.utils.exception.base.IBaseException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
@@ -33,5 +34,9 @@ public class CommonResult<T> {
 
     public static <T> CommonResult<T> fail(String code, String message) {
         return new CommonResult<>(code, message);
+    }
+
+    public static <T> CommonResult<T> fail(IBaseException e) {
+        return new CommonResult<>(e.getCode(), e.getMsg());
     }
 }

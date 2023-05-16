@@ -1,6 +1,6 @@
 package com.lkyl.oceanframework.common.utils.exception;
 
-import com.lkyl.oceanframework.common.utils.exception.base.IBaseEnum;
+import com.lkyl.oceanframework.common.utils.exception.base.IBaseException;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,13 +10,13 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class BusinessException extends RuntimeException {
+public class BusinessException extends RuntimeException implements IBaseException {
 
     private String errorCode;
 
     private String errMsg;
 
-    public BusinessException(IBaseEnum baseEnum) {
+    public BusinessException(IBaseException baseEnum) {
         this.errorCode = baseEnum.getCode();
         this.errMsg = baseEnum.getMsg();
     }
@@ -31,4 +31,13 @@ public class BusinessException extends RuntimeException {
         return this.getErrMsg();
     }
 
+    @Override
+    public String getCode() {
+        return this.errorCode;
+    }
+
+    @Override
+    public String getMsg() {
+        return this.getErrMsg();
+    }
 }

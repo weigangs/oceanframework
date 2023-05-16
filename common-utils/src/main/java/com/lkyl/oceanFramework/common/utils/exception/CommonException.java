@@ -1,6 +1,6 @@
 package com.lkyl.oceanframework.common.utils.exception;
 
-import com.lkyl.oceanframework.common.utils.exception.base.IBaseEnum;
+import com.lkyl.oceanframework.common.utils.exception.base.IBaseException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class CommonException extends RuntimeException {
+public class CommonException extends RuntimeException implements IBaseException  {
 
     private String errorCode;
 
@@ -22,13 +22,23 @@ public class CommonException extends RuntimeException {
         super(e);
     }
 
-    public CommonException(IBaseEnum iBaseEnum) {
-        this.errorCode = iBaseEnum.getCode();
-        this.errMsg = iBaseEnum.getMsg();
+    public CommonException(IBaseException iBaseException) {
+        this.errorCode = iBaseException.getCode();
+        this.errMsg = iBaseException.getMsg();
     }
 
     @Override
     public String getMessage() {
+        return this.getErrMsg();
+    }
+
+    @Override
+    public String getCode() {
+        return this.errorCode;
+    }
+
+    @Override
+    public String getMsg() {
         return this.getErrMsg();
     }
 }

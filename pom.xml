@@ -27,6 +27,8 @@
 
         <java.version>11</java.version>
         <javaee.api.version>7.0</javaee.api.version>
+        <javax.el.version>3.0.0</javax.el.version>
+        <javax.validation.api.version>2.0.1.Final</javax.validation.api.version>
 
         <javax.xml.bind.version>2.3.0</javax.xml.bind.version>
         <javax.activation.version>1.1.1</javax.activation.version>
@@ -56,6 +58,7 @@
         <mybatis-dynamic-sql.version>1.3.0</mybatis-dynamic-sql.version>
 
         <maven.jar.plugin.version>3.2.0</maven.jar.plugin.version>
+        <maven.denpendency.version>3.0.2</maven.denpendency.version>
 
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
 
@@ -70,6 +73,8 @@
 
         <guava.version>30.0-jre</guava.version>
 
+        <gson.version>2.10.1</gson.version>
+
     </properties>
 
     <modules>
@@ -77,6 +82,7 @@
         <module>ocean-log</module>
         <module>ocean-security</module>
         <module>ocean-web</module>
+        <module>common-auth</module>
     </modules>
 
     <dependencyManagement>
@@ -86,6 +92,11 @@
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>common-utils</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lkyl.oceanframework</groupId>
+                <artifactId>common-auth</artifactId>
                 <version>1.1.1</version>
             </dependency>
             <dependency>
@@ -166,6 +177,12 @@
                 <artifactId>jaxb-api</artifactId>
                 <version>${javax.xml.bind.version}</version>
             </dependency>
+            <!-- javax el -->
+            <dependency>
+                <groupId>javax.el</groupId>
+                <artifactId>javax.el-api</artifactId>
+                <version>${javax.el.version}</version>
+            </dependency>
             <!--xml.bind -->
             <dependency>
                 <groupId>com.sun.xml.bind</groupId>
@@ -206,13 +223,13 @@
                 <scope>import</scope>
             </dependency>
             <!-- spring cloud 依赖 -->
-            <!--<dependency>
+            <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>-->
+            </dependency>
             <!-- SPRING CLOUD SECURITY 依赖 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -318,6 +335,18 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.all.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${javax.validation.api.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

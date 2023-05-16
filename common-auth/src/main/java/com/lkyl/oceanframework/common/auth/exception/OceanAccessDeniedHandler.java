@@ -1,4 +1,4 @@
-package com.lkyl.oceanframework.security.handler;
+package com.lkyl.oceanframework.common.auth.exception;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,9 +25,9 @@ public class OceanAccessDeniedHandler implements AccessDeniedHandler{
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
-        log.error("error: ", accessDeniedException);
         CommonResult<String> result = CommonResult.fail(SystemExceptionEnum.AUTH_FAILED_ERR.getCode(),
-                SystemExceptionEnum.AUTH_FAILED_ERR.getMsg());
+                accessDeniedException.getMessage());
+
         try {
             ObjectMapper mapper = new ObjectMapper();
             response.setCharacterEncoding("UTF-8");
