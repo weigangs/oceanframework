@@ -1,12 +1,12 @@
-package com.lkyl.oceanframework.common.utils.exception;
+package com.lkyl.oceanframework.common.utils.enums;
 
-import com.lkyl.oceanframework.common.utils.exception.base.IBaseEnum;
+import com.lkyl.oceanframework.common.utils.exception.base.IBaseException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum SystemExceptionEnum implements IBaseEnum {
+public enum SystemExceptionEnum implements IBaseException {
     // SYSTEM_ERR
     SYSTEM_ERR("10000", "系统异常！"),
     // CAPTCHA_KEY_ERR
@@ -19,7 +19,11 @@ public enum SystemExceptionEnum implements IBaseEnum {
     // PERMISSION_DENY 11000~
     PERMISSION_DENY("11000", "未授权！"),
     // AUTH_FAILED_ERR
-    AUTH_FAILED_ERR("11001", "认证失败！");
+    AUTH_FAILED_ERR("11001", "认证失败！"),
+    //INVALID_TOKEN
+    INVALID_TOKEN("11002", "无效的token！"),
+    //
+    PARSE_TOKEN_ERR("11003", "无效的token！");
 
     private String code;
 

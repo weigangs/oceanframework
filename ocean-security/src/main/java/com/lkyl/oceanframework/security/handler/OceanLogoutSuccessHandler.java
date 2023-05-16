@@ -43,8 +43,8 @@ public class OceanLogoutSuccessHandler implements LogoutSuccessHandler, LogoutHa
     public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication){
         String accessToken = request.getHeader(OauthConstant.OAUTH_TOKEN_HEADER_KEY);
         if(StringUtils.isNotBlank(accessToken)){
-            if(accessToken.startsWith(OauthConstant.BEARER_TOKEN_PREFIX)){
-                accessToken = accessToken.replace(OauthConstant.BEARER_TOKEN_PREFIX, "").trim();
+            if(accessToken.startsWith(OauthConstant.TOKEN_PREFIX)){
+                accessToken = accessToken.replace(OauthConstant.TOKEN_PREFIX, "").trim();
             }
             OAuth2AccessToken oAuth2AccessToken = tokenStore.readAccessToken(accessToken);
             if(oAuth2AccessToken != null){

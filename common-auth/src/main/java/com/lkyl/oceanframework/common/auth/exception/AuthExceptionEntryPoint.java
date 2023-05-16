@@ -1,4 +1,4 @@
-package com.lkyl.oceanframework.security.exception;
+package com.lkyl.oceanframework.common.auth.exception;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lkyl.oceanframework.common.utils.enums.SystemExceptionEnum;
@@ -22,16 +22,9 @@ public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
                          AuthenticationException authException)
             throws ServletException {
 
-        log.error("error:", authException);
-        CommonResult result = new CommonResult(SystemExceptionEnum.PERMISSION_DENY.getCode(),
-                SystemExceptionEnum.PERMISSION_DENY.getMsg());
-//        Map map = new HashMap();
-//        map.put("code", CommonCode.NO_AUTH);
-//        map.put("msg", authException.getMessage());
-//        map.put("path", request.getServletPath());
-//        map.put("timestamp", String.valueOf(new Date().getTime()));
-//        response.setContentType("application/json");
-//        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        CommonResult result = CommonResult.fail(SystemExceptionEnum.PERMISSION_DENY.getCode(),
+                authException.getMessage());
+
         try {
             ObjectMapper mapper = new ObjectMapper();
             response.setCharacterEncoding("UTF-8");

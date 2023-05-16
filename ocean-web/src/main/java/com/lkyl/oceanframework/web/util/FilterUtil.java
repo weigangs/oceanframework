@@ -2,7 +2,7 @@ package com.lkyl.oceanframework.web.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lkyl.oceanframework.common.utils.exception.CommonException;
-import com.lkyl.oceanframework.common.utils.exception.SystemExceptionEnum;
+import com.lkyl.oceanframework.common.utils.enums.SystemExceptionEnum;
 import com.lkyl.oceanframework.common.utils.result.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 

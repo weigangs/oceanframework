@@ -9,10 +9,12 @@ package com.lkyl.oceanframework.common.utils.constant;
  */
 public interface OauthConstant {
 
-    String BEARER_TOKEN_PREFIX = "Bearer";
+    String TOKEN_PREFIX = "authToken";
 
     /**
      * 请求头的token值对应的key
      */
     String OAUTH_TOKEN_HEADER_KEY = "Authorization";
+
+    String LOGIN_USER_PREFIX = "USER_PREFIX_";
 }
