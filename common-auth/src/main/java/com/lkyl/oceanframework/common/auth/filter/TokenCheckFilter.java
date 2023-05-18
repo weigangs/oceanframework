@@ -55,6 +55,8 @@ public class TokenCheckFilter extends OncePerRequestFilter {
                 context.setAuthentication(userAuthenticationToken);
 
                 UserContext.setUser(user);
+
+                tokenService.refreshToken(user.getUserCode());
             }
 
         }
