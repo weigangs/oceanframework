@@ -22,7 +22,7 @@ public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
                          AuthenticationException authException)
             throws ServletException {
 
-        CommonResult result = CommonResult.fail(SystemExceptionEnum.PERMISSION_DENY.getCode(),
+        CommonResult result = CommonResult.fail(SystemExceptionEnum.AUTH_FAILED_ERR.getCode(),
                 authException.getMessage());
 
         try {
