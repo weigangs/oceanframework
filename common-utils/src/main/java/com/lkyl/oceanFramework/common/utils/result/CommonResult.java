@@ -32,6 +32,10 @@ public class CommonResult<T> {
         return new CommonResult<T>().setData(data);
     }
 
+    public static <T>  CommonResult<T> ok() {
+        return new CommonResult<>();
+    }
+
     public static <T> CommonResult<T> fail(String code, String message) {
         return new CommonResult<>(code, message);
     }
