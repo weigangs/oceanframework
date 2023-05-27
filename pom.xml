@@ -84,6 +84,7 @@
         <module>ocean-security</module>
         <module>ocean-web</module>
         <module>common-auth</module>
+        <module>common-cache</module>
     </modules>
 
     <dependencyManagement>
@@ -98,6 +99,11 @@
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>common-auth</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lkyl.oceanframework</groupId>
+                <artifactId>common-cache</artifactId>
                 <version>1.1.1</version>
             </dependency>
             <dependency>
