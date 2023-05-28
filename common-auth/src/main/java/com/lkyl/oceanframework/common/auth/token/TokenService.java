@@ -65,4 +65,11 @@ public class TokenService {
         String userCode = (String)this.parseJwtToken(token).getClaims().get("userCode");
         return this.readUser(userCode);
     }
+
+    public void removeToken(String userCode) {
+
+        if (StringUtils.isNotBlank(userCode)) {
+            stringRedisTemplate.delete(OauthConstant.LOGIN_USER_PREFIX + userCode);
+        }
+    }
 }

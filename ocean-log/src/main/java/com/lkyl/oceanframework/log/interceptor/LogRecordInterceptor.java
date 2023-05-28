@@ -84,7 +84,7 @@ public class LogRecordInterceptor implements MethodInterceptor , BeanFactoryAwar
         Collection<LogRecordOps> operations = new ArrayList<>();
         Map<String, String> functionNameAndReturnMap = new HashMap<>();
         try {
-            operations = logRecordOperationSource.computeLogRecordOperations(method, targetClass);
+            operations = logRecordOperationSource.computeLogRecordOperations(method);
             List<Expression> selfFunExp = getBeforeExecuteFunctionTemplate(operations);
             //业务逻辑执行前的自定义函数解析
             functionNameAndReturnMap = processBeforeExecuteFunctionTemplate(selfFunExp, annotatedElementKey, evaluationContext);
@@ -133,17 +133,9 @@ public class LogRecordInterceptor implements MethodInterceptor , BeanFactoryAwar
         if (!isSuccess) {
             evaluationContext.setVariable("_errorMsg", errorMsg);
         }
-        //get operator name
-        String userName;
-        Optional<LogRecordOps> operator = operations.stream().takeWhile(ops -> StringUtils.equals(LogRecordEnum.OPERATOR.getAttrName(),
-                ops.getLogRecordEnum().getAttrName())).findFirst();
-        if(operator.isPresent()) {
-            userName = this.expressionEvaluator.parseExpression(operator.get().getExpressString(), annotatedElementKey, evaluationContext);
-        } else {
-            userName = iOperatorGetService.getUser().getOperatorName();
-        }
-        //content
-        StringBuilder contentStr = new StringBuilder(userName);
+        // 用户名
+        StringBuilder contentStr = new StringBuilder(this.extractUserName(operations, annotatedElementKey, evaluationContext));
+        // 内容
         Optional<LogRecordOps> content = operations.stream().takeWhile(ops -> StringUtils.equals(LogRecordEnum.CONTENT.getAttrName(),
                 ops.getLogRecordEnum().getAttrName())).findFirst();
         if (!content.isPresent()) {
@@ -176,6 +168,21 @@ public class LogRecordInterceptor implements MethodInterceptor , BeanFactoryAwar
 
 //        LogRecord logRecord = new LogRecord(Logger.getLogger(LogRecordInterceptor.class.getName()).getLevel(), contentStr.toString());
         iLogRecordService.record(contentStr.toString());
+    }
+
+    private String extractUserName(Collection<LogRecordOps> operations,
+                                   AnnotatedElementKey annotatedElementKey,
+                                   EvaluationContext evaluationContext) {
+        //get operator name
+        String userName;
+        Optional<LogRecordOps> operator = operations.stream().takeWhile(ops -> StringUtils.equals(LogRecordEnum.OPERATOR.getAttrName(),
+                ops.getLogRecordEnum().getAttrName())).findFirst();
+        if(operator.isPresent()) {
+            userName = this.expressionEvaluator.parseExpression(operator.get().getExpressString(), annotatedElementKey, evaluationContext);
+        } else {
+            userName = iOperatorGetService.getUser().getOperatorName();
+        }
+        return userName;
     }
 
     /**

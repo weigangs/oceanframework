@@ -25,7 +25,7 @@ public class LogRecordOperationSource {
     private static final LogRecordValueParser expressParser = new LogRecordValueParser(new SpelParserConfiguration());
     private static final TemplateParserContext context = new TemplateParserContext();
 
-    public Collection<LogRecordOps> computeLogRecordOperations(Method method, Class<?> targetClass) {
+    public Collection<LogRecordOps> computeLogRecordOperations(Method method) {
         List<LogRecordOps> ops = new ArrayList<>();
         LogRecord annotation = method.getAnnotation(LogRecord.class);
         if(ObjectUtils.isNotEmpty(annotation)) {

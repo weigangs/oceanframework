@@ -18,6 +18,7 @@ public class UserPrincipal implements Serializable {
 
     private String userCode;
 
+    private String userName;
     private String openId;
 
     private List<String> roleList;

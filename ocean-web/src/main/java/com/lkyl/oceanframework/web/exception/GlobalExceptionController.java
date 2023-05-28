@@ -6,8 +6,13 @@ import com.lkyl.oceanframework.common.utils.enums.SystemExceptionEnum;
 import com.lkyl.oceanframework.common.utils.result.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.List;
 
 @Slf4j
 @RestControllerAdvice
@@ -41,5 +46,21 @@ public class GlobalExceptionController {
     public ResponseEntity<CommonResult<String>> handlerCommonException(BusinessException e){
         log.error("error: ", e);
         return ResponseEntity.ok(CommonResult.fail(e));
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<CommonResult<String>> handlerMethodArgsException(MethodArgumentNotValidException e) {
+
+        return ResponseEntity.ok(CommonResult.fail(SystemExceptionEnum.SYSTEM_ERR.getCode(),
+                this.wrapErrors(e.getBindingResult().getAllErrors())));
+    }
+
+
+    private String wrapErrors(List<ObjectError> errors) {
+        if (CollectionUtils.isEmpty(errors)) {
+            return "请求参数错误";
+        }
+
+        return "["+ errors.get(0).getDefaultMessage() +"]";
     }
 }
