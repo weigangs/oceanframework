@@ -69,7 +69,7 @@ public class SecurityRestConfig {
                 .and()
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
-                .csrf((csrf) -> csrf.ignoringAntMatchers(oceanOauth2Properties.getPermittedUrls().toArray(new String[]{})))
+                .csrf().disable()
                 .addFilterAfter(tokenCheckFilter(), UsernamePasswordAuthenticationFilter.class)
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
