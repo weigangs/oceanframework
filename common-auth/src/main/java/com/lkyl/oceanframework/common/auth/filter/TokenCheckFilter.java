@@ -1,6 +1,7 @@
 package com.lkyl.oceanframework.common.auth.filter;
 
 import com.lkyl.oceanframework.common.auth.authentication.UserAuthenticationToken;
+import com.lkyl.oceanframework.common.auth.properties.OceanOauth2Properties;
 import com.lkyl.oceanframework.common.auth.token.TokenService;
 import com.lkyl.oceanframework.common.utils.constant.OauthConstant;
 import com.lkyl.oceanframework.common.utils.enums.SystemExceptionEnum;
@@ -33,6 +34,9 @@ public class TokenCheckFilter extends OncePerRequestFilter {
     @Resource
     private TokenService tokenService;
 
+    @Resource
+    private OceanOauth2Properties oceanOauth2Properties;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
@@ -41,7 +45,7 @@ public class TokenCheckFilter extends OncePerRequestFilter {
         Authentication subject = SecurityContextHolder.getContext().getAuthentication();
         if (Objects.nonNull(subject) && !(subject instanceof AnonymousAuthenticationToken)) {
             context.setAuthentication(subject);
-        } else {
+        } else if(!oceanOauth2Properties.match(request)) {
             String token = this.extractToken(request);
             if (StringUtils.isNotBlank(token)) {
 
@@ -58,7 +62,6 @@ public class TokenCheckFilter extends OncePerRequestFilter {
 
                 tokenService.refreshToken(user.getUserCode());
             }
-
         }
 
         Optional.of(context).filter( ctx -> Objects.nonNull(ctx.getAuthentication()))
