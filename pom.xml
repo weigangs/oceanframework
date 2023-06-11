@@ -11,6 +11,8 @@
 
     <properties>
 
+        <reversion>1.1.1</reversion>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <apache.lang3.version>3.12.0</apache.lang3.version>
@@ -85,6 +87,7 @@
         <module>ocean-web</module>
         <module>common-auth</module>
         <module>common-cache</module>
+        <module>ocean-geo</module>
     </modules>
 
     <dependencyManagement>
@@ -94,32 +97,32 @@
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>common-utils</artifactId>
-                <version>1.1.1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>common-auth</artifactId>
-                <version>1.1.1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>common-cache</artifactId>
-                <version>1.1.1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-web</artifactId>
-                <version>1.1.1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-log</artifactId>
-                <version>1.1.1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-security</artifactId>
-                <version>1.1.1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <!-- jasypt-->
@@ -357,7 +360,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 
 
     <build>

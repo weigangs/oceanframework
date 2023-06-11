@@ -1,0 +1,2 @@
+// example
+https://github.com/mybatis/mybatis-dynamic-sql/blob/master/src/test/java/examples/joins/JoinMapperTest.java

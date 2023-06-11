@@ -12,17 +12,20 @@ import java.time.Duration;
  */
 public class RedisStoreUtils {
 
-    public static boolean getLock(String key) {
-
+    public static boolean getLock(String key, long expiredSecond) {
         StringRedisTemplate redisTemplate = SpringContextUtil.getBean(StringRedisTemplate.class);
 
-         boolean result = Boolean.TRUE.equals(redisTemplate.opsForValue().setIfAbsent(key, CacheConstant.LOCK_VAL));
+        boolean result = Boolean.TRUE.equals(redisTemplate.opsForValue().setIfAbsent(key, CacheConstant.LOCK_VAL));
 
-         if (result) {
-             redisTemplate.expire(key, Duration.ofSeconds(10));
-         }
+        if (result) {
+            redisTemplate.expire(key, Duration.ofSeconds(expiredSecond));
+        }
 
         return result;
+    }
+
+    public static boolean getLock(String key) {
+        return getLock(key, 10);
     }
 
     public static void releaseLock(String key) {
