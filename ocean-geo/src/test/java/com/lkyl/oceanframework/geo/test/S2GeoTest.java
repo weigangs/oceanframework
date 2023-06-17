@@ -4,6 +4,7 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.google.common.geometry.*;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -124,4 +125,5 @@ public class S2GeoTest {
             }
         }
     }
+
 }
