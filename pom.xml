@@ -111,6 +111,11 @@
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
+                <artifactId>ocean-geo</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-web</artifactId>
                 <version>${project.version}</version>
             </dependency>
