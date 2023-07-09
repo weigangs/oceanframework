@@ -15,6 +15,8 @@ public enum SystemExceptionEnum implements IBaseException {
     DECODE_ERR("10002", "解密异常！"),
     // REQUEST_METHOD_ERR
     REQUEST_METHOD_ERR("10003", "请求方法错误！"),
+    // REQUEST_LIMITED
+    REQUEST_LIMITED("10004", "访问太过频繁！"),
 
     // PERMISSION_DENY 11000~
     PERMISSION_DENY("11000", "未授权！"),
