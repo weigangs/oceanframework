@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class CommonException extends RuntimeException implements IBaseException  {
 
-    private String errorCode;
+    private int errorCode;
 
     private String errMsg;
 
@@ -33,7 +33,7 @@ public class CommonException extends RuntimeException implements IBaseException 
     }
 
     @Override
-    public String getCode() {
+    public int getCode() {
         return this.errorCode;
     }
 

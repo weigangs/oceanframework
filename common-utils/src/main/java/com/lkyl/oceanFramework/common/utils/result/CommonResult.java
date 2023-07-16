@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.CollectionUtils;
 
 import java.io.Serializable;
@@ -25,10 +26,10 @@ public class CommonResult<T> implements Serializable {
 
     private T data;
 
-    private String code = ResultConstant.OK_CODE;
+    private int code = HttpStatus.OK.value();
     private String message = ResultConstant.OK_MSG;
 
-    public CommonResult(String rspCode, String rspMsg) {
+    public CommonResult(int rspCode, String rspMsg) {
         this.code = rspCode;
         this.message = rspMsg;
     }
@@ -41,7 +42,7 @@ public class CommonResult<T> implements Serializable {
         return new CommonResult<>();
     }
 
-    public static <T> CommonResult<T> fail(String code, String message) {
+    public static <T> CommonResult<T> fail(int code, String message) {
         return new CommonResult<>(code, message);
     }
 
