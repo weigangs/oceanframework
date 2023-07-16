@@ -1,9 +1,9 @@
 package com.lkyl.oceanframework.common.auth.exception;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lkyl.oceanframework.common.utils.enums.SystemExceptionEnum;
 import com.lkyl.oceanframework.common.utils.result.CommonResult;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 
@@ -22,13 +22,14 @@ public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
                          AuthenticationException authException)
             throws ServletException {
 
-        CommonResult result = CommonResult.fail(SystemExceptionEnum.AUTH_FAILED_ERR.getCode(),
+        CommonResult result = CommonResult.fail(HttpStatus.UNAUTHORIZED.value(),
                 authException.getMessage());
 
         try {
             ObjectMapper mapper = new ObjectMapper();
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json");
+            response.setStatus(HttpStatus.UNAUTHORIZED.value());
             mapper.writeValue(response.getOutputStream(), result);
         } catch (Exception e) {
             throw new ServletException();

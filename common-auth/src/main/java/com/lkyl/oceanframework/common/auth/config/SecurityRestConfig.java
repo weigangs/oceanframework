@@ -50,12 +50,10 @@ import java.security.interfaces.RSAPublicKey;
  */
 @Configuration
 public class SecurityRestConfig {
-
-    @Value("${jwt.public.key}")
-    RSAPublicKey key;
-
     @Value("${jwt.private.key}")
     RSAPrivateKey priv;
+    @Value("${jwt.public.key}")
+    RSAPublicKey key;
 
     @Resource
     private OceanOauth2Properties oceanOauth2Properties;
@@ -70,6 +68,7 @@ public class SecurityRestConfig {
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
                 .csrf().disable()
+                .logout().disable()
                 .addFilterAfter(tokenCheckFilter(), UsernamePasswordAuthenticationFilter.class)
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

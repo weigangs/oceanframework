@@ -8,6 +8,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 /**
  * @author nicholas
  * @date 2023/05/28 12:54
@@ -26,6 +28,12 @@ public class PageSelectorAspect {
     public void beforeMethod(JoinPoint joinPoint) {
         for (Object arg : joinPoint.getArgs()) {
             if (arg instanceof PageArgs) {
+                if (Objects.isNull(((PageArgs) arg).getPageNum()) || ((PageArgs) arg).getPageNum() < 0) {
+                    ((PageArgs) arg).setPageNum(0);
+                }
+                if (Objects.isNull(((PageArgs) arg).getPageSize()) || ((PageArgs) arg).getPageSize() <= ((PageArgs) arg).getPageNum()) {
+                    ((PageArgs) arg).setPageSize(((PageArgs) arg).getPageNum() + 10);
+                }
                 PageHelper.startPage(((PageArgs) arg).getPageNum(), ((PageArgs) arg).getPageSize());
                 return;
             }

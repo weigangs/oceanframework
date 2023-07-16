@@ -15,7 +15,7 @@ import java.time.Instant;
 import java.util.Optional;
 
 public class TokenService {
-    @Value("${ocean.security.oauth.token.expireMinute:30}")
+    @Value("${ocean.security.oauth2.token.expireMinute:30}")
     private Integer tokenExpireMinute;
 
     @Resource
@@ -27,13 +27,18 @@ public class TokenService {
     @Resource
     private StringRedisTemplate stringRedisTemplate;
 
+    @Value("${spring.application.name:ocean-framework}")
+    private String applicationName;
+
     public String createJwtToken(UserPrincipal userPrincipal) {
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuedAt(Instant.now())
                 .claim("userCode", userPrincipal.getUserCode())
                 .build();
         // @formatter:on
-        return this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+        String token = this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+        storeUser(userPrincipal);
+        return token;
     }
 
     public Jwt parseJwtToken(String jwtToken){
@@ -41,16 +46,16 @@ public class TokenService {
     }
 
     public String readUserRaw(String userCode) {
-        return stringRedisTemplate.opsForValue().get(OauthConstant.LOGIN_USER_PREFIX + userCode);
+        return stringRedisTemplate.opsForValue().get(applicationName + ":" + OauthConstant.LOGIN_USER_PREFIX + userCode);
     }
 
     public void refreshToken(String userCode){
-        stringRedisTemplate.expire(OauthConstant.LOGIN_USER_PREFIX + userCode,
+        stringRedisTemplate.expire(applicationName + ":" + OauthConstant.LOGIN_USER_PREFIX + userCode,
                 Duration.ofSeconds(tokenExpireMinute * 60));
     }
 
-    public void storeUser(UserPrincipal userPrincipal) {
-        stringRedisTemplate.opsForValue().set(OauthConstant.LOGIN_USER_PREFIX + userPrincipal.getUserCode(),
+    private void storeUser(UserPrincipal userPrincipal) {
+        stringRedisTemplate.opsForValue().set(applicationName + ":" + OauthConstant.LOGIN_USER_PREFIX + userPrincipal.getUserCode(),
                 Base64.encode(SerializationUtils.serialize(userPrincipal)), Duration.ofSeconds(tokenExpireMinute * 60));
     }
 
@@ -66,10 +71,10 @@ public class TokenService {
         return this.readUser(userCode);
     }
 
-    public void removeToken(String userCode) {
-
+    public void removeToken(String authToken) {
+        String userCode = (String)this.parseJwtToken(authToken).getClaims().get("userCode");
         if (StringUtils.isNotBlank(userCode)) {
-            stringRedisTemplate.delete(OauthConstant.LOGIN_USER_PREFIX + userCode);
+            stringRedisTemplate.delete(applicationName + ":" + OauthConstant.LOGIN_USER_PREFIX + userCode);
         }
     }
 }

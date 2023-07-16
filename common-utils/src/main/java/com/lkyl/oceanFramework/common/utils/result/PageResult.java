@@ -1,7 +1,6 @@
 package com.lkyl.oceanframework.common.utils.result;
 
 import com.github.pagehelper.Page;
-import com.lkyl.oceanframework.common.utils.constant.ResultConstant;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -39,7 +38,7 @@ public class PageResult<T> extends CommonResult<Collection<T>> {
 
     public static <T> PageResult<T> page(Collection<T> list) {
         if (CollectionUtils.isEmpty(list)) {
-            return empty();
+            return new PageResult<>();
         }
 
         if (!(list instanceof Page)) {
@@ -49,17 +48,12 @@ public class PageResult<T> extends CommonResult<Collection<T>> {
         return result((Page<T>) list);
     }
 
-    private static<T> PageResult<T> result(Page<T> page) {
-        PageResult<T> result =  empty();
+
+
+    private static <T> PageResult<T> result(Page<T> page) {
+        PageResult<T> result = new PageResult<>();
         result.setData(page);
         result.setTotalNum(page.getTotal());
-        return result;
-    }
-
-    public static<T> PageResult<T> empty() {
-        PageResult<T> result = new PageResult<>();
-        result.setCode(ResultConstant.OK_CODE);
-        result.setMessage(ResultConstant.OK_MSG);
         return result;
     }
 

@@ -1,5 +1,6 @@
 package com.lkyl.oceanframework.common.auth.properties;
 
+import com.lkyl.oceanframework.common.utils.constant.OauthConstant;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
  * @author nicholas
  * @date 2023/05/14 22:10
  */
-@ConfigurationProperties(prefix = "ocean.security.oauth")
+@ConfigurationProperties(prefix = "ocean.security.oauth2")
 @Component
 @Data
 public class OceanOauth2Properties {
@@ -25,6 +26,8 @@ public class OceanOauth2Properties {
     private List<String> permittedUrls;
 
     private List<RequestMatcher> matchers;
+
+    private String tokenKey = OauthConstant.TOKEN_PREFIX;
 
     @PostConstruct
     public void afterPropertiesSet() {

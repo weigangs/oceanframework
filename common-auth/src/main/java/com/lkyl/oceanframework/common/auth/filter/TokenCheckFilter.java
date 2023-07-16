@@ -72,7 +72,7 @@ public class TokenCheckFilter extends OncePerRequestFilter {
 
     public String extractToken(HttpServletRequest request) {
 
-        return Optional.ofNullable(request.getHeader(OauthConstant.TOKEN_PREFIX)).filter(StringUtils::isNotBlank)
+        return Optional.ofNullable(request.getHeader(oceanOauth2Properties.getTokenKey())).filter(StringUtils::isNotBlank)
                 .orElse(Strings.EMPTY);
     }
 
