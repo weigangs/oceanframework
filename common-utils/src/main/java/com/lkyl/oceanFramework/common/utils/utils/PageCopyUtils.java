@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  */
 public class PageCopyUtils {
 
-    public static <S, T> List<T> page(Collection<S> list, Function<S, T> converter, BiConsumer<S, T> callback) {
+    public static <S, T> List<T> convertProperties(Collection<S> list, Function<S, T> converter, BiConsumer<S, T> callback) {
         if (CollectionUtils.isEmpty(list)) {
             return empty();
         }

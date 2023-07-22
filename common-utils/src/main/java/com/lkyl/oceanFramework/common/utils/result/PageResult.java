@@ -48,8 +48,6 @@ public class PageResult<T> extends CommonResult<Collection<T>> {
         return result((Page<T>) list);
     }
 
-
-
     private static <T> PageResult<T> result(Page<T> page) {
         PageResult<T> result = new PageResult<>();
         result.setData(page);

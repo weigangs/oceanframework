@@ -70,7 +70,7 @@
 
         <org.apache.maven.plugins.version>3.8.1</org.apache.maven.plugins.version>
 
-        <github-pageHelper-starter.version>1.2.5</github-pageHelper-starter.version>
+        <github-pageHelper-starter.version>1.4.1</github-pageHelper-starter.version>
 
         <org.projectlombok.lombok-mapstruct-binding.version>0.2.0</org.projectlombok.lombok-mapstruct-binding.version>
 
