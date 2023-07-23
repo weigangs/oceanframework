@@ -12,8 +12,11 @@ import org.apache.logging.log4j.util.Strings;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.annotation.Resource;
@@ -23,8 +26,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author nicholas
@@ -52,7 +57,11 @@ public class TokenCheckFilter extends OncePerRequestFilter {
                 UserPrincipal user = tokenService.readUserByToken(token)
                         .orElseThrow(() -> new AuthenticationServiceException(SystemExceptionEnum.INVALID_TOKEN.getMsg()));
 
-                UserAuthenticationToken userAuthenticationToken = new UserAuthenticationToken(Collections.emptyList());
+                List<GrantedAuthority> authorities = Collections.emptyList();
+                if (!CollectionUtils.isEmpty(user.getPermissionList())) {
+                    authorities = user.getPermissionList().stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+                }
+                UserAuthenticationToken userAuthenticationToken = new UserAuthenticationToken(authorities);
                 userAuthenticationToken.setAuthenticated(true);
                 userAuthenticationToken.setPrincipal(user);
 

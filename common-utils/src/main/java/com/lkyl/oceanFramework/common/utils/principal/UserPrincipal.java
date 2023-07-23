@@ -22,4 +22,6 @@ public class UserPrincipal implements Serializable {
     private String openId;
     private List<String> roleList;
 
+    private List<String> permissionList;
+
 }

@@ -33,7 +33,7 @@ public class OceanAccessDeniedHandler implements AccessDeniedHandler{
             ObjectMapper mapper = new ObjectMapper();
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json");
-            response.setStatus(HttpStatus.UNAUTHORIZED.value());
+            response.setStatus(HttpStatus.OK.value());
             mapper.writeValue(response.getOutputStream(), result);
         } catch (Exception e) {
             log.error("error: ", e);
