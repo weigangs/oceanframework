@@ -25,6 +25,10 @@ public class OceanOauth2Properties {
 
     private List<String> permittedUrls;
 
+    private List<String> corsAllowedOrigins;
+
+    private List<String> corsAllowedMethods;
+
     private List<RequestMatcher> matchers;
 
     private String tokenKey = OauthConstant.TOKEN_PREFIX;

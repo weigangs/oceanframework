@@ -25,10 +25,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -57,9 +54,15 @@ public class TokenCheckFilter extends OncePerRequestFilter {
                 UserPrincipal user = tokenService.readUserByToken(token)
                         .orElseThrow(() -> new AuthenticationServiceException(SystemExceptionEnum.INVALID_TOKEN.getMsg()));
 
-                List<GrantedAuthority> authorities = Collections.emptyList();
+                List<GrantedAuthority> authorities = new ArrayList<>(10);
                 if (!CollectionUtils.isEmpty(user.getPermissionList())) {
-                    authorities = user.getPermissionList().stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+                    authorities.addAll(user.getPermissionList().stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
+                }
+                if (!CollectionUtils.isEmpty(user.getRoleList())) {
+                    authorities.addAll(
+                            user.getRoleList().stream().map(roleKey -> "ROLE_" + roleKey)
+                                    .map(SimpleGrantedAuthority::new).collect(Collectors.toList())
+                    );
                 }
                 UserAuthenticationToken userAuthenticationToken = new UserAuthenticationToken(authorities);
                 userAuthenticationToken.setAuthenticated(true);
