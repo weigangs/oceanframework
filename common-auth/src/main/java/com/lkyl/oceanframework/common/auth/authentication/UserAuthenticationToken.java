@@ -1,7 +1,6 @@
 package com.lkyl.oceanframework.common.auth.authentication;
 
 import com.lkyl.oceanframework.common.utils.principal.UserPrincipal;
-import lombok.Data;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 

@@ -11,6 +11,8 @@
 
     <properties>
 
+        <reversion>1.1.1</reversion>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <apache.lang3.version>3.12.0</apache.lang3.version>
@@ -59,6 +61,7 @@
 
         <maven.jar.plugin.version>3.2.0</maven.jar.plugin.version>
         <maven.denpendency.version>3.0.2</maven.denpendency.version>
+        <maven.surefire.version>3.0.0-M5</maven.surefire.version>
 
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
 
@@ -67,7 +70,7 @@
 
         <org.apache.maven.plugins.version>3.8.1</org.apache.maven.plugins.version>
 
-        <github-pageHelper-starter.version>1.2.5</github-pageHelper-starter.version>
+        <github-pageHelper-starter.version>1.4.1</github-pageHelper-starter.version>
 
         <org.projectlombok.lombok-mapstruct-binding.version>0.2.0</org.projectlombok.lombok-mapstruct-binding.version>
 
@@ -83,6 +86,8 @@
         <module>ocean-security</module>
         <module>ocean-web</module>
         <module>common-auth</module>
+        <module>common-cache</module>
+        <module>ocean-geo</module>
     </modules>
 
     <dependencyManagement>
@@ -92,27 +97,37 @@
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>common-utils</artifactId>
-                <version>1.1.1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>common-auth</artifactId>
-                <version>1.1.1</version>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lkyl.oceanframework</groupId>
+                <artifactId>common-cache</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lkyl.oceanframework</groupId>
+                <artifactId>ocean-geo</artifactId>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-web</artifactId>
-                <version>1.1.1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-log</artifactId>
-                <version>1.1.1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-security</artifactId>
-                <version>1.1.1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <!-- jasypt-->
@@ -352,7 +367,6 @@
     </dependencyManagement>
 
 
-
     <build>
         <pluginManagement>
             <plugins>
@@ -398,6 +412,15 @@
                         <excludes>
                             <exclude>conf/**/*</exclude>
                         </excludes>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.version}</version>
+                    <configuration>
+                        <skipTests>true</skipTests>    <!--默认关掉单元测试 -->
                     </configuration>
                 </plugin>
             </plugins>

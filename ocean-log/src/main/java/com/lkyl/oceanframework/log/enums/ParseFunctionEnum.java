@@ -11,7 +11,8 @@ import lombok.NoArgsConstructor;
 @Getter
 public enum ParseFunctionEnum {
 
-    DEFAULT_FUNCTION("defaultFunction", "默认EL解析方法");
+    DEFAULT_FUNCTION("defaultFunction", "默认EL解析方法"),
+    LOGOUT_FUNC("logoutFunc", "退出登录方法");
 
     private String functionName;
 

@@ -9,7 +9,7 @@ package com.lkyl.oceanframework.common.utils.constant;
  */
 public interface OauthConstant {
 
-    String TOKEN_PREFIX = "authToken";
+    String TOKEN_PREFIX = "Auth-Token";
 
     /**
      * 请求头的token值对应的key

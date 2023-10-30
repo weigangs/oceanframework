@@ -16,10 +16,12 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 public class UserPrincipal implements Serializable {
 
+    private String userId;
     private String userCode;
-
+    private String userName;
     private String openId;
-
     private List<String> roleList;
+
+    private List<String> permissionList;
 
 }

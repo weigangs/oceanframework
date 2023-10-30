@@ -2,6 +2,7 @@ package com.lkyl.oceanframework.common.utils.utils;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 /**
  *
@@ -10,6 +11,7 @@ import org.springframework.context.ApplicationContextAware;
  * @author: nicholas
  * @createTime: 2022年05月29日 10:03
  */
+@Component
 public class SpringContextUtil implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;

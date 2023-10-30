@@ -1,6 +1,6 @@
 package com.lkyl.oceanframework.web.annotation;
 
-import com.lkyl.oceanframework.web.exception.GlobalExceptionController;
+import com.lkyl.oceanframework.common.utils.exception.GlobalExceptionController;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;

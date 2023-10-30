@@ -29,6 +29,7 @@ import com.nimbusds.jose.proc.SecurityContext;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -38,10 +39,16 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.annotation.Resource;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Security configuration for the main application.
@@ -50,12 +57,10 @@ import java.security.interfaces.RSAPublicKey;
  */
 @Configuration
 public class SecurityRestConfig {
-
-    @Value("${jwt.public.key}")
-    RSAPublicKey key;
-
     @Value("${jwt.private.key}")
     RSAPrivateKey priv;
+    @Value("${jwt.public.key}")
+    RSAPublicKey key;
 
     @Resource
     private OceanOauth2Properties oceanOauth2Properties;
@@ -64,12 +69,14 @@ public class SecurityRestConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // @formatter:off
         http
+                .cors()
+                .and()
                 .authorizeRequests()
                 .antMatchers(oceanOauth2Properties.getPermittedUrls().toArray(new String[]{})).permitAll()
+                .anyRequest().authenticated()
                 .and()
-                .authorizeRequests().anyRequest().authenticated()
-                .and()
-                .csrf((csrf) -> csrf.ignoringAntMatchers(oceanOauth2Properties.getPermittedUrls().toArray(new String[]{})))
+                .csrf().disable()
+                .logout().disable()
                 .addFilterAfter(tokenCheckFilter(), UsernamePasswordAuthenticationFilter.class)
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -79,6 +86,28 @@ public class SecurityRestConfig {
                 );
         // @formatter:on
         return http.build();
+    }
+//
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource(){
+        CorsConfiguration configuration = new CorsConfiguration();
+        if (!CollectionUtils.isEmpty(oceanOauth2Properties.getCorsAllowedOrigins())) {
+
+            configuration.setAllowedOrigins(oceanOauth2Properties.getCorsAllowedOrigins());
+        } else{
+             configuration.setAllowedOrigins(Collections.singletonList("*"));
+        }
+        if (!CollectionUtils.isEmpty(oceanOauth2Properties.getCorsAllowedMethods())) {
+            configuration.setAllowedMethods(oceanOauth2Properties.getCorsAllowedMethods());
+        } else{
+            configuration.setAllowedMethods(Arrays.asList(HttpMethod.GET.name(), HttpMethod.POST.name(),
+                    HttpMethod.PUT.name(), HttpMethod.DELETE.name(), HttpMethod.OPTIONS.name()));
+        }
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        //对所有url生效
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
     @Bean

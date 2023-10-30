@@ -1,9 +1,17 @@
 package com.lkyl.oceanframework.common.utils.result;
 
+import com.lkyl.oceanframework.common.utils.constant.ResultConstant;
 import com.lkyl.oceanframework.common.utils.exception.base.IBaseException;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.Accessors;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.CollectionUtils;
+
+import java.io.Serializable;
+import java.util.Collection;
 
 /**
  * @author nicholas
@@ -11,19 +19,17 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
+@ToString
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class CommonResult<T> {
-
-    private static final String OK_CODE = "0";
-
-    private static final String OK_MSG = "OK";
+public class CommonResult<T> implements Serializable {
 
     private T data;
 
-    private String code = OK_CODE;
-    private String message = OK_MSG;
+    private int code = HttpStatus.OK.value();
+    private String message = ResultConstant.OK_MSG;
 
-    public CommonResult(String rspCode, String rspMsg) {
+    public CommonResult(int rspCode, String rspMsg) {
         this.code = rspCode;
         this.message = rspMsg;
     }
@@ -32,11 +38,17 @@ public class CommonResult<T> {
         return new CommonResult<T>().setData(data);
     }
 
-    public static <T> CommonResult<T> fail(String code, String message) {
+    public static <T>  CommonResult<T> ok() {
+        return new CommonResult<>();
+    }
+
+    public static <T> CommonResult<T> fail(int code, String message) {
         return new CommonResult<>(code, message);
     }
 
     public static <T> CommonResult<T> fail(IBaseException e) {
         return new CommonResult<>(e.getCode(), e.getMsg());
     }
+
+
 }

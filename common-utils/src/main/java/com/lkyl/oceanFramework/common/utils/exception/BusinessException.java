@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class BusinessException extends RuntimeException implements IBaseException {
 
-    private String errorCode;
+    private int errorCode;
 
     private String errMsg;
 
@@ -21,7 +21,13 @@ public class BusinessException extends RuntimeException implements IBaseExceptio
         this.errMsg = baseEnum.getMsg();
     }
 
-    public BusinessException(String errorCode, String errMsg) {
+    public BusinessException(int errorCode, String errMsg) {
+        this.errorCode = errorCode;
+        this.errMsg = errMsg;
+    }
+
+    public BusinessException(int errorCode, String errMsg, Throwable throwable) {
+        super(throwable);
         this.errorCode = errorCode;
         this.errMsg = errMsg;
     }
@@ -32,7 +38,7 @@ public class BusinessException extends RuntimeException implements IBaseExceptio
     }
 
     @Override
-    public String getCode() {
+    public int getCode() {
         return this.errorCode;
     }
 
