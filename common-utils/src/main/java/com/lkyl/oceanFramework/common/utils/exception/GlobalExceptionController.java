@@ -1,11 +1,10 @@
-package com.lkyl.oceanframework.web.exception;
+package com.lkyl.oceanframework.common.utils.exception;
 
-import com.lkyl.oceanframework.common.utils.exception.BusinessException;
-import com.lkyl.oceanframework.common.utils.exception.CommonException;
 import com.lkyl.oceanframework.common.utils.enums.SystemExceptionEnum;
 import com.lkyl.oceanframework.common.utils.result.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -55,6 +54,12 @@ public class GlobalExceptionController {
                 this.wrapErrors(e.getBindingResult().getAllErrors())));
     }
 
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<CommonResult<String>> handleAccessDeniedException(AccessDeniedException e) {
+        log.error("permission denied: ", e);
+        return ResponseEntity.ok(CommonResult.fail(SystemExceptionEnum.PERMISSION_DENY));
+    }
+
 
     private String wrapErrors(List<ObjectError> errors) {
         if (CollectionUtils.isEmpty(errors)) {
@@ -63,4 +68,6 @@ public class GlobalExceptionController {
 
         return "["+ errors.get(0).getDefaultMessage() +"]";
     }
+
+
 }

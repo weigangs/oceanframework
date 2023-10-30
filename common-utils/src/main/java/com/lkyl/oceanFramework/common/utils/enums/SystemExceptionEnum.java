@@ -19,7 +19,7 @@ public enum SystemExceptionEnum implements IBaseException {
     REQUEST_LIMITED(10004, "访问太过频繁！"),
 
     // PERMISSION_DENY 11000~
-    PERMISSION_DENY(11000, "未授权！"),
+    PERMISSION_DENY(11000, "无操作权限！"),
     // AUTH_FAILED_ERR
     AUTH_FAILED_ERR(11001, "认证失败！"),
     //INVALID_TOKEN
