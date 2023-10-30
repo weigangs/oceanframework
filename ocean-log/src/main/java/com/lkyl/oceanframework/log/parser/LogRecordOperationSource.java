@@ -1,10 +1,10 @@
 package com.lkyl.oceanframework.log.parser;
 
-import com.lkyl.oceanframework.common.utils.utils.ObjectUtils;
 import com.lkyl.oceanframework.log.annotation.LogRecord;
 import com.lkyl.oceanframework.log.enums.LogRecordEnum;
 import com.lkyl.oceanframework.log.options.LogRecordOps;
 import com.lkyl.oceanframework.log.spelExt.parser.LogRecordValueParser;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.expression.common.TemplateParserContext;
 import org.springframework.expression.spel.SpelParserConfiguration;
@@ -25,7 +25,7 @@ public class LogRecordOperationSource {
     private static final LogRecordValueParser expressParser = new LogRecordValueParser(new SpelParserConfiguration());
     private static final TemplateParserContext context = new TemplateParserContext();
 
-    public Collection<LogRecordOps> computeLogRecordOperations(Method method, Class<?> targetClass) {
+    public Collection<LogRecordOps> computeLogRecordOperations(Method method) {
         List<LogRecordOps> ops = new ArrayList<>();
         LogRecord annotation = method.getAnnotation(LogRecord.class);
         if(ObjectUtils.isNotEmpty(annotation)) {

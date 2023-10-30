@@ -17,7 +17,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @EnableConfigurationProperties({OceanOauth2Properties.class, SwaggerConfigProperties.class})
-@EnableVerifyCode
 @Import(value = {AccessTokenStoreConfig.class, TokenStoreInMemory.class,
         Oauth2Config.class, OceanAuthorizationServerConfigurer.class,
         OceanResourceServerConfigurer.class, OceanWebSecurityConfigurer.class,

@@ -1,64 +1,44 @@
 package com.lkyl.oceanframework.common.utils.exception;
 
-import com.lkyl.oceanframework.common.utils.constant.CommonCode;
+import com.lkyl.oceanframework.common.utils.exception.base.IBaseException;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
-import org.apache.commons.lang3.StringUtils;
+import lombok.EqualsAndHashCode;
 
-import java.text.MessageFormat;
-import java.util.Optional;
-
-@Accessors(chain = true)
+/**
+ * @author nicholas
+ * @date 2023年05月03日 17:32
+ */
 @Data
-@NoArgsConstructor
-@SuppressWarnings("all")
-public class CommonException extends RuntimeException{
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+public class CommonException extends RuntimeException implements IBaseException  {
 
-    private static final long serialVersionUID = 2565431806475335331L;
+    private int errorCode;
 
-    private String code;
+    private String errMsg;
 
-    private String msg;
+    public CommonException(Throwable e) {
+        super(e);
+    }
+
+    public CommonException(IBaseException iBaseException) {
+        this.errorCode = iBaseException.getCode();
+        this.errMsg = iBaseException.getMsg();
+    }
 
     @Override
     public String getMessage() {
-        return Optional.ofNullable(msg).orElse(ErrorCodeConfig.getErrorMessage(code));
+        return this.getErrMsg();
     }
 
-    public CommonException(String code){
-        this.code = code;
+    @Override
+    public int getCode() {
+        return this.errorCode;
     }
 
-    public CommonException(String code, String [] args){
-        this.code = code;
-        this.msg =  MessageFormat.format(ErrorCodeConfig.getErrorMessage(code), args);
-    }
-
-    public CommonException(String code, String msg){
-        this.code = code;
-        this.msg =  msg;
-    }
-
+    @Override
     public String getMsg() {
-        if(StringUtils.isBlank(this.msg)){
-            this.msg = ErrorCodeConfig.getErrorMessage(code);
-        }
-        return this.msg;
+        return this.getErrMsg();
     }
-
-    //    public CommonException(String code, String ...args){
-//        this.code = code;
-//        this.msg = ErrorCodeConfig.getErrorMessage(code);
-//    }
-
-    public CommonException exception(String msg){
-        return new CommonException(CommonCode.EXCEPTION, msg);
-    }
-
-//    public CommonException(String code, String msg){
-//        this.code = code;
-//        this.msg = msg;
-//    }
-
 }

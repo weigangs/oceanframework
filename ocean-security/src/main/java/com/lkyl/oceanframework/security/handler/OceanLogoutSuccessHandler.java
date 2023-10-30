@@ -1,9 +1,9 @@
 package com.lkyl.oceanframework.security.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lkyl.oceanframework.common.utils.constant.CommonCode;
-import com.lkyl.oceanframework.common.utils.constant.CommonResult;
+import com.lkyl.oceanframework.common.utils.constant.BaseConstant;
 import com.lkyl.oceanframework.common.utils.constant.OauthConstant;
+import com.lkyl.oceanframework.common.utils.result.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.Authentication;
@@ -43,8 +43,8 @@ public class OceanLogoutSuccessHandler implements LogoutSuccessHandler, LogoutHa
     public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication){
         String accessToken = request.getHeader(OauthConstant.OAUTH_TOKEN_HEADER_KEY);
         if(StringUtils.isNotBlank(accessToken)){
-            if(accessToken.startsWith(OauthConstant.BEARER_TOKEN_PREFIX)){
-                accessToken = accessToken.replace(OauthConstant.BEARER_TOKEN_PREFIX, "").trim();
+            if(accessToken.startsWith(OauthConstant.TOKEN_PREFIX)){
+                accessToken = accessToken.replace(OauthConstant.TOKEN_PREFIX, "").trim();
             }
             OAuth2AccessToken oAuth2AccessToken = tokenStore.readAccessToken(accessToken);
             if(oAuth2AccessToken != null){
@@ -58,9 +58,7 @@ public class OceanLogoutSuccessHandler implements LogoutSuccessHandler, LogoutHa
        try {
            PrintWriter out = response.getWriter();
            CommonResult result = new CommonResult();
-           result.setCode(CommonCode.SUCCESS);
-           result.setMsg(CommonCode.LOGOUT_MSG);
-           result.setData(CommonCode.LOGOUT_MSG);
+           result.setMessage(BaseConstant.LOGOUT_SUCCESS_MSG);
            out.write(new ObjectMapper().writeValueAsString(result));
            out.flush();
            out.close();

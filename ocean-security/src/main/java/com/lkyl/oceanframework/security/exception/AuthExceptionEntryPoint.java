@@ -1,8 +1,8 @@
 package com.lkyl.oceanframework.security.exception;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lkyl.oceanframework.common.utils.constant.CommonCode;
-import com.lkyl.oceanframework.common.utils.constant.CommonResult;
+import com.lkyl.oceanframework.common.utils.enums.SystemExceptionEnum;
+import com.lkyl.oceanframework.common.utils.result.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -23,7 +23,8 @@ public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
             throws ServletException {
 
         log.error("error:", authException);
-        CommonResult result = new CommonResult().setCode(CommonCode.NO_AUTH).setMsg(CommonCode.AUTH_FAILED_MSG);
+        CommonResult result = new CommonResult(SystemExceptionEnum.PERMISSION_DENY.getCode(),
+                SystemExceptionEnum.PERMISSION_DENY.getMsg());
 //        Map map = new HashMap();
 //        map.put("code", CommonCode.NO_AUTH);
 //        map.put("msg", authException.getMessage());

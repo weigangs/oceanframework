@@ -1,7 +1,7 @@
 package com.lkyl.oceanframework.security.provider;
 
-import com.lkyl.oceanframework.common.utils.constant.CommonCode;
 import com.lkyl.oceanframework.common.utils.exception.CommonException;
+import com.lkyl.oceanframework.common.utils.enums.SystemExceptionEnum;
 import com.lkyl.oceanframework.security.encoder.ThreePhaseEncoder;
 import com.lkyl.oceanframework.security.event.LoginSuccessEvent;
 import com.lkyl.oceanframework.security.event.PasswordIncorrectEvent;
@@ -46,7 +46,7 @@ public class OceanLoginAuthenticationProvider implements AuthenticationProvider,
         UserDetails userDetails = userDetailsService.loadUserByUsername(loginToken.getName());
 
         if(ObjectUtils.isEmpty(userDetails)) {
-            throw new CommonException(CommonCode.NO_AUTH).setMsg(CommonCode.USER_NOT_FOUND_MSG);
+            throw new CommonException(SystemExceptionEnum.PERMISSION_DENY);
         }
 
         if(ThreePhaseEncoder.getInstance().matches(loginToken.getCredentials().toString(), userDetails.getPassword(), privateKey)) {

@@ -1,26 +1,9 @@
 package com.lkyl.oceanframework.common.utils.utils;
 
-import java.io.ByteArrayOutputStream;
-import java.math.BigInteger;
-import java.security.Key;
-import java.security.KeyFactory;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.PrivateKey;
-import java.security.Provider;
-import java.security.PublicKey;
-import java.security.SecureRandom;
-import java.security.interfaces.RSAPrivateKey;
-import java.security.interfaces.RSAPublicKey;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.RSAPublicKeySpec;
-import java.security.spec.X509EncodedKeySpec;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.crypto.Cipher;
-
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import java.security.KeyFactory;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.spec.PKCS8EncodedKeySpec;
 
 
 /**
@@ -34,19 +17,20 @@ public class RSAUtil {
     public static String decrypt(String str, String privateKey) throws Exception{
         //64位解码加密后的字符串
         byte[] inputByte = org.apache.commons.codec.binary.Base64.decodeBase64(str.getBytes("UTF-8"));
+
         //base64编码的私钥
         byte[] decoded = org.apache.commons.codec.binary.Base64.decodeBase64(privateKey);
         RSAPrivateKey priKey = (RSAPrivateKey) KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(decoded));
         //RSA解密
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.DECRYPT_MODE, priKey);
-        String outStr = new String(cipher.doFinal(inputByte));
-        return outStr;
+        return new String(cipher.doFinal(inputByte));
     }
+
 //
 //    public static void main(String[] args) {
 //        try {
-//            String mima = "5661ceaa5c58d69e3ff5bfd77782e65auziEg2JiVIPlaQoXmp4MA8IMndgdd8c9d4a67cf0d6269uziEg2JiVIPlaQoXmp4MA8IMndgddehHdk/Czg79hOulSNqcOJruwHfBQLTluVKtWIW1gQYYClglu/l9czTzIYUU+P5kgIvNcSFbB6MFuWAu05V96JTzY/u9F/dbwN9ArCsXGvq1lvqm2QVF5a4sLO8d0bY9yl3BwZjou+HO172QQ37nyh5qJxSjBBiHHAref+Uwp5dQ=";
+//            String mima = "f002fbeea2bd549be626fb68ad0c6687cZYd6jbMcg0I8PQj70Ui0T95hzzkf75ae41096f1cb155cZYd6jbMcg0I8PQj70Ui0T95hzzkfq6m4WblgfhfZuuGR7cbNCiDL6BNPfN3uycbeg%2BPOV34qCpNK%2B8FHEFLpdPxgwZgh52jBw8nbFF1el2nX%2FP5pPjxNTm1B9KF5AKuZtIryYsHlafNyX6Ct6MGUwr6JOvXzL2vKvyCAwlhNlav%2B84SAm82vJkjfmTbt2nxA%2BUfJtcs%3D";
 //            String split = mima.substring(32, 61);
 //            String [] strArr = mima.split(split);
 //            String md5Str = strArr[0];

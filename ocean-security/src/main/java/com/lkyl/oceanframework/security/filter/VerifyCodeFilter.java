@@ -1,7 +1,8 @@
 package com.lkyl.oceanframework.security.filter;
 
-import com.lkyl.oceanframework.common.utils.constant.CommonCode;
+import com.lkyl.oceanframework.common.utils.constant.BaseConstant;
 import com.lkyl.oceanframework.common.utils.exception.CommonException;
+import com.lkyl.oceanframework.common.utils.enums.SystemExceptionEnum;
 import com.lkyl.oceanframework.web.util.FilterUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpMethod;
@@ -27,15 +28,15 @@ public class VerifyCodeFilter extends GenericFilterBean {
     HttpServletRequest request = (HttpServletRequest) req;
     HttpServletResponse response = (HttpServletResponse) resp;
     if (HttpMethod.POST.name().equalsIgnoreCase(request.getMethod()) && defaultFilterProcessUrl.equals(request.getServletPath())) {
-      String requestCaptcha = request.getParameter(CommonCode.CAPTCHA_CODE_KEY);
-      String genCaptcha = (String) request.getSession().getAttribute(CommonCode.CAPTCHA_CODE_KEY);
+      String requestCaptcha = request.getParameter(BaseConstant.CAPTCHA_KEY);
+      String genCaptcha = (String) request.getSession().getAttribute(BaseConstant.CAPTCHA_KEY);
       CommonException exception = null;
-      if (StringUtils.isEmpty(requestCaptcha)) {
-        exception = new CommonException(CommonCode.EXCEPTION).setMsg("请输入验证码!");
-      }else if (StringUtils.isEmpty(genCaptcha)) {
-        exception = new CommonException(CommonCode.EXCEPTION).setMsg("验证码失效!");
+      if (StringUtils.isBlank(requestCaptcha)) {
+        exception = new CommonException(SystemExceptionEnum.CAPTCHA_KEY_ERR);
+      }else if (StringUtils.isBlank(genCaptcha)) {
+        exception = new CommonException(SystemExceptionEnum.CAPTCHA_KEY_ERR);
       }else if(!genCaptcha.toLowerCase().equals(requestCaptcha.toLowerCase())) {
-        exception = new CommonException(CommonCode.EXCEPTION).setMsg("验证码错误!");
+        exception = new CommonException(SystemExceptionEnum.CAPTCHA_KEY_ERR);
       }
 
       if(null != exception){
