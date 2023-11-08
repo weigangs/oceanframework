@@ -50,6 +50,7 @@
         <spring-cloud.version>2021.0.6</spring-cloud.version>
         <spring-cloud-security.version>2.2.5.RELEASE</spring-cloud-security.version>
         <spring-security.version>2.3.4.RELEASE</spring-security.version>
+        <shardingsphere.version>5.4.1</shardingsphere.version>
 
         <swagger.fox.version>2.9.2</swagger.fox.version>
 
@@ -88,6 +89,7 @@
         <module>common-auth</module>
         <module>common-cache</module>
         <module>ocean-geo</module>
+        <module>ocean-webflux</module>
     </modules>
 
     <dependencyManagement>
@@ -97,37 +99,42 @@
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>common-utils</artifactId>
-                <version>${project.version}</version>
+                <version>${reversion}</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>common-auth</artifactId>
-                <version>${project.version}</version>
+                <version>${reversion}</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>common-cache</artifactId>
-                <version>${project.version}</version>
+                <version>${reversion}</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-geo</artifactId>
-                <version>${project.version}</version>
+                <version>${reversion}</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-web</artifactId>
-                <version>${project.version}</version>
+                <version>${reversion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lkyl.oceanframework</groupId>
+                <artifactId>ocean-webflux</artifactId>
+                <version>${reversion}</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-log</artifactId>
-                <version>${project.version}</version>
+                <version>${reversion}</version>
             </dependency>
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-security</artifactId>
-                <version>${project.version}</version>
+                <version>${reversion}</version>
             </dependency>
 
             <!-- jasypt-->
@@ -362,6 +369,12 @@
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
                 <version>${javax.validation.api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>shardingsphere-jdbc-core</artifactId>
+                <version>${shardingsphere.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
