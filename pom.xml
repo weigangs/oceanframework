@@ -50,7 +50,7 @@
         <spring-cloud.version>2021.0.6</spring-cloud.version>
         <spring-cloud-security.version>2.2.5.RELEASE</spring-cloud-security.version>
         <spring-security.version>2.3.4.RELEASE</spring-security.version>
-        <shardingsphere.version>5.4.1</shardingsphere.version>
+        <shardingsphere.version>5.1.1</shardingsphere.version>
 
         <swagger.fox.version>2.9.2</swagger.fox.version>
 
@@ -381,6 +381,12 @@
                 <artifactId>shardingsphere-jdbc</artifactId>
                 <version>${shardingsphere.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
+                <version>${shardingsphere.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class CommonException extends RuntimeException implements IBaseException  {
+public class CommonException extends RuntimeException implements IBaseException {
 
     private int errorCode;
 

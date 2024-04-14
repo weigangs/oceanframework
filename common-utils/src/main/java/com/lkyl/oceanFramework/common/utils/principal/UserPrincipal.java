@@ -20,6 +20,7 @@ public class UserPrincipal implements Serializable {
     private String userCode;
     private String userName;
     private String openId;
+    private String tenantId;
     private List<String> roleList;
 
     private List<String> permissionList;

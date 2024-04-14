@@ -8,10 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.springframework.http.HttpStatus;
-import org.springframework.util.CollectionUtils;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 /**
  * @author nicholas
