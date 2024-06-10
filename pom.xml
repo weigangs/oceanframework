@@ -43,7 +43,8 @@
 
         <hutool.all.version>5.8.18</hutool.all.version>
 
-        <logback.version>1.2.10</logback.version>
+        <slf4j.version>1.7.36</slf4j.version>
+        <logback.version>1.4.12</logback.version>
 
         <spring.version>5.3.27</spring.version>
         <spring-boot.version>2.7.11</spring-boot.version>
@@ -230,12 +231,6 @@
                 <version>${spring.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>${logback.version}</version>
-            </dependency>
-
             <!-- spring boot -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -387,6 +382,22 @@
                 <version>${shardingsphere.version}</version>
             </dependency>
 
+            <!-- log api -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
