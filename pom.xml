@@ -58,7 +58,8 @@
         <mysql.connector.before8.version>5.1.27</mysql.connector.before8.version>
         <mysql.connector.after8.version>8.0.28</mysql.connector.after8.version>
         <mybatis-starter.version>2.3.0</mybatis-starter.version>
-        <mybatis-generator.version>1.4.0</mybatis-generator.version>
+        <mybatis-generator.version>1.4.2</mybatis-generator.version>
+        <mybatis-generator-jdk11.version>1.4.0</mybatis-generator-jdk11.version>
         <mybatis-dynamic-sql.version>1.3.0</mybatis-dynamic-sql.version>
 
         <maven.jar.plugin.version>3.2.0</maven.jar.plugin.version>
@@ -82,6 +83,8 @@
         <camunda.version>8.3.0</camunda.version>
         <flowable.version>6.8.0</flowable.version>
 
+        <snakeyaml.version>2.2</snakeyaml.version>
+        <freemarker.version>2.3.33</freemarker.version>
 
     </properties>
 
@@ -94,6 +97,7 @@
         <module>common-cache</module>
         <module>ocean-geo</module>
         <module>ocean-webflux</module>
+        <module>ocean-codegen</module>
     </modules>
 
     <dependencyManagement>
@@ -138,6 +142,11 @@
             <dependency>
                 <groupId>com.lkyl.oceanframework</groupId>
                 <artifactId>ocean-security</artifactId>
+                <version>${reversion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lkyl.oceanframework</groupId>
+                <artifactId>ocean-codegen</artifactId>
                 <version>${reversion}</version>
             </dependency>
 
@@ -492,6 +501,19 @@
                 <groupId>org.flowable</groupId>
                 <artifactId>flowable-variable-service-api</artifactId>
                 <version>${flowable.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${snakeyaml.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
