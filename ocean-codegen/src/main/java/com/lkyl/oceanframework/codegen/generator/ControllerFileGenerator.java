@@ -13,15 +13,19 @@ import java.util.List;
 public class ControllerFileGenerator implements FileGenerator {
 
     private final static List<String> DEFAULT_IMPORT_LIST = List.of(
+            "java.util.List",
             "javax.annotation.Resource",
             "javax.validation.Valid",
+            "org.springframework.web.bind.annotation.PathVariable",
             "org.springframework.web.bind.annotation.PostMapping",
             "org.springframework.web.bind.annotation.GetMapping",
             "org.springframework.web.bind.annotation.PostMapping",
             "org.springframework.web.bind.annotation.RequestBody",
             "org.springframework.web.bind.annotation.RequestMapping",
             "org.springframework.web.bind.annotation.RestController",
-            "com.lkyl.oceanframework.common.utils.result.CommonResult"
+            "com.lkyl.oceanframework.common.utils.result.CommonResult",
+            "com.lkyl.oceanframework.common.utils.result.PageResult",
+            "com.lkyl.oceanframework.common.utils.page.PageArgs"
     );
 
     private final static String CLASS_NAME_SUFFIX = "Controller";
@@ -54,7 +58,16 @@ public class ControllerFileGenerator implements FileGenerator {
                                 context.getConcreteJavaEntityModel().getEntityName() + "Service",
                                 YamlConfigProperties.getStringProperty("file.generation.location." + TempldateFileTypeEnum.CREATE_DTO.getType()  +  ".package") +
                                         "." +
-                                        context.getConcreteJavaEntityModel().getEntityName() + "CreateDTO"
+                                        context.getConcreteJavaEntityModel().getEntityName() + "CreateDTO",
+                                YamlConfigProperties.getStringProperty("file.generation.location." + TempldateFileTypeEnum.UPDATE_DTO.getType()  +  ".package") +
+                                        "." +
+                                        context.getConcreteJavaEntityModel().getEntityName() + "UpdateDTO",
+                                YamlConfigProperties.getStringProperty("file.generation.location." + TempldateFileTypeEnum.DETAIL_VO.getType()  +  ".package") +
+                                        "." +
+                                        context.getConcreteJavaEntityModel().getEntityName() + "DetailVO",
+                                YamlConfigProperties.getStringProperty("file.generation.location." + TempldateFileTypeEnum.PAGE_QUERY_DTO.getType()  +  ".package") +
+                                        "." +
+                                        context.getConcreteJavaEntityModel().getEntityName() + "PageQueryDTO"
                         )
                 )
         );

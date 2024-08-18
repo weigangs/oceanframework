@@ -10,4 +10,8 @@ public interface ${className} {
     void update${entityModel.entityName}(${entityModel.entityName}UpdateDTO  ${entityModel.entityName?uncap_first}UpdateDto);
 
     ${entityModel.entityName}DetailVO getDetailById(Long id);
+
+    List<${entityModel.entityName}DetailVO> pageQuery${entityModel.entityName}List(${entityModel.entityName}PageQueryDTO ${entityModel.entityName?uncap_first}PageQueryDTO, PageArgs pageArgs);
+
+    void delete${entityModel.entityName}(Long id);
 }

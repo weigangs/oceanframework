@@ -7,9 +7,9 @@ import ${importItem};
 @ToString
 @Data
 public class ${className} {
+
     <#list entityModel.fieldList as field>
     @ApiModelProperty("${field.remark}")
-    <#if field.javaFieldType == "Boolean" || field.javaFieldType == "boolean">@JsonSerialize(using = ToStringSerializer.class)</#if>
     private ${field.javaFieldType} ${field.fieldName};
     </#list>
 }

@@ -19,7 +19,24 @@ public class ${className} {
 
     @PostMapping("/update")
     public CommonResult<String> update${entityModel.entityName}(@RequestBody @Valid ${entityModel.entityName}UpdateDTO ${entityModel.entityName?uncap_first}UpdateDto) {
-        ${entityModel.entityName?uncap_first}Service.create${entityModel.entityName}(${entityModel.entityName?uncap_first}UpdateDto);
+        ${entityModel.entityName?uncap_first}Service.update${entityModel.entityName}(${entityModel.entityName?uncap_first}UpdateDto);
         return CommonResult.ok();
     }
+
+    @GetMapping("/detail/{id}")
+    public CommonResult<${entityModel.entityName}DetailVO> update${entityModel.entityName}(@PathVariable("id") Long id) {
+        return CommonResult.ok(${entityModel.entityName?uncap_first}Service.getDetailById(id));
+    }
+
+    @GetMapping("/pageQuery")
+    public CommonResult<${entityModel.entityName}DetailVO> pageQuery${entityModel.entityName}List(${entityModel.entityName}PageQueryDTO ${entityModel.entityName?uncap_first}PageQueryDTO, PageArgs pageArgs) {
+        return PageResult.page(${entityModel.entityName?uncap_first}Service.pageQuery${entityModel.entityName}List(${entityModel.entityName?uncap_first}PageQueryDTO, pageArgs));
+    }
+
+    @PostMapping("/delete/{id}")
+    public CommonResult<String> delete${entityModel.entityName}(@PathVariable("id") Long id) {
+        ${entityModel.entityName?uncap_first}Service.delete${entityModel.entityName}(id);
+        return CommonResult.ok();
+    }
+
 }

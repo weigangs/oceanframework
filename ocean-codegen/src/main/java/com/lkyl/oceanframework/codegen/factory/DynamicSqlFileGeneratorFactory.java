@@ -1,11 +1,14 @@
 package com.lkyl.oceanframework.codegen.factory;
 
 import com.lkyl.oceanframework.codegen.generator.ControllerFileGenerator;
+import com.lkyl.oceanframework.codegen.generator.ConverterFileGenerator;
 import com.lkyl.oceanframework.codegen.generator.CreatationDtoFileGenerator;
 import com.lkyl.oceanframework.codegen.generator.DetailVoFileGenerator;
 import com.lkyl.oceanframework.codegen.generator.FileGenerator;
+import com.lkyl.oceanframework.codegen.generator.PageQueryDtoFileGenerator;
 import com.lkyl.oceanframework.codegen.generator.ServiceFileGenerator;
 import com.lkyl.oceanframework.codegen.generator.UpdateDtoFileGenerator;
+import com.lkyl.oceanframework.codegen.generator.dynamic.DynamicQueryComponentFileGenerator;
 import com.lkyl.oceanframework.codegen.generator.dynamic.DynamicServiceImplFileGenerator;
 import com.lkyl.oceanframework.codegen.generator.dynamic.DynamicMybatisBaseFilesGenerator;
 
@@ -19,7 +22,7 @@ public class DynamicSqlFileGeneratorFactory implements FileGeneratorFactory{
 
     @Override
     public FileGenerator generatePageQueryDto() {
-        return null;
+        return new PageQueryDtoFileGenerator();
     }
 
     @Override
@@ -44,7 +47,7 @@ public class DynamicSqlFileGeneratorFactory implements FileGeneratorFactory{
 
     @Override
     public FileGenerator generateConverter() {
-        return null;
+        return new ConverterFileGenerator();
     }
 
     @Override
@@ -54,7 +57,7 @@ public class DynamicSqlFileGeneratorFactory implements FileGeneratorFactory{
 
     @Override
     public FileGenerator generateQueryComponent() {
-        return null;
+        return new DynamicQueryComponentFileGenerator();
     }
 
     @Override

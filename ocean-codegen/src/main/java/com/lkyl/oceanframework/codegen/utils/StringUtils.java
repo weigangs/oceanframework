@@ -37,4 +37,12 @@ public class StringUtils {
 
         return sb.toString();
     }
+
+    public static String decapitalize(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+        // 将首字母转换为小写，并拼接上字符串的剩余部分
+        return str.substring(0, 1).toLowerCase() + str.substring(1);
+    }
 }

@@ -16,6 +16,7 @@ public enum TempldateFileTypeEnum {
     CONVERTER("converter", "TemplateConverter.java.ftl"),
     CONTROLLER("controller", "TemplateController.java.ftl"),
     QUERY_COMPONENT("queryComponent", "TemplateQueryComponent.java.ftl"),
+    DYNAMIC_QUERY_COMPONENT("queryComponent", "dynamic/TemplateQueryComponent.java.ftl"),
     MYBATIS_BASE("mybatisBase", "");
 
     private final String type;
