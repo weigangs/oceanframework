@@ -83,7 +83,7 @@
         <camunda.version>8.3.0</camunda.version>
         <flowable.version>6.8.0</flowable.version>
 
-        <snakeyaml.version>2.2</snakeyaml.version>
+        <snakeyaml.version>1.26</snakeyaml.version>
         <freemarker.version>2.3.33</freemarker.version>
 
     </properties>
