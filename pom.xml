@@ -77,7 +77,7 @@
 
         <org.projectlombok.lombok-mapstruct-binding.version>0.2.0</org.projectlombok.lombok-mapstruct-binding.version>
 
-        <guava.version>30.0-jre</guava.version>
+        <guava.version>32.0.0-android</guava.version>
 
         <gson.version>2.10.1</gson.version>
         <camunda.version>8.3.0</camunda.version>
