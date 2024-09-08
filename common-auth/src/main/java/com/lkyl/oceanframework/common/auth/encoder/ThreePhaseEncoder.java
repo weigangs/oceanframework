@@ -3,7 +3,6 @@ package com.lkyl.oceanframework.common.auth.encoder;
 import com.lkyl.oceanframework.common.auth.enums.AuthExceptionEnum;
 import com.lkyl.oceanframework.common.utils.exception.CommonException;
 import com.lkyl.oceanframework.common.utils.utils.DesUtil;
-import com.lkyl.oceanframework.common.utils.utils.RSAUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

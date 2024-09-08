@@ -16,10 +16,18 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 public class UserPrincipal implements Serializable {
 
+<<<<<<< HEAD
     private String userId;
     private String userCode;
     private String userName;
     private String openId;
+=======
+    private Long userId;
+    private String userCode;
+    private String userName;
+    private String openId;
+    private String tenantId;
+>>>>>>> develop_2023_1.1.1
     private List<String> roleList;
 
     private List<String> permissionList;

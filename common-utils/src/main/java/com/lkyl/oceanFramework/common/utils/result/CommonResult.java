@@ -8,10 +8,15 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.springframework.http.HttpStatus;
+<<<<<<< HEAD
 import org.springframework.util.CollectionUtils;
 
 import java.io.Serializable;
 import java.util.Collection;
+=======
+
+import java.io.Serializable;
+>>>>>>> develop_2023_1.1.1
 
 /**
  * @author nicholas
