@@ -17,7 +17,7 @@ import java.util.List;
 public class UserPrincipal implements Serializable {
 
 
-    private String userId;
+    private Long userId;
     private String userCode;
     private String userName;
     private String openId;
