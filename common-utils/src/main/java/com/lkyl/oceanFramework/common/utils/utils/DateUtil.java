@@ -2,6 +2,7 @@ package com.lkyl.oceanframework.common.utils.utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -32,5 +33,13 @@ public class DateUtil {
 
     public static LocalDateTime toLocalDateTime(Date date) {
         return LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+    }
+
+    public static boolean isTimeInRange(LocalTime timeToCheck, LocalTime startTime, LocalTime endTime) {
+        if (startTime.isBefore(endTime)) {
+            return !timeToCheck.isBefore(startTime) && !timeToCheck.isAfter(endTime);
+        } else { // 如果开始时间晚于结束时间，处理跨越午夜的情况
+            return !timeToCheck.isBefore(startTime) || !timeToCheck.isAfter(endTime);
+        }
     }
 }
