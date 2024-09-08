@@ -15,17 +15,39 @@
     <version>1.1.1</version>
 
     <properties>
-        <google.s2.version>1.0.0</google.s2.version>
+       <!-- <google.s2.version>1.0.0</google.s2.version>-->
+        <geotools.version>29.1</geotools.version>
     </properties>
 
     <dependencies>
 
-        <dependency>
+     <!--   <dependency>
             <groupId>io.sgr</groupId>
             <artifactId>s2-geometry-library-java</artifactId>
             <version>${google.s2.version}</version>
+        </dependency>-->
+
+        <!-- GeoTools 主模块，包含核心功能 -->
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-main</artifactId>
+            <version>${geotools.version}</version>
         </dependency>
 
+        <!-- GeoTools 引用坐标系模块，支持距离计算和坐标转换 -->
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-referencing</artifactId>
+            <version>${geotools.version}</version>
+        </dependency>
+
+
+        <!-- 使用 WKT 方式加载 EPSG 坐标参考系统 -->
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-epsg-wkt</artifactId>
+            <version>${geotools.version}</version>
+        </dependency>
         <!--junit5-->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -61,4 +83,20 @@
         </dependency>
     </dependencies>
 
+    <repositories>
+        <repository>
+            <id>osgeo</id>
+            <name>OSGeo Release Repository</name>
+            <url>https://repo.osgeo.org/repository/release/</url>
+            <snapshots><enabled>false</enabled></snapshots>
+            <releases><enabled>true</enabled></releases>
+        </repository>
+        <!--<repository>
+            <id>osgeo-snapshot</id>
+            <name>OSGeo Snapshot Repository</name>
+            <url>https://repo.osgeo.org/repository/snapshot/</url>
+            <snapshots><enabled>true</enabled></snapshots>
+            <releases><enabled>false</enabled></releases>
+        </repository>-->
+    </repositories>
 </project>

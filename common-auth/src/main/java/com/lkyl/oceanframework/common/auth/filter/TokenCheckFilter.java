@@ -3,7 +3,6 @@ package com.lkyl.oceanframework.common.auth.filter;
 import com.lkyl.oceanframework.common.auth.authentication.UserAuthenticationToken;
 import com.lkyl.oceanframework.common.auth.properties.OceanOauth2Properties;
 import com.lkyl.oceanframework.common.auth.token.TokenService;
-import com.lkyl.oceanframework.common.utils.constant.OauthConstant;
 import com.lkyl.oceanframework.common.utils.enums.SystemExceptionEnum;
 import com.lkyl.oceanframework.common.utils.principal.UserPrincipal;
 import com.lkyl.oceanframework.web.context.UserContext;
