@@ -3,6 +3,7 @@ package com.lkyl.oceanframework.geo.util;
 import com.lkyl.oceanframework.geo.entity.SimplePoint;
 import org.geotools.referencing.CRS;
 import org.geotools.referencing.GeodeticCalculator;
+import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 public class Gcj02DistanceUtils {
@@ -15,7 +16,7 @@ public class Gcj02DistanceUtils {
      * 4326: This is the specific code for the WGS 84 geographic coordinate system, which is commonly used for GPS data.
      */
     public static final String SPECIAL_SPATIAL_REFER_SYSTEM_CODE = "EPSG:4326";
-    public static double calculateDistance(SimplePoint pointA, SimplePoint pointB) throws Exception {
+    public static double calculateDistance(SimplePoint pointA, SimplePoint pointB) throws FactoryException {
 
         CoordinateReferenceSystem crs = CRS.decode(SPECIAL_SPATIAL_REFER_SYSTEM_CODE);
         GeodeticCalculator calculator = new GeodeticCalculator(crs);

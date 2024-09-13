@@ -15,8 +15,6 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 public class UserPrincipal implements Serializable {
-
-
     private Long userId;
     private String userCode;
     private String userName;
