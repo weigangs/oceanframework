@@ -24,7 +24,7 @@ public class ${className} {
     }
 
     @GetMapping("/detail/{id}")
-    public CommonResult<${entityModel.entityName}DetailVO> update${entityModel.entityName}(@PathVariable("id") Long id) {
+    public CommonResult<${entityModel.entityName}DetailVO> getDetailById(@PathVariable("id") Long id) {
         return CommonResult.ok(${entityModel.entityName?uncap_first}Service.getDetailById(id));
     }
 
