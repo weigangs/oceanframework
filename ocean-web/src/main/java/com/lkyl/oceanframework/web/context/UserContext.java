@@ -1,5 +1,6 @@
 package com.lkyl.oceanframework.web.context;
 
+import com.alibaba.ttl.TransmittableThreadLocal;
 import com.lkyl.oceanframework.common.utils.principal.UserPrincipal;
 
 /**
@@ -7,7 +8,7 @@ import com.lkyl.oceanframework.common.utils.principal.UserPrincipal;
  * @date 2023/05/15 21:24
  */
 public class UserContext {
-    private static ThreadLocal<UserPrincipal> userContext = new ThreadLocal<>();
+    private static final ThreadLocal<UserPrincipal> userContext = new TransmittableThreadLocal<>();
     public static UserPrincipal getUser() {
         return userContext.get();
     }

@@ -1,6 +1,7 @@
 package com.lkyl.oceanframework.common.utils.page;
 
 import com.github.pagehelper.PageHelper;
+import com.lkyl.oceanframework.common.utils.context.PageContext;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -26,20 +27,32 @@ public class PageSelectorAspect {
 
 
     public void beforeMethod(JoinPoint joinPoint) {
-        for (Object arg : joinPoint.getArgs()) {
-            if (arg instanceof PageArgs) {
-                if (Objects.isNull(((PageArgs) arg).getPageNum()) || ((PageArgs) arg).getPageNum() < 0) {
-                    ((PageArgs) arg).setPageNum(0);
-                }
-                if (Objects.isNull(((PageArgs) arg).getPageSize()) || ((PageArgs) arg).getPageSize() <= ((PageArgs) arg).getPageNum()) {
-                    ((PageArgs) arg).setPageSize(((PageArgs) arg).getPageNum() + 10);
-                }
-                PageHelper.startPage(((PageArgs) arg).getPageNum(), ((PageArgs) arg).getPageSize());
-                return;
-            }
-        }
+//        for (Object arg : joinPoint.getArgs()) {
+//            if (arg instanceof PageArgs) {
+//                if (Objects.isNull(((PageArgs) arg).getPageNum()) || ((PageArgs) arg).getPageNum() < 0) {
+//                    ((PageArgs) arg).setPageNum(0);
+//                }
+//                if (Objects.isNull(((PageArgs) arg).getPageSize()) || ((PageArgs) arg).getPageSize() <= ((PageArgs) arg).getPageNum()) {
+//                    ((PageArgs) arg).setPageSize(((PageArgs) arg).getPageNum() + 10);
+//                }
+//                PageHelper.startPage(((PageArgs) arg).getPageNum(), ((PageArgs) arg).getPageSize());
+//                return;
+//            }
+//        }
 
-        throw new IllegalArgumentException("can not find Page params");
+        if (Objects.isNull(PageContext.getPageArgs())) {
+            throw new IllegalArgumentException("can not find Page params");
+        }
+        PageArgs pageArgs = PageContext.getPageArgs();
+        PageArgs copiedPageArgs = new PageArgs(pageArgs.getPageNum(), pageArgs.getPageSize());
+        if (Objects.isNull(copiedPageArgs.getPageNum()) || (copiedPageArgs.getPageNum() < 0)) {
+            copiedPageArgs.setPageNum(0);
+        }
+        if (Objects.isNull(copiedPageArgs.getPageSize()) || (copiedPageArgs.getPageSize() <= (copiedPageArgs.getPageNum()))) {
+            copiedPageArgs.setPageSize(copiedPageArgs.getPageNum() + 10);
+        }
+        PageHelper.startPage(copiedPageArgs.getPageNum(), copiedPageArgs.getPageSize());
+
     }
 //
 //    public void afterMethod(JoinPoint joinPoint) {

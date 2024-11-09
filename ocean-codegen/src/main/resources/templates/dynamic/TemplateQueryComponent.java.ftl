@@ -11,7 +11,7 @@ public class ${className} {
     private ${entityModel.entityName}Mapper ${entityModel.entityName?uncap_first}Mapper;
 
     @PageSelector
-    public List<${entityModel.entityName}> pageQuery${entityModel.entityName}List(SelectStatementProvider selectProvider, PageArgs pageArgs) {
+    public List<${entityModel.entityName}> pageQuery${entityModel.entityName}List(SelectStatementProvider selectProvider) {
         return ${entityModel.entityName?uncap_first}Mapper.selectMany(selectProvider);
     }
 }

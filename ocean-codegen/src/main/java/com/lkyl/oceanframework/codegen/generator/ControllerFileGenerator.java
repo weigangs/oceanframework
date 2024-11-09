@@ -24,8 +24,7 @@ public class ControllerFileGenerator implements FileGenerator {
             "org.springframework.web.bind.annotation.RequestMapping",
             "org.springframework.web.bind.annotation.RestController",
             "com.lkyl.oceanframework.common.utils.result.CommonResult",
-            "com.lkyl.oceanframework.common.utils.result.PageResult",
-            "com.lkyl.oceanframework.common.utils.page.PageArgs"
+            "com.lkyl.oceanframework.common.utils.result.PageResult"
     );
 
     private final static String CLASS_NAME_SUFFIX = "Controller";

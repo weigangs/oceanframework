@@ -1,57 +1,69 @@
 package com.lkyl.oceanframework.codegen.factory;
 
+import com.lkyl.oceanframework.codegen.generator.ControllerFileGenerator;
+import com.lkyl.oceanframework.codegen.generator.ConverterFileGenerator;
+import com.lkyl.oceanframework.codegen.generator.CreatationDtoFileGenerator;
+import com.lkyl.oceanframework.codegen.generator.DetailVoFileGenerator;
 import com.lkyl.oceanframework.codegen.generator.FileGenerator;
+import com.lkyl.oceanframework.codegen.generator.MybatisBaseFilesGenerator;
+import com.lkyl.oceanframework.codegen.generator.PageQueryDtoFileGenerator;
+import com.lkyl.oceanframework.codegen.generator.QueryComponentFileGenerator;
+import com.lkyl.oceanframework.codegen.generator.ServiceFileGenerator;
+import com.lkyl.oceanframework.codegen.generator.ServiceImplFileGenerator;
+import com.lkyl.oceanframework.codegen.generator.UpdateDtoFileGenerator;
 
 public class DefaultFileGeneratorFactory  implements FileGeneratorFactory{
 
 
+
+
     @Override
     public FileGenerator generateCreateDto() {
-        return null;
+        return new CreatationDtoFileGenerator();
     }
 
     @Override
     public FileGenerator generatePageQueryDto() {
-        return null;
+        return new PageQueryDtoFileGenerator();
     }
 
     @Override
     public FileGenerator generateUpdateDto() {
-        return null;
+        return new UpdateDtoFileGenerator();
     }
 
     @Override
     public FileGenerator generateDetailVo() {
-        return null;
+        return new DetailVoFileGenerator();
     }
 
     @Override
     public FileGenerator generateService() {
-        return null;
+        return new ServiceFileGenerator();
     }
 
     @Override
     public FileGenerator generateServiceImpl() {
-        return null;
+        return new ServiceImplFileGenerator();
     }
 
     @Override
     public FileGenerator generateConverter() {
-        return null;
+        return new ConverterFileGenerator();
     }
 
     @Override
     public FileGenerator generateController() {
-        return null;
+        return new ControllerFileGenerator();
     }
 
     @Override
     public FileGenerator generateQueryComponent() {
-        return null;
+        return new QueryComponentFileGenerator();
     }
 
     @Override
     public FileGenerator generateMybatisBaseFiles() {
-        return null;
+        return new MybatisBaseFilesGenerator();
     }
 }

@@ -1,18 +1,15 @@
-package com.lkyl.oceanframework.codegen.generator.dynamic;
+package com.lkyl.oceanframework.codegen.generator;
 
 import com.lkyl.oceanframework.codegen.config.YamlConfigProperties;
 import com.lkyl.oceanframework.codegen.constants.CodeGenConstants;
 import com.lkyl.oceanframework.codegen.context.CodeGenContext;
 import com.lkyl.oceanframework.codegen.enums.TempldateFileTypeEnum;
-import com.lkyl.oceanframework.codegen.generator.FileGenerator;
-import com.lkyl.oceanframework.codegen.generator.ServiceFileGenerator;
 import com.lkyl.oceanframework.codegen.model.freemarker.ConcreteGeneralJavaClassModel;
 import com.lkyl.oceanframework.codegen.model.freemarker.ConcreteJavaEntityModel;
 import com.lkyl.oceanframework.codegen.model.freemarker.ConcreteJavaFieldModel;
 import com.lkyl.oceanframework.codegen.model.freemarker.JavaFieldModel;
 import com.lkyl.oceanframework.codegen.model.freemarker.ServiceImplJavaEntityModel;
 import com.lkyl.oceanframework.codegen.utils.FileGeneratorUtils;
-import com.lkyl.oceanframework.codegen.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +22,7 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class DynamicServiceImplFileGenerator extends ServiceFileGenerator implements FileGenerator {
+public class ServiceImplFileGenerator extends ServiceFileGenerator implements FileGenerator {
 
     private final static List<String> DEFAULT_IMPORT_LIST = List.of(
             "javax.annotation.Resource",
@@ -38,13 +35,8 @@ public class DynamicServiceImplFileGenerator extends ServiceFileGenerator implem
             "java.util.Objects",
             "java.util.Optional",
             "java.util.Collections",
-            "org.mybatis.dynamic.sql.select.QueryExpressionDSL",
-            "org.mybatis.dynamic.sql.select.SelectModel",
-            "org.mybatis.dynamic.sql.update.render.UpdateStatementProvider",
-            "org.mybatis.dynamic.sql.SqlBuilder",
-            "org.mybatis.dynamic.sql.render.RenderingStrategies",
-            "org.mybatis.dynamic.sql.select.render.SelectStatementProvider",
             "com.lkyl.oceanframework.common.utils.exception.BusinessException",
+            "com.lkyl.oceanframework.common.utils.exception.BusinessExceptionFactory",
             "com.lkyl.oceanframework.common.utils.utils.PageCopyUtils",
             "org.apache.commons.lang.StringUtils"
 
@@ -54,7 +46,7 @@ public class DynamicServiceImplFileGenerator extends ServiceFileGenerator implem
 
     @Override
     public TempldateFileTypeEnum getFileType() {
-        return TempldateFileTypeEnum.DYNAMIC_SERVICE_IMPL;
+        return TempldateFileTypeEnum.SERVICE_IMPL;
     }
 
     @Override
@@ -80,7 +72,7 @@ public class DynamicServiceImplFileGenerator extends ServiceFileGenerator implem
         result.getImportList().addAll(getUpdateMethodImportList(context));
         result.getImportList().addAll(getImplDetailMethodImportList(context));
         result.getImportList().addAll(getPageQueryMethodImportList(context));
-        result.getImportList().addAll(getDynamicSupportImportList(context, serviceImplJavaEntityModel.getFieldList()));
+        result.getImportList().addAll(getDefaultImportList(context));
         result.setTypeEnum(getFileType());
         result.setClassName(context.getConcreteJavaEntityModel().getEntityName() + CLASS_NAME_SUFFIX);
         result.setFileName(result.getClassName() + CodeGenConstants.JAVA_FILE_NAME_EXT);
@@ -149,24 +141,11 @@ public class DynamicServiceImplFileGenerator extends ServiceFileGenerator implem
         return resultList;
     }
 
-    private List<String> getDynamicSupportImportList(CodeGenContext codeGenContext, List<JavaFieldModel> updateList) {
-        String dynamicSupportClassName = "static " +
-                YamlConfigProperties.getStringProperty("file.generation.location.mapper.package") +
+    private List<String> getDefaultImportList(CodeGenContext codeGenContext) {
+
+        return List.of(YamlConfigProperties.getStringProperty("file.generation.location.entity.package") +
                 "." +
-        codeGenContext.getConcreteJavaEntityModel().getEntityName() + "DynamicSqlSupport";
-        ArrayList<String> resultList = new ArrayList<>();
-        resultList.add(dynamicSupportClassName +
-                        "." +
-                        StringUtils.decapitalize(codeGenContext.getConcreteJavaEntityModel().getEntityName()));
-
-        updateList.forEach(e -> {
-            resultList.add(
-                    dynamicSupportClassName +
-                    "." +
-                    e.getFieldName());
-        });
-
-        return resultList;
+                codeGenContext.getConcreteJavaEntityModel().getEntityName() + "Example");
     }
 
 
