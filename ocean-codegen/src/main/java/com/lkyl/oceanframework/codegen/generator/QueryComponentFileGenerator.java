@@ -1,23 +1,21 @@
-package com.lkyl.oceanframework.codegen.generator.dynamic;
+package com.lkyl.oceanframework.codegen.generator;
 
 import com.lkyl.oceanframework.codegen.config.YamlConfigProperties;
 import com.lkyl.oceanframework.codegen.constants.CodeGenConstants;
 import com.lkyl.oceanframework.codegen.context.CodeGenContext;
 import com.lkyl.oceanframework.codegen.enums.TempldateFileTypeEnum;
-import com.lkyl.oceanframework.codegen.generator.FileGenerator;
 import com.lkyl.oceanframework.codegen.model.freemarker.ConcreteGeneralJavaClassModel;
 import com.lkyl.oceanframework.codegen.utils.FileGeneratorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DynamicQueryComponentFileGenerator implements FileGenerator {
+public class QueryComponentFileGenerator implements FileGenerator {
 
     private final static List<String> DEFAULT_IMPORT_LIST = List.of(
             "javax.annotation.Resource",
             "org.springframework.stereotype.Component",
             "java.util.List",
-            "org.mybatis.dynamic.sql.select.render.SelectStatementProvider",
             "com.lkyl.oceanframework.common.utils.annotation.PageSelector"
 
     );
@@ -26,7 +24,7 @@ public class DynamicQueryComponentFileGenerator implements FileGenerator {
 
     @Override
     public TempldateFileTypeEnum getFileType() {
-        return TempldateFileTypeEnum.DYNAMIC_QUERY_COMPONENT;
+        return TempldateFileTypeEnum.QUERY_COMPONENT;
     }
 
     @Override
@@ -60,7 +58,10 @@ public class DynamicQueryComponentFileGenerator implements FileGenerator {
                         context.getConcreteJavaEntityModel().getEntityName(),
                 YamlConfigProperties.getStringProperty("file.generation.location.mapper.package") +
                         "." +
-                        context.getConcreteJavaEntityModel().getEntityName() + "Mapper"
+                        context.getConcreteJavaEntityModel().getEntityName() + "Mapper",
+                YamlConfigProperties.getStringProperty("file.generation.location.entity.package") +
+                        "." +
+                        context.getConcreteJavaEntityModel().getEntityName() + "Example"
         );
     }
 

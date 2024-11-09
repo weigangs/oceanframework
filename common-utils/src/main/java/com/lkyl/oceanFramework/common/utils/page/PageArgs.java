@@ -2,6 +2,7 @@ package com.lkyl.oceanframework.common.utils.page;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.io.Serializable;
@@ -11,6 +12,7 @@ import java.io.Serializable;
  * @date 2023/05/28 13:10
  */
 
+@NoArgsConstructor
 @AllArgsConstructor
 @Data
 @ToString

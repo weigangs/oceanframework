@@ -11,7 +11,7 @@ public interface ${className} {
 
     ${entityModel.entityName}DetailVO getDetailById(Long id);
 
-    List<${entityModel.entityName}DetailVO> pageQuery${entityModel.entityName}List(${entityModel.entityName}PageQueryDTO ${entityModel.entityName?uncap_first}PageQueryDTO, PageArgs pageArgs);
+    List<${entityModel.entityName}DetailVO> pageQuery${entityModel.entityName}List(${entityModel.entityName}PageQueryDTO ${entityModel.entityName?uncap_first}PageQueryDTO);
 
     void delete${entityModel.entityName}(Long id);
 }

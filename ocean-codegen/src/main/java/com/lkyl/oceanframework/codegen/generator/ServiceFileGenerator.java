@@ -13,8 +13,7 @@ import java.util.List;
 public class ServiceFileGenerator  implements FileGenerator {
 
     private final static List<String> DEFAULT_IMPORT_LIST = List.of(
-            "java.util.List",
-            "com.lkyl.oceanframework.common.utils.page.PageArgs"
+            "java.util.List"
     );
 
     private final static String CLASS_NAME_SUFFIX = "Service";

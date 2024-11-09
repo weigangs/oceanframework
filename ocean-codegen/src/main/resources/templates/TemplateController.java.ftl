@@ -29,8 +29,8 @@ public class ${className} {
     }
 
     @GetMapping("/pageQuery")
-    public PageResult<${entityModel.entityName}DetailVO> pageQuery${entityModel.entityName}List(${entityModel.entityName}PageQueryDTO ${entityModel.entityName?uncap_first}PageQueryDTO, PageArgs pageArgs) {
-        return PageResult.page(${entityModel.entityName?uncap_first}Service.pageQuery${entityModel.entityName}List(${entityModel.entityName?uncap_first}PageQueryDTO, pageArgs));
+    public PageResult<${entityModel.entityName}DetailVO> pageQuery${entityModel.entityName}List(${entityModel.entityName}PageQueryDTO ${entityModel.entityName?uncap_first}PageQueryDTO) {
+        return PageResult.page(${entityModel.entityName?uncap_first}Service.pageQuery${entityModel.entityName}List(${entityModel.entityName?uncap_first}PageQueryDTO));
     }
 
     @PostMapping("/delete/{id}")

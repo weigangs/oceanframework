@@ -51,9 +51,14 @@
         <spring-cloud.version>2021.0.6</spring-cloud.version>
         <spring-cloud-security.version>2.2.5.RELEASE</spring-cloud-security.version>
         <spring-security.version>2.3.4.RELEASE</spring-security.version>
+
+        <springfox-boot-starter.version>3.0.0</springfox-boot-starter.version>
+        <springdoc-openapi-ui.version>1.6.14</springdoc-openapi-ui.version>
         <shardingsphere.version>5.1.1</shardingsphere.version>
 
-        <swagger.fox.version>2.9.2</swagger.fox.version>
+        <swagger.fox.version>3.0.0</swagger.fox.version>
+        <swagger-parser.version>1.0.56</swagger-parser.version>
+        <swagger-annotation.version>1.6.10</swagger-annotation.version>
 
         <mysql.connector.before8.version>5.1.27</mysql.connector.before8.version>
         <mysql.connector.after8.version>8.0.28</mysql.connector.after8.version>
@@ -73,6 +78,8 @@
 
         <org.apache.maven.plugins.version>3.8.1</org.apache.maven.plugins.version>
 
+        <poi-ooxml.version>5.0.0</poi-ooxml.version>
+
         <github-pageHelper-starter.version>1.4.1</github-pageHelper-starter.version>
 
         <org.projectlombok.lombok-mapstruct-binding.version>0.2.0</org.projectlombok.lombok-mapstruct-binding.version>
@@ -86,6 +93,7 @@
         <snakeyaml.version>1.26</snakeyaml.version>
         <freemarker.version>2.3.33</freemarker.version>
 
+        <ttl-threadlocal.version>2.14.4</ttl-threadlocal.version>
     </properties>
 
     <modules>
@@ -299,6 +307,40 @@
                 <artifactId>springfox-swagger2</artifactId>
                 <version>${swagger.fox.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger-annotation.version}</version> <!-- Check for the latest version -->
+            </dependency>
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-parser</artifactId>
+                <version>${swagger-parser.version}</version>  <!-- Compatible version for Swagger 2.x -->
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>${springfox-boot-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc-openapi-ui.version}</version> <!-- or the latest stable version -->
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi-ooxml.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi-ooxml.version}</version>
+            </dependency>
             <!-- JAVA EE -->
             <dependency>
                 <groupId>javax</groupId>
@@ -420,21 +462,21 @@
             </dependency>
 
             <!--  flowable -->
-           <!-- <dependency>
-                <groupId>org.flowable</groupId>
-                <artifactId>flowable-engine</artifactId>
-                <version>${flowable.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.flowable</groupId>
-                <artifactId>flowable-bpmn-model</artifactId>
-                <version>${flowable.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.flowable</groupId>
-                <artifactId>flowable-bpmn-converter</artifactId>
-                <version>${flowable.version}</version>
-            </dependency>-->
+            <!-- <dependency>
+                 <groupId>org.flowable</groupId>
+                 <artifactId>flowable-engine</artifactId>
+                 <version>${flowable.version}</version>
+             </dependency>
+             <dependency>
+                 <groupId>org.flowable</groupId>
+                 <artifactId>flowable-bpmn-model</artifactId>
+                 <version>${flowable.version}</version>
+             </dependency>
+             <dependency>
+                 <groupId>org.flowable</groupId>
+                 <artifactId>flowable-bpmn-converter</artifactId>
+                 <version>${flowable.version}</version>
+             </dependency>-->
 
             <dependency>
                 <groupId>org.flowable</groupId>
@@ -514,6 +556,13 @@
                 <groupId>org.freemarker</groupId>
                 <artifactId>freemarker</artifactId>
                 <version>${freemarker.version}</version>
+            </dependency>
+
+            <!-- thread pool -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${ttl-threadlocal.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
