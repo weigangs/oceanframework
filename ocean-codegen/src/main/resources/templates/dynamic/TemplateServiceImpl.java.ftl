@@ -62,7 +62,8 @@ public class ${className} implements ${entityModel.entityName}Service {
     }
 
     private Optional<SelectStatementProvider> buildSelectProvider(${entityModel.entityName}PageQueryDTO ${entityModel.entityName?uncap_first}PageQueryDTO) {
-        QueryExpressionDSL<SelectModel>.QueryExpressionWhereBuilder where = SqlBuilder.select().from(${entityModel.entityName?uncap_first}).where().and(isDeleted, SqlBuilder.isEqualTo(YesOrNoEnum.NO.getCode()));
+        QueryExpressionDSL<SelectModel>.QueryExpressionWhereBuilder where = SqlBuilder.select(${entityModel.entityName?uncap_first}.allColumns())
+                .from(${entityModel.entityName?uncap_first}).where().and(isDeleted, SqlBuilder.isEqualTo(YesOrNoEnum.NO.getCode()));
         <#list entityModel.updateFieldList as field>
         if (<#if field.javaFieldType == "String">StringUtils.isNotBlank(${entityModel.entityName?uncap_first}PageQueryDTO.get${field.fieldName?cap_first}())<#else>Objects.nonNull(${entityModel.entityName?uncap_first}PageQueryDTO.get${field.fieldName?cap_first}())</#if>) {
             where.and(${field.fieldName}, SqlBuilder.isEqualTo(${entityModel.entityName?uncap_first}PageQueryDTO.get${field.fieldName?cap_first}()));

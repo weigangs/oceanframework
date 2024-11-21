@@ -27,21 +27,9 @@ public class PageSelectorAspect {
 
 
     public void beforeMethod(JoinPoint joinPoint) {
-//        for (Object arg : joinPoint.getArgs()) {
-//            if (arg instanceof PageArgs) {
-//                if (Objects.isNull(((PageArgs) arg).getPageNum()) || ((PageArgs) arg).getPageNum() < 0) {
-//                    ((PageArgs) arg).setPageNum(0);
-//                }
-//                if (Objects.isNull(((PageArgs) arg).getPageSize()) || ((PageArgs) arg).getPageSize() <= ((PageArgs) arg).getPageNum()) {
-//                    ((PageArgs) arg).setPageSize(((PageArgs) arg).getPageNum() + 10);
-//                }
-//                PageHelper.startPage(((PageArgs) arg).getPageNum(), ((PageArgs) arg).getPageSize());
-//                return;
-//            }
-//        }
 
         if (Objects.isNull(PageContext.getPageArgs())) {
-            throw new IllegalArgumentException("can not find Page params");
+            PageHelper.startPage(1, 0);
         }
         PageArgs pageArgs = PageContext.getPageArgs();
         PageArgs copiedPageArgs = new PageArgs(pageArgs.getPageNum(), pageArgs.getPageSize());
@@ -54,11 +42,6 @@ public class PageSelectorAspect {
         PageHelper.startPage(copiedPageArgs.getPageNum(), copiedPageArgs.getPageSize());
 
     }
-//
-//    public void afterMethod(JoinPoint joinPoint) {
-//    }
-
-    //@Around：环绕通知
     @Around("pointcut()")
     public Object Around(ProceedingJoinPoint pjp) throws Throwable {
         this.beforeMethod(pjp);
