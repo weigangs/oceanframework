@@ -30,6 +30,7 @@ public class PageSelectorAspect {
 
         if (Objects.isNull(PageContext.getPageArgs())) {
             PageHelper.startPage(1, 0);
+            return;
         }
         PageArgs pageArgs = PageContext.getPageArgs();
         PageArgs copiedPageArgs = new PageArgs(pageArgs.getPageNum(), pageArgs.getPageSize());
