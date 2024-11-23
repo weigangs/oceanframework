@@ -54,7 +54,7 @@ public class ${className} implements ${entityModel.entityName}Service {
     }
 
     @Override
-    public List<${entityModel.entityName}DetailVO> pageQuery${entityModel.entityName}List(${entityModel.entityName}PageQueryDTO ${entityModel.entityName?uncap_first}PageQueryDTO, PageArgs pageArgs) {
+    public List<${entityModel.entityName}DetailVO> pageQuery${entityModel.entityName}List(${entityModel.entityName}PageQueryDTO ${entityModel.entityName?uncap_first}PageQueryDTO) {
         List<${entityModel.entityName}> pageResultList = buildSelectProvider(${entityModel.entityName?uncap_first}PageQueryDTO)
             .map(e -> ${entityModel.entityName?uncap_first}QueryComponent.pageQuery${entityModel.entityName}List(e))
             .orElseGet(Collections::emptyList);
