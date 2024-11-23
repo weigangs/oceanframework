@@ -35,10 +35,10 @@ public class PageSelectorAspect {
         PageArgs pageArgs = PageContext.getPageArgs();
         PageArgs copiedPageArgs = new PageArgs(pageArgs.getPageNum(), pageArgs.getPageSize());
         if (Objects.isNull(copiedPageArgs.getPageNum()) || (copiedPageArgs.getPageNum() < 0)) {
-            copiedPageArgs.setPageNum(0);
+            copiedPageArgs.setPageNum(1);
         }
-        if (Objects.isNull(copiedPageArgs.getPageSize()) || (copiedPageArgs.getPageSize() <= (copiedPageArgs.getPageNum()))) {
-            copiedPageArgs.setPageSize(copiedPageArgs.getPageNum() + 10);
+        if (Objects.isNull(copiedPageArgs.getPageSize())) {
+            copiedPageArgs.setPageSize(10);
         }
         PageHelper.startPage(copiedPageArgs.getPageNum(), copiedPageArgs.getPageSize());
 
