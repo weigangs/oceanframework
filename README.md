@@ -110,7 +110,7 @@ mybatis:
   generator:
     forceBigDecimals: true
     useJSR310Types: true
-    style: dynamic  #哪种风格的entity, mapper
+    style: dynamic  # dynamic,default
 file:
   generation:
     # 如果有则生成代码，没有则不生成
@@ -151,6 +151,9 @@ file:
       mapper:
         package: com.xxx.mapper
         targetProject: D:\xxx\src\main\java
+      xmlMapper:
+        package: mapper.xxx
+        targetProject: D:\xxx\src\main\resources
     createDto: #生成DTO时需要排除哪些字段
       excludes:
         javaFields:
@@ -183,7 +186,21 @@ defaultValue:
     tenantId: UserContext.getUser().getTenantId()
     revision: 0L
 
-
+mybatis3:
+  suppressAllComments: true
+  suppressDate: false
+  addRemarkComments: true
+  plugins:
+    - org.mybatis.generator.plugins.SerializablePlugin
+    - org.mybatis.generator.plugins.ToStringPlugin
+    - org.mybatis.generator.plugins.EqualsHashCodePlugin
+    - org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin
+    - com.itfsw.mybatis.generator.plugins.ModelColumnPlugin
+    - com.itfsw.mybatis.generator.plugins.BatchInsertPlugin
+    - com.itfsw.mybatis.generator.plugins.SelectSelectivePlugin
+    - com.itfsw.mybatis.generator.plugins.SelectiveEnhancedPlugin
+    - com.itfsw.mybatis.generator.plugins.SelectOneByExamplePlugin
+    
 ```
 # ocean-geo
 
