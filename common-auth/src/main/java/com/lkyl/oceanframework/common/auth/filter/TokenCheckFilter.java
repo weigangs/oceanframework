@@ -1,11 +1,16 @@
 package com.lkyl.oceanframework.common.auth.filter;
 
 import com.lkyl.oceanframework.common.auth.authentication.UserAuthenticationToken;
+import com.lkyl.oceanframework.common.auth.context.UserContext;
 import com.lkyl.oceanframework.common.auth.properties.OceanOauth2Properties;
 import com.lkyl.oceanframework.common.auth.token.TokenService;
 import com.lkyl.oceanframework.common.utils.enums.SystemExceptionEnum;
-import com.lkyl.oceanframework.common.utils.principal.UserPrincipal;
-import com.lkyl.oceanframework.web.context.UserContext;
+import com.lkyl.oceanframework.common.auth.principal.UserPrincipal;
+import jakarta.annotation.Resource;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -18,11 +23,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.annotation.Resource;
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;

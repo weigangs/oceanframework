@@ -1,0 +1,85 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.lkyl.oceanframework",
+    "module": "ocean-log",
+    "version": "3.0.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.13"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.slf4j",
+          "module": "slf4j-api",
+          "version": {
+            "requires": "2.0.7"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ocean-log-3.0.0.jar",
+          "url": "ocean-log-3.0.0.jar",
+          "size": 261,
+          "sha512": "dbce4de19f04d7e2408582dc8ae71ce4264bfcc1d57e7017a7fa249cecfd933db2266566191df4c37690d03d1f9c49e96e4d8130046f0e01f8c580fdf2dd9797",
+          "sha256": "c68eec317ebe2afa3aecb24008fa70c52174d6026c900039937546224ba0fb41",
+          "sha1": "2f39087983aa9503e8c46763ebae2a72c6f4e5e7",
+          "md5": "db819931b4c8de1faeb225b1cfde98ca"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "ch.qos.logback",
+          "module": "logback-classic",
+          "version": {
+            "requires": "1.4.8"
+          }
+        },
+        {
+          "group": "org.slf4j",
+          "module": "slf4j-api",
+          "version": {
+            "requires": "2.0.7"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ocean-log-3.0.0.jar",
+          "url": "ocean-log-3.0.0.jar",
+          "size": 261,
+          "sha512": "dbce4de19f04d7e2408582dc8ae71ce4264bfcc1d57e7017a7fa249cecfd933db2266566191df4c37690d03d1f9c49e96e4d8130046f0e01f8c580fdf2dd9797",
+          "sha256": "c68eec317ebe2afa3aecb24008fa70c52174d6026c900039937546224ba0fb41",
+          "sha1": "2f39087983aa9503e8c46763ebae2a72c6f4e5e7",
+          "md5": "db819931b4c8de1faeb225b1cfde98ca"
+        }
+      ]
+    }
+  ]
+}

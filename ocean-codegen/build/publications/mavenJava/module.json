@@ -1,0 +1,120 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.lkyl.oceanframework",
+    "module": "ocean-codegen",
+    "version": "3.0.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.13"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.yaml",
+          "module": "snakeyaml",
+          "version": {
+            "requires": "2.0"
+          }
+        },
+        {
+          "group": "org.freemarker",
+          "module": "freemarker",
+          "version": {
+            "requires": "2.3.33"
+          }
+        },
+        {
+          "group": "mysql",
+          "module": "mysql-connector-java",
+          "version": {
+            "requires": "8.0.33"
+          }
+        },
+        {
+          "group": "org.mybatis.generator",
+          "module": "mybatis-generator-core",
+          "version": {
+            "requires": "1.4.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ocean-codegen-3.0.0.jar",
+          "url": "ocean-codegen-3.0.0.jar",
+          "size": 91184,
+          "sha512": "d873e5b709c8be0b0375ffdc502eda3f27ab3f3454d73b80e6507c1c8f163dd67ef45c68d9b3e669df6c2bea2688864d2265e0a8108e0379685e1484f20cad57",
+          "sha256": "a6a8a566d6a0a1f4a92cf747b20f44f5c5c01073bcddff7bdcf6144a99b0a76d",
+          "sha1": "8608de9549406ac2fe9fb1776852edd18b671496",
+          "md5": "5b7597391dc8098e290082aec03697b7"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.yaml",
+          "module": "snakeyaml",
+          "version": {
+            "requires": "2.0"
+          }
+        },
+        {
+          "group": "org.freemarker",
+          "module": "freemarker",
+          "version": {
+            "requires": "2.3.33"
+          }
+        },
+        {
+          "group": "mysql",
+          "module": "mysql-connector-java",
+          "version": {
+            "requires": "8.0.33"
+          }
+        },
+        {
+          "group": "org.mybatis.generator",
+          "module": "mybatis-generator-core",
+          "version": {
+            "requires": "1.4.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ocean-codegen-3.0.0.jar",
+          "url": "ocean-codegen-3.0.0.jar",
+          "size": 91184,
+          "sha512": "d873e5b709c8be0b0375ffdc502eda3f27ab3f3454d73b80e6507c1c8f163dd67ef45c68d9b3e669df6c2bea2688864d2265e0a8108e0379685e1484f20cad57",
+          "sha256": "a6a8a566d6a0a1f4a92cf747b20f44f5c5c01073bcddff7bdcf6144a99b0a76d",
+          "sha1": "8608de9549406ac2fe9fb1776852edd18b671496",
+          "md5": "5b7597391dc8098e290082aec03697b7"
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 package com.lkyl.oceanframework.common.auth.properties;
 
-import com.lkyl.oceanframework.common.utils.constant.OauthConstant;
+import com.lkyl.oceanframework.web.constant.OauthConstant;
+import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -8,8 +10,6 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;

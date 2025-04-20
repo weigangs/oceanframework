@@ -1,0 +1,25 @@
+package com.lkyl.oceanframework.web.page;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import java.io.Serializable;
+
+/**
+ * @author nicholas
+ * @date 2023/05/28 13:10
+ */
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@ToString
+public class PageArgs implements Serializable {
+
+    private Integer pageNum;
+
+    private Integer pageSize;
+
+}

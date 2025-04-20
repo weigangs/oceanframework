@@ -26,12 +26,14 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
@@ -44,7 +46,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import javax.annotation.Resource;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.Arrays;
@@ -67,24 +68,22 @@ public class SecurityRestConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        // @formatter:off
         http
-                .cors()
-                .and()
-                .authorizeRequests()
-                .antMatchers(oceanOauth2Properties.getPermittedUrls().toArray(new String[]{})).permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .csrf().disable()
-                .logout().disable()
-                .addFilterAfter(tokenCheckFilter(), UsernamePasswordAuthenticationFilter.class)
-                .httpBasic(Customizer.withDefaults())
-                .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .exceptionHandling((exceptions) -> exceptions
-                        .authenticationEntryPoint(new AuthExceptionEntryPoint())
-                        .accessDeniedHandler(new OceanAccessDeniedHandler())
+                .cors(Customizer.withDefaults()) // 启用 CORS
+                .csrf(AbstractHttpConfigurer::disable) // 关闭 CSRF
+                .logout(AbstractHttpConfigurer::disable) // 禁用登出功能
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(oceanOauth2Properties.getPermittedUrls().toArray(new String[]{})).permitAll()
+                        .anyRequest().authenticated()
+                )
+                .addFilterAfter(tokenCheckFilter(), UsernamePasswordAuthenticationFilter.class) // 添加 Token 过滤器
+                .httpBasic(Customizer.withDefaults()) // 启用 HTTP Basic 认证
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // 关闭 session
+                .exceptionHandling(exceptions -> exceptions
+                        .authenticationEntryPoint(new AuthExceptionEntryPoint()) // 认证失败处理
+                        .accessDeniedHandler(new OceanAccessDeniedHandler()) // 权限不足处理
                 );
-        // @formatter:on
+
         return http.build();
     }
 //

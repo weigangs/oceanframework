@@ -1,15 +1,15 @@
 package com.lkyl.oceanframework.common.auth.token;
 
 import cn.hutool.core.codec.Base64;
-import com.lkyl.oceanframework.common.utils.constant.OauthConstant;
-import com.lkyl.oceanframework.common.utils.principal.UserPrincipal;
+import com.lkyl.oceanframework.web.constant.OauthConstant;
+import com.lkyl.oceanframework.common.auth.principal.UserPrincipal;
+import jakarta.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.util.SerializationUtils;
 
-import javax.annotation.Resource;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Optional;
